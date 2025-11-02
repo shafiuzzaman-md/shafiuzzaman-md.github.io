@@ -1,5 +1,13 @@
+// Personal faculty website — single-file React component
+// Notes for customization:
+// - Replace placeholder links (Scholar, GitHub, CV, Email) below.
+// - Update news, publications, teaching, and service arrays.
+// - Export as a static site by embedding in a minimal Vite/Next app or by converting to HTML.
+// - TailwindCSS classes are used; in environments without Tailwind, replace with inline styles.
+
 import React from "react";
 
+// ---------- Data you can edit ----------
 const PROFILE = {
   name: "Md Shafiuzzaman",
   title: "Ph.D. Candidate, Computer Science",
@@ -12,14 +20,14 @@ const PROFILE = {
   linkedin: "https://www.linkedin.com/in/YOUR_ID/",
   twitter: "https://x.com/YOUR_ID",
   cv: "./Shafiuzzaman_CV.pdf",
-  headshot: "https://avatars.githubusercontent.com/u/000000?v=4",
+  headshot: "https://avatars.githubusercontent.com/u/000000?v=4", // replace with your photo URL
   keywords: [
     "software security",
     "symbolic execution",
     "static analysis",
     "firmware analysis (UEFI)",
     "LLM-assisted verification",
-    "vulnerability discovery",
+    "vulnerability discovery"
   ],
 };
 
@@ -60,6 +68,7 @@ const SELECTED_PUBLICATIONS = [
       "Md Shafiuzzaman",
       "Safia Tuba Zaman",
       "Tevfik Bultan",
+      // add co-authors as appropriate
     ],
     venue: "ASE 2024 (A*)",
     link: "https://dl.acm.org/doi/10.1145/3691620.3695543",
@@ -71,6 +80,7 @@ const SELECTED_PUBLICATIONS = [
       { label: "Code (WIP)", url: "https://github.com/shafiuzzaman-md" },
     ],
   },
+  // Add more publications here
 ];
 
 const TEACHING = [
@@ -100,6 +110,7 @@ const FOOTER_LINKS = [
   { label: "LinkedIn", href: PROFILE.linkedin },
   { label: "X/Twitter", href: PROFILE.twitter },
 ];
+// --------------------------------------
 
 function Section({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
   return (
@@ -325,51 +336,49 @@ function Footer() {
           ))}
         </div>
       </div>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Person",
-            name: PROFILE.name,
-            jobTitle: PROFILE.title,
-            affiliation: PROFILE.affiliation,
-            url: typeof window !== 'undefined' ? window.location.href : "",
-            sameAs: [PROFILE.github, PROFILE.scholar, PROFILE.linkedin, PROFILE.twitter],
-            knowsAbout: PROFILE.keywords,
-          }),
-        }}
-      />
+      {/* Structured data for better SEO */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: PROFILE.name,
+          jobTitle: PROFILE.title,
+          affiliation: PROFILE.affiliation,
+          url: typeof window !== 'undefined' ? window.location.href : "",
+          sameAs: [PROFILE.github, PROFILE.scholar, PROFILE.linkedin, PROFILE.twitter],
+          knowsAbout: PROFILE.keywords,
+        }),
+      }} />
     </footer>
   );
 }
 
-export default function App() {
+export default function FacultySite() {
   return (
     <div className="min-h-screen bg-neutral-50 text-neutral-900">
       <Nav />
       <main className="mx-auto max-w-5xl px-4">
-        <header className="pt-24" id="top"></header>
-        <section id="about" className="scroll-mt-24">
-          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-4">About</h2>
-          <p className="text-neutral-700 bg-white rounded-2xl border p-4">
-            I am a Ph.D. candidate in Computer Science at UCSB's Verification Laboratory. My research focuses on
-            software security and verification—particularly symbolic execution, static analysis, and hybrid techniques
-            for firmware and systems software. I build tools and workflows that help developers quickly triage,
-            reproduce, and mitigate complex vulnerabilities.
-          </p>
-        </section>
+        <Hero />
         <div className="my-10 grid gap-10">
-          {Research()}
-          {Publications()}
-          {Teaching()}
-          {Service()}
-          {Students()}
-          {News()}
-          {Contact()}
+          <section id="about" className="scroll-mt-24">
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-4">About</h2>
+            <p className="text-neutral-700 bg-white rounded-2xl border p-4">
+              I am a Ph.D. candidate in Computer Science at UCSB's Verification Laboratory. My research focuses on
+              software security and verification—particularly symbolic execution, static analysis, and hybrid techniques
+              for firmware and systems software. I build tools and workflows that help developers quickly triage,
+              reproduce, and mitigate complex vulnerabilities.
+            </p>
+          </section>
+          <Research />
+          <Publications />
+          <Teaching />
+          <Service />
+          <Students />
+          <News />
+          <Contact />
         </div>
       </main>
-      {Footer()}
+      <Footer />
     </div>
   );
 }
