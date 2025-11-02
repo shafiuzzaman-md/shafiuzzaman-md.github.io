@@ -20,7 +20,7 @@ const PROFILE = {
   linkedin: "https://www.linkedin.com/in/YOUR_ID/",
   twitter: "https://x.com/YOUR_ID",
   cv: "./Shafiuzzaman_CV.pdf",
-  headshot: "https://avatars.githubusercontent.com/u/000000?v=4", // replace with your photo URL
+  headshot: "photo.jpg",
   keywords: [
     "software security",
     "symbolic execution",
