@@ -33,14 +33,20 @@ const PROFILE = {
 };
 
 const NEWS = [
-  {
-    date: "Oct 2024",
-    text:
-      "Our paper ‘STASE: Static Analysis–Guided Symbolic Execution for UEFI Vulnerability Signature Generation’ was accepted to ASE 2024.",
-    link: "https://dl.acm.org/doi/10.1145/3691620.3695543",
-  },
+  
   { date: "Mar 2025", text: "Leading VLab efforts on memory-aware symbolic execution for exploit-chain analysis." },
   { date: "Aug 2025", text: "Mentoring undergraduate researchers in UCSB ERSP on KLEE and CodeQL." },
+  {
+    date: "Oct 2024",
+    text: "Slides for my ASE 2024 talk on STASE.",
+    link: "/STASE_ASE_FINAL.pdf",
+  },
+  {
+    date: "Aug 2024",
+    text:
+      "Our paper ‘STASE: Static Analysis Guided Symbolic Execution for UEFI Vulnerability Signature Generation’ was accepted to ASE 2024.",
+    link: "https://dl.acm.org/doi/10.1145/3691620.3695543",
+  },
 ];
 
 const RESEARCH_AREAS = [
@@ -167,7 +173,7 @@ function Hero() {
           <p className="mt-1 text-neutral-700">{PROFILE.title}</p>
           <p className="text-neutral-700">{PROFILE.affiliation}</p>
           <p className="text-neutral-600">
-            Advisor: <a href={PROFILE.advisorUrl} target="_blank" rel="noopener noreferrer" className="underline decoration-2 underline-offset-4">
+            <a href={PROFILE.advisorUrl} target="_blank" rel="noopener noreferrer" className="underline decoration-2 underline-offset-4">
               {PROFILE.advisor}
             </a>
           </p>
