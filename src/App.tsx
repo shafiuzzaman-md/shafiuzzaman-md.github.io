@@ -13,6 +13,7 @@ const PROFILE = {
   title: "Ph.D. Candidate, Computer Science",
   affiliation: "University of California, Santa Barbara — Verification Lab (VLab)",
   advisor: "Advisor: Prof. Tevfik Bultan",
+  advisorUrl: "https://sites.cs.ucsb.edu/~bultan/",
   location: "Santa Barbara, CA",
   email: "mailto:mdshafiuzzaman@ucsb.edu",
   scholar: "https://scholar.google.com/citations?user=YOUR_ID",
@@ -165,7 +166,12 @@ function Hero() {
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight">{PROFILE.name}</h1>
           <p className="mt-1 text-neutral-700">{PROFILE.title}</p>
           <p className="text-neutral-700">{PROFILE.affiliation}</p>
-          <p className="text-neutral-600">{PROFILE.advisor}</p>
+          <p className="text-neutral-600">
+            Advisor: <a href={PROFILE.advisorUrl} target="_blank" rel="noopener noreferrer" className="underline decoration-2 underline-offset-4">
+              {PROFILE.advisor}
+            </a>
+          </p>
+
           <div className="mt-3 flex flex-wrap gap-2">
             {PROFILE.keywords.map((k) => (
               <Badge key={k}>{k}</Badge>
