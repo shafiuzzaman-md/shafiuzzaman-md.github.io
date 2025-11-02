@@ -11,7 +11,7 @@ import React from "react";
 const PROFILE = {
   name: "Md (Muhammad) Shafiuzzaman",
   title: "Ph.D. Candidate, Computer Science",
-  affiliation: "University of California, Santa Barbara — Verification Lab (VLab)",
+  affiliation: "Verification Lab (VLab), University of California, Santa Barbara (UCSB)",
   advisor: "Advisor: Prof. Tevfik Bultan",
   advisorUrl: "https://sites.cs.ucsb.edu/~bultan/",
   location: "Santa Barbara, CA",
