@@ -348,12 +348,13 @@ function Footer() {
           ))}
         </div>
       </div>
-      {/* Structured data for better SEO */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{
         __html: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Person",
-          name: PROFILE.name,
+          name: "Md Shafiuzzaman",
+          alternateName: ["Mohammad Shafiuzzaman", "Muhammad Shafiuzzaman"],
+          additionalName: ["Mohammad"],
           jobTitle: PROFILE.title,
           affiliation: PROFILE.affiliation,
           url: typeof window !== 'undefined' ? window.location.href : "",
@@ -361,6 +362,7 @@ function Footer() {
           knowsAbout: PROFILE.keywords,
         }),
       }} />
+
     </footer>
   );
 }
