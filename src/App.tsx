@@ -9,7 +9,7 @@ import React from "react";
 
 // ---------- Data you can edit ----------
 const PROFILE = {
-  name: "Md Shafiuzzaman",
+  name: "Md (Muhammad) Shafiuzzaman",
   title: "Ph.D. Candidate, Computer Science",
   affiliation: "University of California, Santa Barbara — Verification Lab (VLab)",
   advisor: "Advisor: Prof. Tevfik Bultan",
