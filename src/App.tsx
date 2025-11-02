@@ -549,15 +549,15 @@ export default function FacultySite() {
             <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-4">
               About
             </h2>
-            <p className="text-neutral-700 bg-white rounded-2xl border p-4">
-              I am a Ph.D. candidate in Computer Science at UCSB’s Verification
-              Laboratory. My research develops AI-assisted formal methods and
-              hybrid program analysis (static + symbolic execution + fuzzing) to
-              scale vulnerability discovery and produce machine-checkable
-              security artifacts. My work (e.g., STASE) uncovered zero-day UEFI
-              issues, confirmed real CVEs, and has been integrated in DARPA
-              HARDEN evaluations and transitioned to U.S. Army contexts.
-            </p>
+              <p className="text-neutral-700 bg-white rounded-2xl border p-4">
+                I’m a Ph.D. candidate in Computer Science at UCSB’s Verification Lab. I build
+                LLM-/agentic-AI–assisted formal methods and hybrid analyses (static, symbolic
+                execution, and fuzzing) that scale to large codebases via containerized,
+                parallelizable workflows. My framework, STASE, uncovered zero-day UEFI issues,
+                confirmed CVEs, and was integrated in DARPA HARDEN with transition to U.S.
+                Army adversarial testing workflows.
+              </p>
+
           </section>
           <Research />
           <Publications />
