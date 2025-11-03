@@ -1,3 +1,9 @@
+/* index.css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* --- polish --- */
+html { scroll-behavior: smooth; }
+::selection { background: #e6f0ff; color: #0b3d91; }

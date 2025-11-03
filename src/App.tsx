@@ -1,54 +1,51 @@
-// Personal faculty website — single-file React component (TSX-friendly)
-// TailwindCSS classes used for styling.
-
 import React from "react";
 
-// ---------- Data (synced with CV) ----------
+/* =========================
+   Editable profile + content
+   ========================= */
 const PROFILE = {
+  // For the hero and nav brand:
   name: "Md (Muhammad) Shafiuzzaman",
+
   title: "Ph.D. Candidate, Computer Science",
-  affiliation:
-    "Verification Lab (VLab), University of California, Santa Barbara (UCSB)",
-  advisor: "Advisor: Prof. Tevfik Bultan",
+  affiliation: "University of California, Santa Barbara — Verification Lab (VLab)",
+
+  // Advisor line with link
+  advisor: "Prof. Tevfik Bultan",
   advisorUrl: "https://sites.cs.ucsb.edu/~bultan/",
+
+  // Location (optional, not currently rendered)
   location: "Santa Barbara, CA",
-  email: "mailto:mdshafiuzzaman@ucsb.edu",
-  scholar:
-    "https://scholar.google.com/citations?user=1mue4woAAAAJ&hl=en",
+
+  // Links
+  email: "mailto:YOUR_UCSB_EMAIL", // e.g., mailto:shafiuzzaman@ucsb.edu
+  scholar: "https://scholar.google.com/citations?user=YOUR_SCHOLAR_ID",
   github: "https://github.com/shafiuzzaman-md",
-  linkedin: "https://www.linkedin.com/in/mdshafiuzzaman/",
-  twitter: "", // leave empty if unused
-  cv: "./Shafiuzzaman_CV_KAUST.pdf",
-  headshot: "/headshot.jpg",
+  linkedin: "https://www.linkedin.com/in/YOUR_HANDLE/",
+  twitter: "https://x.com/YOUR_HANDLE",
+  cv: "/Shafiuzzaman_CV.pdf", // place the file in /public
+
+  // Headshot served from /public (recommended) or import from src/assets
+  headshot: "/headshot_600.webp",
+
   keywords: [
-    "generative AI",
-    "agentic AI for code",
-    "LLM-assisted formal methods",
+    "software security",
     "symbolic execution",
     "static analysis",
-    "hybrid program analysis",
-    "firmware security (UEFI)",
-    "large-scale/HPC code intelligence",
+    "firmware analysis (UEFI)",
+    "LLM-assisted verification",
+    "vulnerability discovery",
   ],
 };
 
-// News (reverse-chronological)
 const NEWS = [
   {
-    date: "Oct 2025",
-    text: "Advanced Graduate Student Mentor (GSP) 2025–2026 cohort launched.",
-    link: "https://www.graddiv.ucsb.edu/GSP",
-  },
-  {
     date: "Aug 2025",
-    text:
-      "Mentoring a new 5-student ERSP cohort on LLM-assisted fuzzing & symbolic-execution harness generation.",
-    link: "https://ersp.cs.ucsb.edu/",
+    text: "Mentoring undergraduate researchers in UCSB ERSP on KLEE and CodeQL.",
   },
   {
     date: "Mar 2025",
-    text:
-      "VehicleSec paper on stateful behavior inference & runtime enforcement accepted.",
+    text: "Leading VLab efforts on memory-aware symbolic execution for exploit-chain analysis.",
   },
   {
     date: "Oct 2024",
@@ -57,27 +54,26 @@ const NEWS = [
   },
   {
     date: "Aug 2024",
-    text:
-      "‘STASE: Static Analysis Guided Symbolic Execution for UEFI Vulnerability Signature Generation’ accepted to ASE 2024.",
+    text: "Our STASE paper was accepted to ASE 2024.",
     link: "https://dl.acm.org/doi/10.1145/3691620.3695543",
   },
 ];
 
 const RESEARCH_AREAS = [
   {
-    title: "AI for Code Intelligence (GenAI/Agentic)",
+    title: "Symbolic & Hybrid Program Analysis",
     desc:
-      "Designing agents that plan, verify, and refine code changes with contracts, static facts, and symbolic checks; safety and evidence-bearing loops.",
+      "Scaling path exploration with static prefilters, directed assertions, and solver-friendly encodings for security-critical code.",
   },
   {
-    title: "Hybrid Program Analysis at Scale",
+    title: "Firmware Security (UEFI)",
     desc:
-      "Combining static analysis, symbolic execution, and fuzzing with probabilistic guidance and HPC/GPU orchestration for large codebases.",
+      "Automating harness generation and memory-aware models to find and characterize high-privilege vulnerabilities in UEFI and embedded stacks.",
   },
   {
-    title: "Firmware & CPS Security (UEFI/Automotive)",
+    title: "LLM-Assisted Verification",
     desc:
-      "Memory-aware models, formal vulnerability signatures, and runtime enforcement for high-privilege firmware and in-vehicle networks.",
+      "Integrating LLMs with CodeQL/KLEE pipelines for stub synthesis, entrypoint selection, and human-in-the-loop triage.",
   },
 ];
 
@@ -85,108 +81,41 @@ const SELECTED_PUBLICATIONS = [
   {
     title:
       "STASE: Static Analysis–Guided Symbolic Execution for UEFI Vulnerability Signature Generation",
-    authors: ["Md Shafiuzzaman", "Safia Tuba Zaman", "Tevfik Bultan"],
+    authors: [
+      "Md Shafiuzzaman",
+      "Safia Tuba Zaman",
+      "Tevfik Bultan",
+    ],
     venue: "ASE 2024 (A*)",
     link: "https://dl.acm.org/doi/10.1145/3691620.3695543",
     badges: ["UEFI", "Symbolic Execution", "Static Analysis"],
     abstract:
-      "STASE unifies rule-based static analysis with symbolic execution to generate actionable vulnerability signatures that encode pre/postconditions and trigger inputs.",
+      "STASE combines rule-based static analysis with symbolic execution to improve precision and scalability, generating actionable vulnerability signatures.",
     resources: [
       { label: "Paper", url: "https://dl.acm.org/doi/10.1145/3691620.3695543" },
-      { label: "Slides", url: "/STASE_ASE_FINAL.pdf" },
       { label: "Code (WIP)", url: "https://github.com/shafiuzzaman-md" },
     ],
   },
-  {
-    title: "Rare Path Guided Fuzzing",
-    authors: ["Md Shafiuzzaman", "et al."],
-    venue: "ISSTA 2023",
-    link: "https://doi.org/10.1145/3597926.3598136",
-    badges: ["Fuzzing", "Probabilistic Guidance"],
-    abstract:
-      "Models path rarity with concolic seeding to improve coverage and fault discovery over baseline fuzzers on real targets.",
-    resources: [
-      { label: "Paper", url: "https://doi.org/10.1145/3597926.3598136" },
-    ],
-  },
-  {
-    title:
-      "Stateful Behavior Inference and Runtime Enforcement for Vehicle Network Security",
-    authors: ["Md Shafiuzzaman", "et al."],
-    venue: "USENIX VehicleSec 2025",
-    link: "",
-    badges: ["Automotive", "Runtime Enforcement", "CPS"],
-    abstract:
-      "Bridges verification artifacts to in-vehicle runtime monitors with explainable state inference and enforceable policies.",
-    resources: [],
-  },
-  {
-    title:
-      "CHAINER: Discovering Vulnerability Chains with Memory-Aware Symbolic Analysis",
-    authors: ["Md Shafiuzzaman", "et al."],
-    venue: "Under submission",
-    link: "",
-    badges: ["Exploit Chains", "Symbolic Analysis"],
-    abstract:
-      "Synthesizes exploit chains by composing formal vulnerability signatures with a memory-aware privilege model.",
-    resources: [],
-  },
+  // Add more publications here…
 ];
 
 const TEACHING = [
   {
-    term: "2025–2026",
-    course: "Advanced Graduate Student Mentor, UCSB Graduate Scholars Program (GSP)",
+    term: "2024–2025",
+    course: "Mentor, UCSB ERSP (Undergraduate Research)",
     role: "Mentor",
-    notes:
-      "Cohort-based mentoring; monthly meetings and 1:1s; NSF GRFP statement reviews and mock panels.",
-  },
-  {
-    term: "2025–2026",
-    course:
-      "Undergraduate Research Mentor, UCSB Early Research Scholars Program (ERSP)",
-    role: "Mentor",
-    notes:
-      "LLM-assisted fuzzing & symbolic-execution harness generation; 5-student cohort.",
-  },
-  {
-    term: "2023–2024",
-    course:
-      "Undergraduate Research Mentor, UCSB Early Research Scholars Program (ERSP)",
-    role: "Mentor",
-    notes:
-      "Vulnerability Signature Generation with symbolic execution; 4-student cohort (3 quarters).",
-  },
-  {
-    term: "Summer 2022",
-    course: "CMPSC 130A: Data Structures & Algorithms I (UCSB)",
-    role: "Instructor",
-    notes: "Course design, lectures, assessments, mentoring.",
+    notes: "Reading group on symbolic execution (KLEE) and static analysis (CodeQL).",
   },
 ];
 
 const SERVICE = [
-  {
-    year: "2025–2026",
-    item:
-      "Advanced Graduate Student Mentor, UCSB Graduate Scholars Program (GSP); NSF GRFP coaching (rubrics, reviews, mock panels).",
-  },
-  {
-    year: "2023–2025",
-    item:
-      "Reviewer / Artifact Evaluation, premier SE venues (ICSE, ASE, FSE, ISSTA).",
-  },
-  {
-    year: "Ongoing",
-    item:
-      "Open-source tools and reproducible research artifacts (containers, fixed seeds, telemetry).",
-  },
+  { year: "2025", item: "Advanced Graduate Student Mentor, UCSB Graduate Scholars Program" },
+  { year: "2024–2025", item: "Reviewer / Artifact Evaluation volunteer (selected SE venues)" },
 ];
 
-// keep mentee names private unless consented
 const STUDENTS = [
-  { name: "ERSP Cohort (2025–2026)", note: "LLM-assisted harness generation (5 students)" },
-  { name: "ERSP Cohort (2023–2024)", note: "Vulnerability Signature Generation (4 students)" },
+  { name: "Ben Carter", note: "ERSP mentee (KLEE install & Juliet CWE mini-project)" },
+  { name: "Luis Blanco", note: "ERSP mentee (CodeQL query packs for UAF/OOB)" },
 ];
 
 const FOOTER_LINKS = [
@@ -195,11 +124,47 @@ const FOOTER_LINKS = [
   { label: "Google Scholar", href: PROFILE.scholar },
   { label: "GitHub", href: PROFILE.github },
   { label: "LinkedIn", href: PROFILE.linkedin },
-  // only show Twitter if provided
-  ...(PROFILE.twitter ? [{ label: "X/Twitter", href: PROFILE.twitter }] : []),
+  { label: "X/Twitter", href: PROFILE.twitter },
 ];
 
-// --------------------------------------
+/* =========================
+   UI primitives (polished)
+   ========================= */
+function Badge({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="inline-block rounded-full border border-zinc-200 bg-white/70 px-2.5 py-0.5 text-[11px] leading-5 text-zinc-700">
+      {children}
+    </span>
+  );
+}
+
+function Button({
+  href,
+  children,
+  variant = "outline",
+}: {
+  href: string;
+  children: React.ReactNode;
+  variant?: "primary" | "outline";
+}) {
+  const base =
+    "inline-flex items-center rounded-xl px-4 py-2 text-sm transition shadow-sm";
+  const styles =
+    variant === "primary"
+      ? "bg-zinc-900 text-white hover:bg-black"
+      : "border border-zinc-200 bg-white hover:shadow";
+  const external = href.startsWith("http");
+  return (
+    <a
+      href={href}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
+      className={`${base} ${styles}`}
+    >
+      {children}
+    </a>
+  );
+}
 
 function Section({
   id,
@@ -211,8 +176,8 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className="scroll-mt-24" aria-label={title}>
-      <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-4">
+    <section id={id} className="scroll-mt-28">
+      <h2 className="mb-5 text-2xl md:text-3xl font-semibold tracking-tight">
         {title}
       </h2>
       <div className="space-y-4">{children}</div>
@@ -220,14 +185,9 @@ function Section({
   );
 }
 
-function Badge({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="inline-block rounded-full border px-2 py-0.5 text-xs">
-      {children}
-    </span>
-  );
-}
-
+/* =========================
+   Layout components
+   ========================= */
 function Nav() {
   const items = [
     { label: "About", href: "#about" },
@@ -240,17 +200,17 @@ function Nav() {
     { label: "Contact", href: "#contact" },
   ];
   return (
-    <nav className="fixed inset-x-0 top-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-white/60 bg-white/80 border-b">
-      <div className="mx-auto max-w-5xl px-4 py-3 flex items-center justify-between">
+    <nav className="fixed inset-x-0 top-0 z-50 border-b bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+      <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
         <a href="#top" className="font-semibold tracking-tight">
           {PROFILE.name}
         </a>
-        <div className="hidden md:flex gap-4 text-sm">
+        <div className="hidden gap-5 text-sm md:flex">
           {items.map((it) => (
             <a
               key={it.href}
               href={it.href}
-              className="hover:underline decoration-2 underline-offset-4"
+              className="text-zinc-700 hover:text-black hover:underline underline-offset-4"
             >
               {it.label}
             </a>
@@ -264,24 +224,26 @@ function Nav() {
 function Hero() {
   return (
     <header className="pt-24" id="top">
-      <div className="mx-auto max-w-5xl px-4 grid md:grid-cols-[auto,1fr] gap-6 items-center">
+      <div className="mx-auto grid max-w-5xl items-center gap-7 px-4 md:grid-cols-[auto,1fr]">
         <img
           src={PROFILE.headshot}
-          alt={PROFILE.name}
-          className="w-28 h-28 md:w-36 md:h-36 rounded-2xl object-cover shadow"
+          alt="Portrait of Md (Muhammad) Shafiuzzaman"
+          loading="lazy"
+          className="h-28 w-28 rounded-2xl object-cover ring-1 ring-zinc-200 md:h-36 md:w-36"
         />
         <div>
-          <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
+          <h1 className="text-3xl font-extrabold tracking-tight md:text-4xl">
             {PROFILE.name}
           </h1>
-          <p className="mt-1 text-neutral-700">{PROFILE.title}</p>
-          <p className="text-neutral-700">{PROFILE.affiliation}</p>
-          <p className="text-neutral-600">
+          <p className="mt-1 text-zinc-700">{PROFILE.title}</p>
+          <p className="text-zinc-700">{PROFILE.affiliation}</p>
+          <p className="text-zinc-600">
+            Advisor:{" "}
             <a
               href={PROFILE.advisorUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="underline decoration-2 underline-offset-4"
+              className="underline underline-offset-4"
             >
               {PROFILE.advisor}
             </a>
@@ -292,31 +254,14 @@ function Hero() {
               <Badge key={k}>{k}</Badge>
             ))}
           </div>
+
           <div className="mt-4 flex flex-wrap gap-3">
-            <a
-              href={PROFILE.email}
-              className="px-4 py-2 rounded-xl border shadow-sm hover:shadow transition"
-            >
-              Email
-            </a>
-            <a
-              href={PROFILE.cv}
-              className="px-4 py-2 rounded-xl border shadow-sm hover:shadow transition"
-            >
+            <Button href={PROFILE.cv} variant="primary">
               CV
-            </a>
-            <a
-              href={PROFILE.scholar}
-              className="px-4 py-2 rounded-xl border shadow-sm hover:shadow transition"
-            >
-              Google Scholar
-            </a>
-            <a
-              href={PROFILE.github}
-              className="px-4 py-2 rounded-xl border shadow-sm hover:shadow transition"
-            >
-              GitHub
-            </a>
+            </Button>
+            <Button href={PROFILE.email}>Email</Button>
+            <Button href={PROFILE.scholar}>Google Scholar</Button>
+            <Button href={PROFILE.github}>GitHub</Button>
           </div>
         </div>
       </div>
@@ -327,19 +272,19 @@ function Hero() {
 function Research() {
   return (
     <Section id="research" title="Research">
-      <p className="text-neutral-700">
+      <p className="text-zinc-700">
         I build AI-assisted formal methods and hybrid analyses (static + symbolic
-        execution + fuzzing) that scale to large codebases and produce
-        machine-checkable security artifacts. My current focus areas include:
-        agentic AI for code, memory-aware vulnerability signatures, and
-        runtime enforcement for CPS/automotive systems. Experiments are designed
-        for reproducibility and HPC/GPU execution.
+        execution + fuzzing) that scale to large codebases and yield
+        machine-checkable security artifacts.
       </p>
-      <div className="grid md:grid-cols-3 gap-4">
+      <div className="grid gap-4 md:grid-cols-3">
         {RESEARCH_AREAS.map((a) => (
-          <div key={a.title} className="rounded-2xl border p-4 shadow-sm bg-white">
-            <h3 className="font-semibold mb-1">{a.title}</h3>
-            <p className="text-sm text-neutral-700">{a.desc}</p>
+          <div
+            key={a.title}
+            className="rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm"
+          >
+            <h3 className="mb-1 font-semibold">{a.title}</h3>
+            <p className="text-sm text-zinc-700">{a.desc}</p>
           </div>
         ))}
       </div>
@@ -350,40 +295,41 @@ function Research() {
 function Publications() {
   return (
     <Section id="publications" title="Selected Publications">
-      <ul className="space-y-6">
+      <ul className="space-y-5">
         {SELECTED_PUBLICATIONS.map((p, idx) => (
-          <li key={idx} className="rounded-2xl border p-4 bg-white">
-            <div className="flex flex-wrap gap-2 mb-2">
-              {p.badges?.map((b) => (
+          <li
+            key={idx}
+            className="rounded-2xl border border-zinc-200 bg-white p-4"
+          >
+            <div className="mb-2 flex flex-wrap gap-2">
+              {p.badges?.map((b: string) => (
                 <Badge key={b}>{b}</Badge>
               ))}
             </div>
             <a
-              className="font-semibold hover:underline decoration-2 underline-offset-4"
+              className="font-semibold hover:underline underline-offset-4"
               href={p.link || "#"}
+              target={p.link ? "_blank" : undefined}
+              rel="noopener noreferrer"
             >
               {p.title}
             </a>
-            <div className="text-sm text-neutral-700 mt-1">
+            <div className="mt-1 text-sm text-zinc-700">
               {p.authors.join(", ")}
             </div>
-            <div className="text-sm text-neutral-600">{p.venue}</div>
+            <div className="text-sm text-zinc-500">{p.venue}</div>
             {p.abstract && (
-              <p className="text-sm mt-2 text-neutral-700">{p.abstract}</p>
+              <p className="mt-2 text-sm text-zinc-700">{p.abstract}</p>
             )}
-            {p.resources?.length ? (
-              <div className="mt-3 flex flex-wrap gap-3">
-                {p.resources.map((r) => (
-                  <a
-                    key={r.url}
-                    href={r.url}
-                    className="text-sm px-3 py-1 rounded-xl border hover:shadow"
-                  >
+            {!!p.resources?.length && (
+              <div className="mt-3 flex flex-wrap gap-2">
+                {p.resources.map((r: { label: string; url: string }) => (
+                  <Button key={r.url} href={r.url}>
                     {r.label}
-                  </a>
+                  </Button>
                 ))}
               </div>
-            ) : null}
+            )}
           </li>
         ))}
       </ul>
@@ -397,17 +343,15 @@ function Teaching() {
       <ul className="divide-y">
         {TEACHING.map((t, i) => (
           <li key={i} className="py-3">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+            <div className="flex flex-col items-start justify-between md:flex-row md:items-center">
               <div>
                 <div className="font-medium">{t.course}</div>
-                <div className="text-sm text-neutral-600">
+                <div className="text-sm text-zinc-600">
                   {t.role} • {t.term}
                 </div>
               </div>
               {t.notes && (
-                <div className="text-sm text-neutral-700 mt-1 md:mt-0">
-                  {t.notes}
-                </div>
+                <div className="mt-1 text-sm text-zinc-700 md:mt-0">{t.notes}</div>
               )}
             </div>
           </li>
@@ -422,8 +366,8 @@ function Service() {
     <Section id="service" title="Service">
       <ul className="list-disc pl-6">
         {SERVICE.map((s, i) => (
-          <li key={i} className="text-neutral-700">
-            <span className="font-medium text-neutral-900">{s.year}:</span>{" "}
+          <li key={i} className="text-zinc-700">
+            <span className="font-medium text-zinc-900">{s.year}:</span>{" "}
             {s.item}
           </li>
         ))}
@@ -435,11 +379,11 @@ function Service() {
 function Students() {
   return (
     <Section id="students" title="Students">
-      <ul className="grid md:grid-cols-2 gap-3">
+      <ul className="grid gap-3 md:grid-cols-2">
         {STUDENTS.map((s, i) => (
-          <li key={i} className="rounded-xl border p-3 bg-white">
+          <li key={i} className="rounded-xl border border-zinc-200 bg-white p-3">
             <div className="font-medium">{s.name}</div>
-            <div className="text-sm text-neutral-700">{s.note}</div>
+            <div className="text-sm text-zinc-700">{s.note}</div>
           </li>
         ))}
       </ul>
@@ -452,15 +396,17 @@ function News() {
     <Section id="news" title="News">
       <ul className="divide-y">
         {NEWS.map((n, i) => (
-          <li key={i} className="py-3 flex items-start gap-3">
-            <div className="text-sm text-neutral-500 mt-0.5 w-24 shrink-0">
+          <li key={i} className="flex items-start gap-3 py-3">
+            <div className="mt-0.5 w-28 shrink-0 text-sm text-zinc-500">
               {n.date}
             </div>
-            <div className="text-neutral-800">
+            <div className="text-zinc-800">
               {n.link ? (
                 <a
-                  className="hover:underline decoration-2 underline-offset-4"
+                  className="hover:underline underline-offset-4"
                   href={n.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   {n.text}
                 </a>
@@ -478,15 +424,15 @@ function News() {
 function Contact() {
   return (
     <Section id="contact" title="Contact">
-      <div className="rounded-2xl border p-4 bg-white">
-        <p className="text-neutral-700">
-          The best way to reach me is by email. I’m also active on GitHub.
+      <div className="rounded-2xl border border-zinc-200 bg-white p-4">
+        <p className="text-zinc-700">
+          Best way to reach me is by email. I’m also active on GitHub.
         </p>
         <div className="mt-3 flex flex-wrap gap-3">
           {FOOTER_LINKS.map((l) => (
-            <a key={l.href} href={l.href} className="px-4 py-2 rounded-xl border hover:shadow">
+            <Button key={l.href} href={l.href}>
               {l.label}
-            </a>
+            </Button>
           ))}
         </div>
       </div>
@@ -496,8 +442,8 @@ function Contact() {
 
 function Footer() {
   return (
-    <footer className="mt-10 py-8 text-sm text-neutral-600">
-      <div className="mx-auto max-w-5xl px-4 flex flex-col md:flex-row items-center justify-between gap-2">
+    <footer className="mt-12 py-8 text-sm text-zinc-600">
+      <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-2 px-4 md:flex-row">
         <div>© {new Date().getFullYear()} {PROFILE.name}. All rights reserved.</div>
         <div className="flex flex-wrap gap-4">
           {FOOTER_LINKS.map((l) => (
@@ -507,30 +453,29 @@ function Footer() {
           ))}
         </div>
       </div>
+
+      {/* Structured data for better SEO */}
       <script
         type="application/ld+json"
-        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Person",
             name: "Md Shafiuzzaman",
             alternateName: [
+              "Md (Muhammad) Shafiuzzaman",
               "Mohammad Shafiuzzaman",
               "Muhammad Shafiuzzaman",
             ],
-            additionalName: ["Mohammad"],
+            additionalName: ["Muhammad"],
             jobTitle: PROFILE.title,
             affiliation: PROFILE.affiliation,
-            url:
-              typeof window !== "undefined" ? window.location.href : "",
-            sameAs: [
-              PROFILE.github,
-              PROFILE.scholar,
-              PROFILE.linkedin,
-              ...(PROFILE.twitter ? [PROFILE.twitter] : []),
-            ],
+            url: typeof window !== "undefined" ? window.location.href : "",
+            sameAs: [PROFILE.github, PROFILE.scholar, PROFILE.linkedin, PROFILE.twitter],
             knowsAbout: PROFILE.keywords,
+            colleague: [
+              { "@type": "Person", name: PROFILE.advisor, url: PROFILE.advisorUrl },
+            ],
           }),
         }}
       />
@@ -538,27 +483,30 @@ function Footer() {
   );
 }
 
+/* =========================
+   Page
+   ========================= */
 export default function FacultySite() {
   return (
     <div className="min-h-screen bg-neutral-50 text-neutral-900">
       <Nav />
       <main className="mx-auto max-w-5xl px-4">
         <Hero />
-        <div className="my-10 grid gap-10">
-          <section id="about" className="scroll-mt-24">
-            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-4">
-              About
-            </h2>
-              <p className="text-neutral-700 bg-white rounded-2xl border p-4">
-                I’m a Ph.D. candidate in Computer Science at UCSB’s Verification Lab. I build
-                LLM-/agentic-AI–assisted formal methods and hybrid analyses (static, symbolic
-                execution, and fuzzing) that scale to large codebases via containerized,
-                parallelizable workflows. My framework, STASE, uncovered zero-day UEFI issues,
-                confirmed CVEs, and was integrated in DARPA HARDEN with transition to U.S.
-                Army adversarial testing workflows.
-              </p>
-
+        <div className="my-12 grid gap-12">
+          <section id="about" className="scroll-mt-28">
+            <h2 className="mb-5 text-2xl md:text-3xl font-semibold tracking-tight">About</h2>
+            <p className="rounded-2xl border border-zinc-200 bg-white p-4 text-zinc-700">
+              I am a Ph.D. candidate in Computer Science at UCSB's Verification Laboratory. My
+              research focuses on software security and verification—particularly symbolic
+              execution, static analysis, and hybrid techniques for firmware and systems software.
+              I build tools and workflows that help developers quickly triage, reproduce, and
+              mitigate complex vulnerabilities.
+            </p>
+            <p className="mt-2 text-sm text-zinc-600">
+              Note: “Md” on my official documents is the abbreviation for “Muhammad”.
+            </p>
           </section>
+
           <Research />
           <Publications />
           <Teaching />
