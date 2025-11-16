@@ -114,6 +114,46 @@
       gap: 0.5rem;
     }
 
+    .nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-right: 0.35rem;
+  padding-right: 0.6rem;
+  border-right: 1px solid var(--border);
+}
+
+.icon-link {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  padding: 3px;
+}
+
+.icon-link img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.icon-link:hover {
+  background: var(--accent-soft);
+  border-color: rgba(37, 99, 235, 0.55);
+  text-decoration: none;
+}
+
+@media (max-width: 640px) {
+  .nav-icons {
+    display: none;
+  }
+}
+
+
     .btn {
       display: inline-flex;
       align-items: center;
@@ -494,27 +534,31 @@
         </ul>
       </nav>
      <div class="nav-actions">
-        <div class="nav-icons">
-          <a class="icon-link"
-            href="https://scholar.google.com/citations?user=1mue4woAAAAJ&hl=en"
-            target="_blank" rel="noopener" title="Google Scholar">
-            S
-          </a>
-          <a class="icon-link"
-            href="https://github.com/shafiuzzaman-md"
-            target="_blank" rel="noopener" title="GitHub">
-            G
-          </a>
-          <a class="icon-link"
-            href="https://www.linkedin.com/in/mdshafiuzzaman/"
-            target="_blank" rel="noopener" title="LinkedIn">
-            in
-          </a>
-        </div>
+      <div class="nav-icons">
+        <a class="icon-link"
+          href="https://scholar.google.com/citations?user=1mue4woAAAAJ&hl=en"
+          target="_blank" rel="noopener" title="Google Scholar">
+          <img src="icons/scholar.png" alt="Google Scholar" />
+        </a>
 
-        <a class="btn" href="mailto:mdshafiuzzaman@ucsb.edu">Email</a>
-        <a class="btn btn-primary" href="cv.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+        <a class="icon-link"
+          href="https://github.com/shafiuzzaman-md"
+          target="_blank" rel="noopener" title="GitHub">
+          <img src="icons/github.png" alt="GitHub" />
+        </a>
+
+        <a class="icon-link"
+          href="https://www.linkedin.com/in/mdshafiuzzaman/"
+          target="_blank" rel="noopener" title="LinkedIn">
+          <img src="icons/linkedin.png" alt="LinkedIn" />
+        </a>
+      </div>
+
+      <a class="btn" href="mailto:mdshafiuzzaman@ucsb.edu">Email</a>
+      <a class="btn btn-primary" href="cv.pdf" target="_blank" rel="noopener">CV (PDF)</a>
     </div>
+
+
 
   </header>
 
