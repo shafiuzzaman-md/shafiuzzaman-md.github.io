@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Md (Muhammad) Shafiuzzaman | Faculty Profile</title>
+  <title>Md (Muhammad) Shafiuzzaman</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Faculty profile of Md (Muhammad) Shafiuzzaman – AI-assisted software engineering, software security, program analysis, and formal methods." />
 
@@ -263,6 +263,8 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: #9ca3af;
+      text-align: center;
+      margin-top: 0.35rem;
     }
 
     .hero-metrics {
@@ -294,6 +296,39 @@
     .hero-side-footer {
       font-size: 0.78rem;
       color: #d1d5db;
+    }
+
+    /* Photo inside hero-side-card */
+    .photo-wrapper {
+      width: 120px;
+      height: 120px;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 0 auto 0.6rem;
+      border: 2px solid rgba(229, 231, 235, 0.9);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+      background: #111827;
+    }
+
+    .photo-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-side-name {
+      text-align: center;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin: 0.15rem 0 0.05rem;
+    }
+
+    .hero-side-role {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin: 0 0 0.4rem;
     }
 
     /* Cards & lists */
@@ -363,6 +398,29 @@
       font-size: 0.83rem;
     }
 
+    /* News */
+
+    .news-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-size: 0.9rem;
+    }
+
+    .news-item + .news-item {
+      margin-top: 0.6rem;
+      padding-top: 0.6rem;
+      border-top: 1px dashed var(--border);
+    }
+
+    .news-date {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 0.1rem;
+    }
+
     /* Footer */
 
     footer {
@@ -376,6 +434,12 @@
 
     footer a {
       color: var(--accent);
+    }
+
+    .side-column {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
     }
 
     /* Responsive */
@@ -425,6 +489,7 @@
         <ul>
           <li><a href="#about">About</a></li>
           <li><a href="#research">Research</a></li>
+          <li><a href="#news">News</a></li>
           <li><a href="#publications">Publications</a></li>
           <li><a href="#teaching">Teaching</a></li>
           <li><a href="#students">Students</a></li>
@@ -434,7 +499,6 @@
       </nav>
       <div class="nav-actions">
         <a class="btn" href="mailto:mdshafiuzzaman@ucsb.edu">Email</a>
-        <!-- Update the CV link to your PDF -->
         <a class="btn btn-primary" href="cv.pdf" target="_blank" rel="noopener">CV (PDF)</a>
       </div>
     </div>
@@ -454,11 +518,6 @@
             <span>Email:</span>
             <a href="mailto:mdshafiuzzaman@ucsb.edu">mdshafiuzzaman@ucsb.edu</a>
             <span>|</span>
-            <span>Website:</span>
-            <a href="https://shafiuzzaman-md.github.io" target="_blank" rel="noopener">
-              shafiuzzaman-md.github.io
-            </a>
-            <span>|</span>
             <span>Google Scholar:</span>
             <a href="https://scholar.google.com/citations?user=1mue4woAAAAJ&hl=en" target="_blank" rel="noopener">
               profile
@@ -466,6 +525,9 @@
             <span>|</span>
             <span>GitHub:</span>
             <a href="https://github.com/shafiuzzaman-md" target="_blank" rel="noopener">shafiuzzaman-md</a>
+            <span>|</span>
+            <span>LinkedIn:</span>
+            <a href="https://www.linkedin.com/in/mdshafiuzzaman/" target="_blank" rel="noopener">mdshafiuzzaman</a>
           </div>
 
           <p class="hero-bio">
@@ -478,22 +540,34 @@
           </p>
 
           <p class="hero-bio">
-            My framework <b>STASE</b> (Static Analysis–Guided Symbolic Execution) was developed in the
-            DARPA <a href="https://www.darpa.mil/research/programs/hardening-development-toolchains-against-emergent-execution-engines" target="_blank" rel="noopener">HARDEN</a> program,
-            uncovered previously unknown UEFI and Linux kernel vulnerabilities, confirmed multiple CVEs, and is
-            being transitioned to U.S. Army adversarial-testing workflows.
+          I lead the design of <b>STASE</b> (Static Analysis–Guided Symbolic Execution),
+          originally created for the DARPA <a href="https://www.darpa.mil/research/programs/hardening-development-toolchains-against-emergent-execution-engines" target="_blank" rel="noopener">HARDEN</a>
+          program. STASE has uncovered previously unknown UEFI and Linux kernel vulnerabilities,
+          confirmed multiple CVEs, and is being transitioned into U.S. Army adversarial-testing workflows.
+          My current work extends these ideas with LLM- and agentic systems that synthesize harnesses,
+          environment models, and machine-checkable vulnerability signatures.
           </p>
 
           <div class="hero-tags">
-            <span class="tag">DARPA HARDEN</span>
-            <span class="tag">UEFI &amp; Firmware Security</span>
-            <span class="tag">Symbolic Execution</span>
+            <span class="tag">Program analysis &amp; formal methods</span>
+            <span class="tag">Symbolic execution</span>
+            <span class="tag">Software &amp; firmware security</span>
             <span class="tag">CodeQL / Static Analysis</span>
             <span class="tag">LLM-Driven Program Reasoning</span>
           </div>
         </div>
 
         <aside class="hero-side-card" aria-label="Quick facts">
+          <!-- Photo + mini caption -->
+          <div>
+            <div class="photo-wrapper">
+              <!-- Replace this with your real photo path -->
+              <img src="images/profile.jpg" alt="Portrait of Md (Muhammad) Shafiuzzaman" />
+            </div>
+            <div class="hero-side-name">Md (Muhammad) Shafiuzzaman</div>
+            <div class="hero-side-role">Verification Lab (VLab), UCSB</div>
+          </div>
+
           <div>
             <div class="hero-side-title">At a Glance</div>
             <div class="hero-metrics">
@@ -585,6 +659,43 @@
             </li>
           </ul>
         </div>
+      </div>
+    </section>
+
+    <!-- ================= NEWS (after research) ================= -->
+    <section class="section" id="news">
+      <div class="section-header">
+        <h2 class="section-title">News</h2>
+        <div class="section-subtitle">Updates</div>
+      </div>
+
+      <div class="card">
+        <ul class="news-list">
+          <li class="news-item">
+            <div class="news-date">Oct 2024</div>
+            <div>
+              Presented <b>“STASE: Static Analysis Guided Symbolic Execution for UEFI Vulnerability Signature Generation”</b>
+              at ASE 2024.
+            </div>
+          </li>
+          <li class="news-item">
+            <div class="news-date">2023–2025</div>
+            <div>
+              Continuing collaboration with <b>U.S. Army TARDEC</b> on stateful behavior inference and runtime
+              enforcement for vehicle network security.
+            </div>
+          </li>
+          <li class="news-item">
+            <div class="news-date">Ongoing</div>
+            <div>
+              Developing LLM-enhanced hybrid analysis workflows and curated vulnerability-chain datasets to support
+              exploit-chain research and evaluation.
+            </div>
+          </li>
+        </ul>
+        <p class="subtle" style="margin-top:0.8rem;">
+          I periodically update this section with new papers, talks, and tool releases.
+        </p>
       </div>
     </section>
 
@@ -782,7 +893,7 @@
   <footer>
     © <span id="year"></span> Md (Muhammad) Shafiuzzaman.
     This page is intentionally minimalist and static for longevity.  
-    Last updated: <!-- you can edit this manually --> March 2025.
+    Last updated: March 2025.
   </footer>
 </div>
 
