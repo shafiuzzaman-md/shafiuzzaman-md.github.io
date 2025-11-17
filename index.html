@@ -379,7 +379,13 @@
       display: grid;
       grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
       gap: 1.5rem;
-      align-items: flex-start;
+      align-items: stretch;
+    }
+
+    .two-column .card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
     }
 
     .card {
@@ -388,10 +394,6 @@
       padding: 1.25rem 1.4rem;
       border: 1px solid var(--border);
       box-shadow: 0 8px 24px rgba(15, 23, 42, 0.03);
-    }
-
-    .card + .card {
-      margin-top: 0.9rem;
     }
 
     .item-title {
@@ -483,6 +485,17 @@
       flex-direction: column;
       gap: 0.9rem;
     }
+
+    .news-card {
+      background: linear-gradient(135deg, #eef2ff, #ffffff);
+      border-color: rgba(37, 99, 235, 0.18); /* tie to accent */
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.07);
+    }
+
+    .news-card .news-date {
+      color: #6b7280; /* a bit stronger so it stays readable */
+    }
+
 
     /* Responsive */
 
@@ -576,8 +589,8 @@
             <a href="https://sites.cs.ucsb.edu/~bultan/" target="_blank" rel="noopener">Prof. Tevfik Bultan</a>.
             I work as a Graduate Student Researcher in the <b>Verification Lab (VLab)</b>, supported by DARPA’s
             <a href="https://www.darpa.mil/research/programs/hardening-development-toolchains-against-emergent-execution-engines" target="_blank" rel="noopener">HARDEN</a>
-            program. Before starting my Ph.D., I worked as a software engineer building large-scale, safety-critical systems in
-            industry.
+            program. Before starting my Ph.D., I worked as a software engineer building large-scale software 
+            systems in industry.
           </p>
 
           <p class="hero-bio">
@@ -588,7 +601,7 @@
           </p>
 
           <p class="hero-bio">
-            I led the design of <b>STASE</b> (Static Analysis–Guided Symbolic Execution). STASE has uncovered previously unknown
+            My framework <b>STASE</b> (Static Analysis–Guided Symbolic Execution) has uncovered previously unknown
             UEFI and Linux kernel vulnerabilities, confirmed multiple CVEs, and is being transitioned into U.S. Army
             adversarial-testing workflows. My current work extends these ideas with LLM- and agentic systems that synthesize
             harnesses, environment models, and machine-checkable vulnerability signatures.
@@ -612,7 +625,7 @@
               <img src="images/profile.png" alt="Portrait of Md (Muhammad) Shafiuzzaman" />
             </div>
             <div class="hero-side-name">Md (Muhammad) Shafiuzzaman</div>
-            <div class="hero-side-role">Verification Lab (VLab), UCSB</div>
+            <div class="hero-side-role">Computer Science, UCSB · Harold Frank Hall 2158A</div>
           </div>
 
           <div>
@@ -642,6 +655,9 @@
             I am broadly interested in how <b>formal reasoning</b> and <b>LLM-based agents</b> can be combined to
             build trustworthy software.
           </div>
+           <div class="subtle" style="margin-top:0.35rem;">
+              Latest: Demoed <b>STASE</b> at the DARPA HARDEN PI meeting (Oct 2025).
+            </div>
         </aside>
       </div>
     </section>
@@ -679,7 +695,7 @@
           </ul>
         </div>
 
-        <div class="card">
+        <div class="card side-card">
           <h3 class="item-title">Current Projects</h3>
           <ul class="list-compact">
             <li>
@@ -693,50 +709,74 @@
               high-impact attacks.
             </li>
             <li>
-              <span class="pill">LLM-SE</span><br />
+              <span class="pill">CEGIR-Harness</span><br />
               Static-analysis-driven, LLM-guided counterexample-guided iterative refinement of symbolic execution
-              harnesses (CEGIR-Harness).
-            </li>
-            <li>
-              <span class="pill">Crypto Side Channels</span><br />
-              Program analysis and testing to detect and quantify information leakage in cryptographic libraries
-              (Amazon Research / Trusted Crypto; NSF SaTC).
+              harnesses.
             </li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- ================= NEWS (after research) ================= -->
+    <!-- ================= NEWS ================= -->
     <section class="section" id="news">
       <div class="section-header">
         <h2 class="section-title">News</h2>
         <div class="section-subtitle">Updates</div>
       </div>
 
-      <div class="card">
+      <div class="card news-card">
         <ul class="news-list">
           <li class="news-item">
-            <div class="news-date">Oct 2024</div>
+            <li class="news-item">
+              <div class="news-date">Nov 2025</div>
+              <div>
+                Collaborating with <b>ASU</b>, <b>Kudu Dynamics</b>, and <b>Galois</b> within DARPA’s 
+                <a href="https://www.darpa.mil/research/programs/hardening-development-toolchains-against-emergent-execution-engines" target="_blank" rel="noopener">
+                  HARDEN
+                </a>
+                program on a language of triggers for automating vulnerability signatures and exploit-chain discovery.
+              </div>
+            </li>
+
+            <div class="news-date">Oct 2025</div>
             <div>
-              Presented <b>“STASE: Static Analysis Guided Symbolic Execution for UEFI Vulnerability Signature Generation”</b>
-              at ASE 2024.
+              Demoed <b>STASE</b> at the DARPA HARDEN 
+              <a href="https://creative.spa.com/darpa/i2o/harden/pi/2025/sep/" target="_blank" rel="noopener">
+                PI meeting
+              </a>. 
+              <a href="videos/stase-harden-demo.mp4" target="_blank" rel="noopener">
+                Watch the demo (local video)
+              </a>
             </div>
           </li>
           <li class="news-item">
-            <div class="news-date">2023–2025</div>
+            <div class="news-date">Sep 2025</div>
             <div>
-              Continuing collaboration with <b>U.S. Army TARDEC</b> on stateful behavior inference and runtime
-              enforcement for vehicle network security.
+              Received a new <b>DARPA HARDEN Phase 3</b> contract with approximately <b>3×</b> increased funding,
+              under which the <b>STASE</b> tool will be transitioned into U.S. Army adversarial-testing workflows.
             </div>
           </li>
+
           <li class="news-item">
-            <div class="news-date">Ongoing</div>
+            <div class="news-date">Aug 2025</div>
             <div>
-              Developing LLM-enhanced hybrid analysis workflows and curated vulnerability-chain datasets to support
-              exploit-chain research and evaluation.
+              Our paper <b>“Stateful Behavior Inference and Runtime Enforcement for Vehicle Network Security”</b>
+              was accepted to USENIX VehicleSec 2025.
             </div>
           </li>
+
+          <li class="news-item">
+            <div class="news-date">Jul 2025</div>
+            <div>
+              After <b>Evaluation 3</b> at the end of Phase 2 of the
+              <b>DARPA HARDEN</b> program, <b>STASE</b> was recognized as having
+              the <b>highest usability</b>, with the greatest range of outputs and
+              a high degree of automation among participating tools.
+            </div>
+          </li>
+
+
         </ul>
         <p class="subtle" style="margin-top:0.8rem;">
           I periodically update this section with new papers, talks, and tool releases.
@@ -744,85 +784,154 @@
       </div>
     </section>
 
-    <!-- ================= PUBLICATIONS ================= -->
-    <section class="section" id="publications">
-      <div class="section-header">
-        <h2 class="section-title">Publications</h2>
-        <div class="section-subtitle">Selected</div>
-      </div>
+    <!-- ================= RESEARCH OUTPUTS ================= -->
+<section class="section" id="publications">
+  <div class="section-header">
+    <h2 class="section-title">Research Outputs</h2>
+    <div class="section-subtitle">Publications &amp; Artifacts</div>
+  </div>
 
-      <div class="card">
-        <ol class="list-compact" style="padding-left: 1.15rem;">
-          <li>
-            <b>STASE: Static Analysis Guided Symbolic Execution for UEFI Vulnerability Signature Generation.</b>
-            ASE 2024. <span class="subtle">A*</span>
-            <br />
-            <a href="https://doi.org/10.1145/3691620.3695543" target="_blank" rel="noopener">DOI: 10.1145/3691620.3695543</a>
-          </li>
-          <li>
-            <b>Rare Path Guided Fuzzing.</b> ISSTA 2023. <br />
-            <a href="https://doi.org/10.1145/3597926.3598136" target="_blank" rel="noopener">DOI: 10.1145/3597926.3598136</a>
-          </li>
-          <li>
-            <b>Stateful Behavior Inference and Runtime Enforcement for Vehicle Network Security.</b>
-            USENIX VehicleSec 2025.
-            <br />
-            <a href="https://www.usenix.org/conference/vehiclesec25/presentation/desai" target="_blank" rel="noopener">
-              Conference page
+  <div class="two-column">
+    <!-- Left: Selected Publications -->
+    <div class="card">
+      <h3 class="item-title">Selected Publications</h3>
+      <ol class="list-compact" style="padding-left: 1.15rem;">
+        <li>
+          <b>Stateful Behavior Inference and Runtime Enforcement for Vehicle Network Security.</b>
+          USENIX VehicleSec 2025.<br />
+          <a href="https://www.usenix.org/conference/vehiclesec25/presentation/desai"
+             target="_blank" rel="noopener">Conference page</a>
+        </li>
+        <li>
+          <b>STASE: Static Analysis Guided Symbolic Execution for UEFI Vulnerability Signature Generation.</b>
+          ASE 2024. <span class="subtle">A*</span><br />
+          <a href="https://doi.org/10.1145/3691620.3695543" target="_blank" rel="noopener">
+            DOI: 10.1145/3691620.3695543
+          </a>
+        </li>
+        <li>
+          <b>Rare Path Guided Fuzzing.</b> ISSTA 2023.<br />
+          <a href="https://doi.org/10.1145/3597926.3598136" target="_blank" rel="noopener">
+            DOI: 10.1145/3597926.3598136
+          </a>
+        </li>
+        <li><b>CHAINER:</b> Under submission.</li>
+        <li><b>CEGIR-Harness:</b> Under submission.</li>
+      </ol>
+      <p class="subtle" style="margin-top: 0.75rem;">
+        Full list on
+        <a href="https://scholar.google.com/citations?user=1mue4woAAAAJ&hl=en"
+           target="_blank" rel="noopener">Google Scholar</a>.
+      </p>
+    </div>
+
+    <!-- Right: Artifacts & Tools -->
+    <div class="card">
+      <h3 class="item-title">Artifacts &amp; Tools</h3>
+      <ul class="list-compact">
+        <li>
+          <span class="item-title">STASE 2.0 — Static Analysis–Guided Symbolic Execution.</span><br />
+          <span class="item-body">
+            Hybrid static–symbolic framework for firmware and software, including automatic
+            harness generation, environment modeling, and vulnerability signature extraction.<br />
+            <a href="https://github.com/shafiuzzaman-md/stase-2.0" target="_blank" rel="noopener">
+              github.com/shafiuzzaman-md/stase-2.0
             </a>
-          </li>
-          <li>
-            <b>CHAINER: Discovering Vulnerability Chains with Memory-Aware Symbolic Analysis.</b>
-            Under submission.
-          </li>
-          <li>
-            <b>CEGIR-Harness: Static-Analysis-Driven, LLM-Assisted Harness Refinement for Symbolic Execution.</b>
-            Under submission.
-          </li>
-        </ol>
+          </span>
+        </li>
+        <li>
+          <span class="item-title">ChainBench — Vulnerability Chain Dataset.</span><br />
+          <span class="item-body">
+            Curated dataset and harness suite for exploit-chain analysis and evaluation of chain discovery techniques.<br />
+            <a href="https://github.com/shafiuzzaman-md/chainbench" target="_blank" rel="noopener">
+              github.com/shafiuzzaman-md/chainbench
+            </a>
+          </span>
+        </li>
+        <li>
+          <span class="item-title">klee_harness — Educational KLEE Harness Examples.</span><br />
+          <span class="item-body">
+            A small open-source repository demonstrating KLEE harness patterns used in mentoring ERSP students
+            on symbolic execution.
+            <br />
+            <a href="https://github.com/shafiuzzaman-md/klee_harness" target="_blank" rel="noopener">
+              github.com/shafiuzzaman-md/klee_harness
+            </a>
+          </span>
+      </li>
 
-        <p class="subtle" style="margin-top: 0.75rem;">
-          Full publication list:
-          <a href="https://scholar.google.com/citations?user=1mue4woAAAAJ&hl=en" target="_blank" rel="noopener">
-            Google Scholar
-          </a>.
-        </p>
-      </div>
-    </section>
+      </ul>
+    </div>
+  </div>
+</section>
 
-    <!-- ================= TOOLS / DATASETS ================= -->
-    <section class="section" id="tools">
+    <!-- ================= INDUSTRY & SKILLS ================= -->
+    <section class="section" id="industry">
       <div class="section-header">
-        <h2 class="section-title">Artifacts &amp; Tools</h2>
-        <div class="section-subtitle">Open Research</div>
+        <h2 class="section-title">Industry &amp; Skills</h2>
+        <div class="section-subtitle">Practice &amp; Tooling</div>
       </div>
 
-      <div class="card">
-        <ul class="list-compact">
-          <li>
-            <span class="item-title">STASE 2.0 — Static Analysis–Guided Symbolic Execution.</span><br />
-            <span class="item-body">
-              Framework for hybrid static–symbolic analysis of firmware and OS components, including automatic harness
-              generation, environment modeling, and vulnerability signature extraction.
-              <br />
-              <a href="https://github.com/shafiuzzaman-md/stase-2.0" target="_blank" rel="noopener">
-                github.com/shafiuzzaman-md/stase-2.0
-              </a>
-            </span>
-          </li>
-          <li>
-            <span class="item-title">ChainBench — Vulnerability Chain Dataset.</span><br />
-            <span class="item-body">
-              Curated dataset and harness suite for exploit-chain analysis and evaluation of chain discovery techniques.
-              <br />
-              <a href="https://github.com/shafiuzzaman-md/chainbench" target="_blank" rel="noopener">
-                github.com/shafiuzzaman-md/chainbench
-              </a>
-            </span>
-          </li>
-        </ul>
+      <div class="two-column">
+        <!-- Industry Experience -->
+        <div class="card">
+          <h3 class="item-title">Industry Experience</h3>
+          <ul class="list-compact">
+            <li>
+              <b>Software Engineer Intern</b>, Office of Research, UC Santa Barbara (Summer 2022)<br />
+              Integrated CAS single sign-on for enterprise apps and added role-based access control.
+              <span class="subtle"> (C#/.NET)</span>
+            </li>
+            <li>
+              <b>Software Engineer</b>, Mobil Jamuna Lubricants, Bangladesh (2016–2018)<br />
+              Re-engineered data pipelines and authentication layers in the Lube Enterprise System, strengthening
+              data integrity and security across inventory, billing, and reporting.
+              <span class="subtle"> (C#/.NET, JavaScript, MySQL)</span>
+            </li>
+            <li>
+              <b>Junior Software Engineer / Intern</b>, Wolters Kluwer, USA (2014–2016)<br />
+              Modernized financial compliance modules handling sensitive U.S. mortgage data with stronger input
+              validation and expanded test coverage; introduced CI-friendly tests and migration scripts, reducing
+              regression defects across releases.
+              <span class="subtle"> (C#/.NET, Angular/TypeScript, WebAPI, MS SQL)</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Technical Skills -->
+        <div class="card">
+          <h3 class="item-title">Technical Skills</h3>
+          <ul class="list-compact">
+            <li>
+              <b>AI &amp; LLMs.</b>
+              Prompt/agent design for code analysis, retrieval-augmented triage, and evidence-bearing
+              spec/claim loops.
+            </li>
+            <li>
+              <b>Formal Methods &amp; Program Analysis.</b>
+              SMT solvers (Z3, Boolector), symbolic execution (KLEE), abstract interpretation, slicing, Datalog.
+            </li>
+            <li>
+              <b>Security &amp; Testing.</b>
+              Fuzzing (AFL++, libFuzzer), sanitizers (ASan/UBSan/MSan), exploit-chain modeling.
+            </li>
+            <li>
+              <b>Systems &amp; Toolchains.</b>
+              LLVM/Clang, GCC, Linux kernel build environments, UEFI EDK2.
+            </li>
+            <li>
+              <b>DevOps &amp; Scale.</b>
+              Docker, GitHub Actions (CI/CD).
+            </li>
+            <li>
+              <b>Programming Languages.</b>
+              Python, C, C#, Java, JavaScript/TypeScript, Go, Racket/Rosette, SMT-LIB.
+            </li>
+          </ul>
+        </div>
       </div>
     </section>
+
 
     <!-- ================= TEACHING & STUDENTS ================= -->
     <section class="section" id="teaching">
@@ -837,7 +946,6 @@
           <ul class="list-compact">
             <li>
               <b>Instructor</b>, UCSB, Summer 2022 — CMPSC 130A: Data Structures &amp; Algorithms I.
-              Course design, lectures, assessments, and mentoring.
               <br />
               <span class="subtle">
                 Materials:
@@ -853,6 +961,16 @@
               <b>Lecturer</b>, Jashore University of Science &amp; Technology, 2018–2021 —
               Software Engineering; Structured Programming; Algorithm Analysis &amp; Design; Software Testing &amp; Operations.
             </li>
+            <li>
+              <b>Pedagogy Training</b>, 
+              <a href="https://otl.ucsb.edu/graduate-students/ta-certificate-programs/stia" target="_blank" rel="noopener">
+                UCSB STIA Program
+              </a>.<br />
+              Participated in teaching-development modules on learning objectives, lesson planning, assessment,
+              and inclusive teaching practices.
+            </li>
+
+
           </ul>
         </div>
 
@@ -861,7 +979,6 @@
           <ul class="list-compact">
             <li>
               <b>Graduate Student Mentor</b>, Graduate Scholars Program (GSP), UCSB Graduate Division (2025–2026).<br />
-              Orientation support, research skill-building, fellowship preparation, and coordination with Diversity &amp; Outreach.
             </li>
             <li>
               <b>Undergraduate Research Mentor</b>, ERSP, UCSB Computer Science (2023–2024; 2025–2026).<br />
@@ -938,7 +1055,7 @@
   <footer>
     © <span id="year"></span> Md (Muhammad) Shafiuzzaman.
     This page is intentionally minimalist and static for longevity.  
-    Last updated: March 2025.
+    Last updated: November 2025.
   </footer>
 </div>
 
