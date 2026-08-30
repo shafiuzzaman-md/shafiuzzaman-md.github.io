@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>Md (Muhammad) Shafiuzzaman</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Faculty profile of Md (Muhammad) Shafiuzzaman – AI-assisted software engineering, software security, program analysis, and formal methods." />
+  <meta name="description" content="Md (Muhammad) Shafiuzzaman, Ph.D. candidate at UCSB. LLM-orchestrated symbolic execution, program analysis, and memory-safety vulnerability discovery. Creator of SAILOR and STASE; 30+ zero-days disclosed." />
 
   <style>
     :root {
@@ -527,6 +527,188 @@
         font-size: 1.45rem;
       }
     }
+
+    /* Security findings */
+
+    .findings-lead {
+      font-size: 0.92rem;
+      color: var(--secondary);
+      max-width: 62ch;
+      margin: 0 0 1.1rem;
+    }
+
+    .findings-stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .fstat {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 0.85rem 0.9rem;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.03);
+    }
+
+    .fstat-value {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.1;
+    }
+
+    .fstat-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    .findings-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+
+    .finding-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 0.95rem 1.05rem;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.03);
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .finding-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
+    }
+
+    .finding-project {
+      font-weight: 650;
+      font-size: 0.98rem;
+    }
+
+    .finding-title {
+      font-size: 0.86rem;
+      color: var(--secondary);
+    }
+
+    .finding-title code {
+      font-size: 0.82rem;
+      background: #f1f5f9;
+      padding: 0.05rem 0.3rem;
+      border-radius: 5px;
+    }
+
+    .finding-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.15rem;
+    }
+
+    .badge {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      padding: 0.12rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .badge-cwe {
+      background: #eef2ff;
+      color: #4f46e5;
+      border-color: rgba(129, 140, 248, 0.35);
+    }
+
+    .badge-method {
+      background: #f1f5f9;
+      color: var(--secondary);
+      border-color: var(--border);
+    }
+
+    .st-fixed {
+      background: #dcfce7;
+      color: #166534;
+      border-color: rgba(22, 101, 52, 0.25);
+    }
+
+    .st-pr {
+      background: #fef3c7;
+      color: #92400e;
+      border-color: rgba(146, 64, 14, 0.25);
+    }
+
+    .finding-card a {
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+
+    .findings-aggregate {
+      margin-top: 1.1rem;
+      background: linear-gradient(135deg, #eef2ff, #ffffff);
+      border: 1px solid rgba(37, 99, 235, 0.18);
+      border-radius: var(--radius-lg);
+      padding: 1rem 1.2rem;
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.06);
+      font-size: 0.9rem;
+      color: var(--secondary);
+    }
+
+    .findings-note {
+      margin-top: 0.7rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 760px) {
+      .findings-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .findings-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* Demo video embed */
+
+    .demo-embed {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: #000000;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .demo-embed iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .demo-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 0.4rem;
+    }
   </style>
 </head>
 
@@ -543,6 +725,7 @@
       <nav aria-label="Main navigation">
         <ul>
           <li><a href="#research">Research</a></li>
+          <li><a href="#findings">Findings</a></li>
           <li><a href="#news">News</a></li>
           <li><a href="#publications">Publications</a></li>
           <li><a href="#industry">Experience</a></li>
@@ -593,7 +776,9 @@
             <a href="https://sites.cs.ucsb.edu/~bultan/" target="_blank" rel="noopener">Prof. Tevfik Bultan</a>.
             I work as a Graduate Student Researcher in the <b>Verification Lab (VLab)</b>, supported by DARPA’s
             <a href="https://www.darpa.mil/research/programs/hardening-development-toolchains-against-emergent-execution-engines" target="_blank" rel="noopener">HARDEN</a>
-            program. Before starting my Ph.D., I worked as a software engineer building large-scale software 
+            and
+            <a href="https://www.darpa.mil/research/programs/intelligent-generation-tools-security" target="_blank" rel="noopener">INGOTS</a>
+            programs. Before starting my Ph.D., I worked as a software engineer building large-scale software
             systems in industry.
           </p>
 
@@ -609,6 +794,14 @@
             UEFI and Linux kernel vulnerabilities, confirmed multiple CVEs, and is being transitioned into U.S. Army
             adversarial-testing workflows. My current work extends these ideas with LLM- and agentic systems that synthesize
             harnesses, environment models, and machine-checkable vulnerability signatures.
+          </p>
+
+          <p class="hero-bio">
+            My dissertation builds toward a single pipeline that can <b>find, confirm, and repair</b> memory-safety bugs
+            in real code. Its centerpiece, <b>SAILOR</b>, pairs rule-based static analysis with LLM-orchestrated symbolic
+            execution and a concrete, sanitizer-backed validation gate, so every reported bug ships with a crashing input,
+            not a guess. Run against widely used C and C++ projects, it has uncovered <b>30+ previously unknown
+            memory-safety vulnerabilities</b>, several now patched upstream.
           </p>
 
 
@@ -651,7 +844,7 @@
               </div>
               <div class="metric">
                 <div class="metric-label">Open To</div>
-                <div class="metric-value">Faculty &amp; Research Roles</div>
+                <div class="metric-value">Faculty &amp; Industry Research</div>
               </div>
             </div>
           </div>
@@ -659,12 +852,18 @@
             I am broadly interested in how <b>formal reasoning</b> and <b>LLM-based agents</b> can be combined to
             build trustworthy software.
           </div>
-           <div class="subtle" style="margin-top:0.35rem;">
-              Latest: Demoed <b>STASE</b> at the DARPA HARDEN PI meeting (Oct 2025).
-               <a href="https://drive.google.com/file/d/1fW8Z9DvadEnX9chVtbEYN_W0YR1Ez5kI/view?usp=drive_link"
-                  target="_blank" rel="noopener">
-                  Watch the demo
-               </a>
+           <div style="margin-top:0.35rem;">
+              <div class="demo-label">Latest demo</div>
+              <div class="demo-embed">
+                <iframe src="https://drive.google.com/file/d/1fW8Z9DvadEnX9chVtbEYN_W0YR1Ez5kI/preview"
+                        allow="autoplay; fullscreen" allowfullscreen
+                        title="STASE demo at the DARPA HARDEN PI meeting"></iframe>
+              </div>
+              <div class="subtle" style="margin-top:0.4rem; color:#d1d5db;">
+                <b>STASE</b> at the DARPA HARDEN PI meeting (Oct 2025).
+                <a href="https://drive.google.com/file/d/1fW8Z9DvadEnX9chVtbEYN_W0YR1Ez5kI/view"
+                   target="_blank" rel="noopener">Open in Drive</a>
+              </div>
             </div>
         </aside>
       </div>
@@ -707,6 +906,11 @@
           <h3 class="item-title">Current Projects</h3>
           <ul class="list-compact">
             <li>
+              <span class="pill">SAILOR</span><br />
+              Static-analysis-guided, LLM-orchestrated symbolic execution with sanitizer-backed validation:
+              finds, reproduces, and confirms memory-safety vulnerabilities in real-world C and C++ codebases.
+            </li>
+            <li>
               <span class="pill">STASE</span><br />
               Static analysis-guided symbolic execution for firmware and software: automatic harness generation,
               environment modeling, and vulnerability signature extraction.
@@ -736,6 +940,32 @@
       <div class="card news-card">
         <ul class="news-list">
           <li class="news-item">
+            <div class="news-date">Aug 2026</div>
+            <div>
+              DARPA's four-year <b>HARDEN</b> program is completing. Our UCSB Verification Lab team was the only
+              bug-discovery (TA1) performer to advance through to the program's final phase, on the strength of
+              <b>STASE</b>. Building on those results, our lab has transitioned into DARPA's new
+              <a href="https://www.darpa.mil/research/programs/intelligent-generation-tools-security"
+                 target="_blank" rel="noopener"><b>INGOTS</b></a> program on automated exploit-chain discovery
+              and analysis.
+            </div>
+          </li>
+          <li class="news-item">
+            <div class="news-date">Aug 2026</div>
+            <div>
+              <b>SAILOR</b>, my LLM-orchestrated symbolic execution framework, is under submission. Its coordinated
+              disclosures now span <b>30+ previously unknown memory-safety vulnerabilities</b> across widely used
+              C and C++ projects, several patched upstream. See <a href="#findings">Findings</a>.
+            </div>
+          </li>
+          <li class="news-item">
+            <div class="news-date">Jun 2026</div>
+            <div>
+              Advanced to Ph.D. candidacy and presented my dissertation proposal on <b>scaling symbolic execution
+              from vulnerability detection to verified repair</b>.
+            </div>
+          </li>
+          <li class="news-item">
             <li class="news-item">
               <div class="news-date">Nov 2025</div>
               <div>
@@ -753,7 +983,7 @@
                 <a href="https://creative.spa.com/darpa/i2o/harden/pi/2025/sep/" target="_blank" rel="noopener">
                   PI meeting
                 </a>.
-                <a href="https://drive.google.com/file/d/1fW8Z9DvadEnX9chVtbEYN_W0YR1Ez5kI/view?usp=drive_link"
+                <a href="https://drive.google.com/file/d/1fW8Z9DvadEnX9chVtbEYN_W0YR1Ez5kI/view"
                   target="_blank" rel="noopener">
                   Watch the demo
                 </a>
@@ -793,6 +1023,160 @@
       </div>
     </section>
 
+    <!-- ================= SECURITY FINDINGS ================= -->
+    <section class="section" id="findings">
+      <div class="section-header">
+        <h2 class="section-title">Security Findings</h2>
+        <div class="section-subtitle">Responsible Disclosure</div>
+      </div>
+
+      <p class="findings-lead">
+        Vulnerabilities my research has found and disclosed in widely used, real-world C and C++ software. Every
+        finding is confirmed by a concrete sanitizer crash on a synthesized input before it is reported, then
+        disclosed responsibly upstream. This list grows as coordination completes; specifics stay withheld until
+        each report is public.
+      </p>
+
+      <div class="findings-stats">
+        <div class="fstat">
+          <div class="fstat-value">30+</div>
+          <div class="fstat-label">Zero-days disclosed</div>
+        </div>
+        <div class="fstat">
+          <div class="fstat-value">18</div>
+          <div class="fstat-label">Real-world codebases</div>
+        </div>
+        <div class="fstat">
+          <div class="fstat-value">8</div>
+          <div class="fstat-label">Upstream fix or advisory</div>
+        </div>
+        <div class="fstat">
+          <div class="fstat-value">100%</div>
+          <div class="fstat-label">Sanitizer-confirmed</div>
+        </div>
+      </div>
+
+      <div class="findings-grid">
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">mruby</span>
+            <span class="badge st-fixed">Patched upstream</span>
+          </div>
+          <div class="finding-title">Integer overflow to out-of-bounds write in <code>class_add_range</code>.</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-190 to CWE-787</span>
+            <span class="badge badge-method">SAILOR</span>
+          </div>
+          <a href="https://github.com/mruby/mruby/issues/6937" target="_blank" rel="noopener">Issue #6937, fixed by Matz</a>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">SELinux (checkpolicy)</span>
+            <span class="badge st-fixed">Merged upstream</span>
+          </div>
+          <div class="finding-title">Double free in <code>define_genfs_context_helper</code>.</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-415</span>
+            <span class="badge badge-method">SAILOR</span>
+          </div>
+          <a href="https://github.com/SELinuxProject/selinux/commit/fb255b9ea92742f646e9586ab5d54789562c3eed" target="_blank" rel="noopener">Merged fix, Acked-by S. Smalley</a>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">whisper.cpp</span>
+            <span class="badge st-pr">Fix PR</span>
+          </div>
+          <div class="finding-title">Out-of-bounds read in <code>log_mel_spectrogram</code> on crafted audio.</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-125</span>
+            <span class="badge badge-method">SAILOR</span>
+          </div>
+          <a href="https://github.com/ggml-org/whisper.cpp/pull/3956" target="_blank" rel="noopener">Pull request #3956</a>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">whisper.cpp</span>
+            <span class="badge st-pr">Fix PR</span>
+          </div>
+          <div class="finding-title">Stack-buffer overflow write via unchecked <code>n_dims</code> in the model loader.</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-787</span>
+            <span class="badge badge-method">idiom sweep</span>
+          </div>
+          <a href="https://github.com/ggml-org/whisper.cpp/pull/3957" target="_blank" rel="noopener">Pull request #3957</a>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">bark.cpp</span>
+            <span class="badge st-pr">Fix PR</span>
+          </div>
+          <div class="finding-title">Stack-buffer overflow write in the model loader and offline quantizer.</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-787</span>
+            <span class="badge badge-method">SAILOR</span>
+          </div>
+          <a href="https://github.com/PABannier/bark.cpp/pull/220" target="_blank" rel="noopener">Pull request #220</a>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">encodec.cpp</span>
+            <span class="badge st-pr">Fix PR</span>
+          </div>
+          <div class="finding-title">Stack-buffer overflow write in <code>encodec_load_model_weights</code>.</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-787</span>
+            <span class="badge badge-method">SAILOR</span>
+          </div>
+          <a href="https://github.com/PABannier/encodec.cpp/pull/57" target="_blank" rel="noopener">Pull request #57</a>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">biogpt.cpp</span>
+            <span class="badge st-pr">Fix accepted</span>
+          </div>
+          <div class="finding-title">Stack-buffer overflow write via unchecked <code>n_dims</code> in <code>biogpt_model_load</code>.</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-787</span>
+            <span class="badge badge-method">idiom sweep</span>
+          </div>
+          <a href="https://github.com/PABannier/biogpt.cpp/pull/27" target="_blank" rel="noopener">Pull request #27</a>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">koboldcpp</span>
+            <span class="badge st-fixed">Published advisory, High</span>
+          </div>
+          <div class="finding-title">Stack-buffer overflow write via unbounded <code>n_dims</code> across 6 legacy model loaders.</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-787</span>
+            <span class="badge badge-method">SAILOR</span>
+          </div>
+          <a href="https://github.com/LostRuins/koboldcpp/security/advisories/GHSA-qhvp-gj7g-rw26" target="_blank" rel="noopener">Advisory GHSA-qhvp-gj7g-rw26</a>
+        </div>
+      </div>
+
+      <div class="findings-aggregate">
+        <b>Under coordinated disclosure.</b> Additional confirmed findings are in maintainer hands and not yet
+        public, including memory-safety bugs in <b>liboqs</b> (post-quantum cryptography, reported via GitHub
+        Security Advisories), <b>tinyexr</b>, <b>hnswlib</b>, <b>usearch</b>, <b>Annoy</b>,
+        <b>stable-diffusion.cpp</b>, <b>minja</b>, <b>OpenFHE</b>, <b>CTranslate2</b>, and the
+        <b>llama.cpp / ggml</b> stack. Each will be listed here in detail once its report is public.
+      </div>
+
+      <p class="findings-note">
+        Provenance is labeled per finding: <b>SAILOR</b> for the automated static-plus-symbolic pipeline, and
+        <b>idiom sweep</b> for bugs found by manually tracing a confirmed vulnerability pattern across sibling
+        codebases. Reproductions of already-known issues are excluded and not counted.
+      </p>
+    </section>
+
     <!-- ================= RESEARCH OUTPUTS ================= -->
 <section class="section" id="publications">
   <div class="section-header">
@@ -805,6 +1189,18 @@
     <div class="card">
       <h3 class="item-title">Selected Publications</h3>
       <ol class="list-compact" style="padding-left: 1.15rem;">
+        <li>
+          <b>SAILOR: LLM-Orchestrated Symbolic Execution for Memory-Safety Vulnerability Discovery and Confirmation.</b>
+          Under submission, 2026.
+        </li>
+        <li>
+          <b>PAGENT: Program Analysis Guided LLM Agent for Proof-of-Concept Generation.</b>
+          ISSTA 2026. <span class="subtle">Artifacts Available &amp; Functional</span>
+        </li>
+        <li>
+          <b>Bug Composition: Triggering Multiple Bugs with Agentic Driver Generation.</b>
+          AgenticDev 2026 Workshop.
+        </li>
         <li>
           <b>Stateful Behavior Inference and Runtime Enforcement for Vehicle Network Security.</b>
           USENIX VehicleSec 2025.<br />
@@ -842,9 +1238,14 @@
           <span class="item-title">STASE 2.0 — Static Analysis–Guided Symbolic Execution.</span><br />
           <span class="item-body">
             Hybrid static–symbolic framework for firmware and software, including automatic
-            harness generation, environment modeling, and vulnerability signature extraction.<br />
+            harness generation, environment modeling, and vulnerability signature extraction.
+            In DARPA HARDEN it produced precise, zero-false-positive signatures, including 5 of the 9 PixieFail
+            vulnerabilities and 13 new EDK2 firmware bugs.<br />
             <a href="https://github.com/shafiuzzaman-md/stase-2.0" target="_blank" rel="noopener">
               github.com/shafiuzzaman-md/stase-2.0
+            </a><br />
+            <a href="https://drive.google.com/file/d/1SK4sPwXKsO-3LHGNIZFZRuPKipYbinRj/view" target="_blank" rel="noopener">
+              Early walkthrough (video)
             </a>
           </span>
         </li>
@@ -1048,8 +1449,8 @@
 
       <div class="card">
         <p class="item-body">
-          I am happy to discuss opportunities related to <b>faculty positions</b>, <b>collaborative research</b>, and
-          <b>student supervision</b> in software security, formal methods, and AI-assisted program analysis.
+          I am happy to discuss <b>faculty positions</b>, <b>industry research and applied-science roles</b>, and
+          <b>collaborative research</b> in software security, formal methods, and AI-assisted program analysis.
         </p>
         <p class="item-body">
           The best way to reach me is by email:
@@ -1064,7 +1465,7 @@
   <footer>
     © <span id="year"></span> Md (Muhammad) Shafiuzzaman.
     This page is intentionally minimalist and static for longevity.  
-    Last updated: November 2025.
+    Last updated: August 2026.
   </footer>
 </div>
 
