@@ -913,7 +913,7 @@
             </li>
             <li>
               <span class="pill">STASE</span><br />
-              Static analysis-guided symbolic execution for firmware and software: automatic harness generation,
+              Static analysis guided symbolic execution for firmware and software: automatic harness generation,
               environment modeling, and vulnerability signature extraction.
             </li>
             <li>
@@ -1040,7 +1040,6 @@
           <div class="finding-title">Integer overflow to out-of-bounds write in <code>class_add_range</code>.</div>
           <div class="finding-meta">
             <span class="badge badge-cwe">CWE-190 to CWE-787</span>
-            <span class="badge badge-method">SAILOR</span>
           </div>
           <a href="https://github.com/mruby/mruby/issues/6937" target="_blank" rel="noopener">Issue #6937, fixed by Matz</a>
         </div>
@@ -1053,7 +1052,6 @@
           <div class="finding-title">Double free in <code>define_genfs_context_helper</code>.</div>
           <div class="finding-meta">
             <span class="badge badge-cwe">CWE-415</span>
-            <span class="badge badge-method">SAILOR</span>
           </div>
           <a href="https://github.com/SELinuxProject/selinux/commit/fb255b9ea92742f646e9586ab5d54789562c3eed" target="_blank" rel="noopener">Merged fix, Acked-by S. Smalley</a>
         </div>
@@ -1066,7 +1064,6 @@
           <div class="finding-title">Out-of-bounds read in <code>log_mel_spectrogram</code> on crafted audio.</div>
           <div class="finding-meta">
             <span class="badge badge-cwe">CWE-125</span>
-            <span class="badge badge-method">SAILOR</span>
           </div>
           <a href="https://github.com/ggml-org/whisper.cpp/pull/3956" target="_blank" rel="noopener">Pull request #3956</a>
         </div>
@@ -1079,7 +1076,6 @@
           <div class="finding-title">Stack-buffer overflow write via unchecked <code>n_dims</code> in the model loader.</div>
           <div class="finding-meta">
             <span class="badge badge-cwe">CWE-787</span>
-            <span class="badge badge-method">idiom sweep</span>
           </div>
           <a href="https://github.com/ggml-org/whisper.cpp/pull/3957" target="_blank" rel="noopener">Pull request #3957</a>
         </div>
@@ -1092,7 +1088,6 @@
           <div class="finding-title">Stack-buffer overflow write in the model loader and offline quantizer.</div>
           <div class="finding-meta">
             <span class="badge badge-cwe">CWE-787</span>
-            <span class="badge badge-method">SAILOR</span>
           </div>
           <a href="https://github.com/PABannier/bark.cpp/pull/220" target="_blank" rel="noopener">Pull request #220</a>
         </div>
@@ -1105,7 +1100,6 @@
           <div class="finding-title">Stack-buffer overflow write in <code>encodec_load_model_weights</code>.</div>
           <div class="finding-meta">
             <span class="badge badge-cwe">CWE-787</span>
-            <span class="badge badge-method">SAILOR</span>
           </div>
           <a href="https://github.com/PABannier/encodec.cpp/pull/57" target="_blank" rel="noopener">Pull request #57</a>
         </div>
@@ -1118,7 +1112,6 @@
           <div class="finding-title">Stack-buffer overflow write via unchecked <code>n_dims</code> in <code>biogpt_model_load</code>.</div>
           <div class="finding-meta">
             <span class="badge badge-cwe">CWE-787</span>
-            <span class="badge badge-method">idiom sweep</span>
           </div>
           <a href="https://github.com/PABannier/biogpt.cpp/pull/27" target="_blank" rel="noopener">Pull request #27</a>
         </div>
@@ -1131,7 +1124,6 @@
           <div class="finding-title">Stack-buffer overflow write via unbounded <code>n_dims</code> across 6 legacy model loaders.</div>
           <div class="finding-meta">
             <span class="badge badge-cwe">CWE-787</span>
-            <span class="badge badge-method">SAILOR</span>
           </div>
           <a href="https://github.com/LostRuins/koboldcpp/security/advisories/GHSA-qhvp-gj7g-rw26" target="_blank" rel="noopener">Advisory GHSA-qhvp-gj7g-rw26</a>
         </div>
@@ -1146,9 +1138,7 @@
       </div>
 
       <p class="findings-note">
-        Provenance is labeled per finding: <b>SAILOR</b> for the automated static-plus-symbolic pipeline, and
-        <b>idiom sweep</b> for bugs found by manually tracing a confirmed vulnerability pattern across sibling
-        codebases. Reproductions of already-known issues are excluded and not counted.
+        Reproductions of already-known issues are excluded and not counted.
       </p>
     </section>
 
