@@ -1021,7 +1021,7 @@
           <div class="fstat-label">Real-world codebases</div>
         </div>
         <div class="fstat">
-          <div class="fstat-value">8</div>
+          <div class="fstat-value">9</div>
           <div class="fstat-label">Upstream fix or advisory</div>
         </div>
         <div class="fstat">
@@ -1094,13 +1094,25 @@
         <div class="finding-card">
           <div class="finding-top">
             <span class="finding-project">encodec.cpp</span>
-            <span class="badge st-pr">Fix PR</span>
+            <span class="badge st-fixed">Merged upstream</span>
           </div>
           <div class="finding-title">Stack-buffer overflow write in <code>encodec_load_model_weights</code>.</div>
           <div class="finding-meta">
             <span class="badge badge-cwe">CWE-787</span>
           </div>
-          <a href="https://github.com/PABannier/encodec.cpp/pull/57" target="_blank" rel="noopener">Pull request #57</a>
+          <a href="https://github.com/PABannier/encodec.cpp/pull/57" target="_blank" rel="noopener">Pull request #57, merged</a>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">liboqs</span>
+            <span class="badge st-fixed">Published advisory</span>
+          </div>
+          <div class="finding-title">Heap out-of-bounds read in LMS/HSS signature verification via unvalidated signature length.</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-125</span>
+          </div>
+          <a href="https://github.com/open-quantum-safe/liboqs/security/advisories/GHSA-wh5q-mpc8-67wf" target="_blank" rel="noopener">Advisory GHSA-wh5q-mpc8-67wf</a>
         </div>
 
         <div class="finding-card">
@@ -1130,8 +1142,7 @@
 
       <div class="findings-aggregate">
         <b>Under coordinated disclosure.</b> Additional confirmed findings are in maintainer hands and not yet
-        public, including memory-safety bugs in <b>liboqs</b> (post-quantum cryptography, reported via GitHub
-        Security Advisories), <b>tinyexr</b>, <b>hnswlib</b>, <b>usearch</b>, <b>Annoy</b>,
+        public, including memory-safety bugs in <b>tinyexr</b>, <b>hnswlib</b>, <b>usearch</b>, <b>Annoy</b>,
         <b>stable-diffusion.cpp</b>, <b>minja</b>, <b>OpenFHE</b>, <b>CTranslate2</b>, and the
         <b>llama.cpp / ggml</b> stack. Each will be listed here in detail once its report is public.
       </div>
