@@ -756,9 +756,7 @@
       </div>
       <a class="btn btn-primary" href="mailto:mdshafiuzzaman@ucsb.edu">Email</a>
     </div>
-
-
-
+    </div>
   </header>
 
   <main>
@@ -796,8 +794,7 @@
           <p class="hero-bio">
             My dissertation builds toward a single pipeline that can <b>find, confirm, and repair</b> memory-safety bugs
             in real code. Its centerpiece, <b>SAILOR</b>, pairs rule-based static analysis with LLM-orchestrated symbolic
-            execution and a concrete, sanitizer-backed validation gate, so every reported bug ships with a crashing input,
-            not a guess. Run against widely used C and C++ projects, it has uncovered <b>30+ previously unknown
+            execution and a concrete, sanitizer-backed validation gate. Run against widely used C and C++ projects, it has uncovered <b>30+ previously unknown
             memory-safety vulnerabilities</b>, several now patched upstream.
           </p>
 
@@ -941,6 +938,23 @@
       <div class="card news-card">
         <ul class="news-list">
           <li class="news-item">
+            <div class="news-date">Sep 2026</div>
+            <div>
+              Credited as an independent reporter on the maintainers' published security advisory for a heap
+              out-of-bounds read I found in <b>liboqs</b> (post-quantum cryptography).
+              <a href="https://github.com/open-quantum-safe/liboqs/security/advisories/GHSA-wh5q-mpc8-67wf"
+                 target="_blank" rel="noopener">GHSA-wh5q-mpc8-67wf</a>
+            </div>
+          </li>
+          <li class="news-item">
+            <div class="news-date">Sep 2026</div>
+            <div>
+              Reported stack-buffer overflow fix merged upstream in <b>encodec.cpp</b> (Meta's EnCodec audio
+              model, PABannier's C/C++ port).
+              <a href="https://github.com/PABannier/encodec.cpp/pull/57" target="_blank" rel="noopener">Pull request #57</a>
+            </div>
+          </li>
+          <li class="news-item">
             <div class="news-date">Aug 2026</div>
             <div>
               DARPA's four-year <b>HARDEN</b> program is completing. Our UCSB Verification Lab team was the only
@@ -969,8 +983,7 @@
           <li class="news-item">
             <div class="news-date">Oct 2025</div>
             <div>
-              Demoed <b>STASE</b> at the DARPA HARDEN
-              <a href="https://creative.spa.com/darpa/i2o/harden/pi/2025/sep/" target="_blank" rel="noopener">PI meeting</a>.
+              Demoed <b>STASE</b> at the DARPA HARDEN PI meeting.
               <a href="https://drive.google.com/file/d/1fW8Z9DvadEnX9chVtbEYN_W0YR1Ez5kI/view" target="_blank" rel="noopener">Watch the demo</a>
             </div>
           </li>
@@ -1475,7 +1488,7 @@
   <footer>
     © <span id="year"></span> Md (Muhammad) Shafiuzzaman.
     This page is intentionally minimalist and static for longevity.  
-    Last updated: August 2026.
+    Last updated: September 2026.
   </footer>
 </div>
 
