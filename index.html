@@ -766,8 +766,7 @@
       <div class="hero">
         <div class="hero-card">
           <p class="hero-bio">
-            <b>Bio.</b> I am currently a Ph.D. candidate in Computer Science at the University of California, Santa Barbara (UCSB),
-            advised by
+            <b>Bio.</b> I am a Ph.D. candidate in Computer Science at the University of California, Santa Barbara (UCSB), expected to graduate in Spring 2027, advised by
             <a href="https://sites.cs.ucsb.edu/~bultan/" target="_blank" rel="noopener">Prof. Tevfik Bultan</a>.
             I work as a Graduate Student Researcher in the <b>Verification Lab (VLab)</b>, supported by DARPA’s
             <a href="https://www.darpa.mil/research/programs/hardening-development-toolchains-against-emergent-execution-engines" target="_blank" rel="noopener">HARDEN</a>
@@ -785,17 +784,18 @@
           </p>
 
           <p class="hero-bio">
-            My framework <b>STASE</b> (Static Analysis–Guided Symbolic Execution) has uncovered previously unknown
-            UEFI and Linux kernel vulnerabilities, confirmed multiple CVEs, and is being transitioned into U.S. Army
-            adversarial-testing workflows. My current work extends these ideas with LLM- and agentic systems that synthesize
-            harnesses, environment models, and machine-checkable vulnerability signatures.
-          </p>
-
-          <p class="hero-bio">
             My dissertation builds toward a single pipeline that can <b>find, confirm, and repair</b> memory-safety bugs
             in real code. Its centerpiece, <b>SAILOR</b>, pairs rule-based static analysis with LLM-orchestrated symbolic
-            execution and a concrete, sanitizer-backed validation gate. Run against widely used C and C++ projects, it has uncovered <b>30+ previously unknown
-            memory-safety vulnerabilities</b>, several now patched upstream.
+            execution and a concrete, sanitizer-backed validation gate. Run against widely used C and C++ projects, it has uncovered
+            <b>67 previously unknown memory-safety vulnerabilities</b>, with 30+ already disclosed to maintainers and several
+            patched upstream. <b>PatchAnalyzer</b> completes the loop by quantitatively assessing whether a candidate patch
+            removes the vulnerability without changing safe behavior.
+          </p>
+          <p class="hero-bio">
+            This builds on <b>STASE</b> (Static Analysis&ndash;Guided Symbolic Execution), which uncovered previously unknown
+            UEFI and Linux kernel vulnerabilities, confirmed multiple CVEs, and is being transitioned into U.S. Army
+            adversarial-testing workflows. Recent work appears at ISSTA 2026 (<b>PAGENT</b>, proof-of-concept generation) and
+            is accepted for presentation at the 2026 KLEE Workshop on Symbolic Execution.
           </p>
 
 
@@ -918,10 +918,11 @@
               high-impact attacks.
             </li>
             <li>
-              <span class="pill">Verified Patching</span><br />
-              Proving an automated or LLM-generated patch removes the whole bug class and changes nothing else,
-              via self-differential equivalence over symbolic execution. Early prototype, evaluated on real CVE
-              cases.
+              <span class="pill">PatchAnalyzer</span><br />
+              Quantitative assessment of security-patch correctness. Symbolic execution and model counting measure
+              how many inputs a patch still leaves vulnerable and how much safe behavior it changes, then rank
+              candidate patches by this min-max criterion. Evaluated on 280 developer and LLM-generated patches
+              for 70 vulnerabilities, it flags five developer patches as unsafe, each later fixed again upstream.
             </li>
           </ul>
         </div>
@@ -938,6 +939,38 @@
       <div class="card news-card">
         <ul class="news-list">
           <li class="news-item">
+            <div class="news-date">Oct 2026</div>
+            <div>
+              <b>SAILOR</b> was accepted for presentation at the 5th International KLEE Workshop on Symbolic Execution
+              (Munich, Oct 15&ndash;16, co-located with ASE 2026).
+              <a href="https://srg.doc.ic.ac.uk/klee26/" target="_blank" rel="noopener">Workshop</a>
+            </div>
+          </li>
+          <li class="news-item">
+            <div class="news-date">Oct 2026</div>
+            <div>
+              <b>Bug Composition</b> is now in the ACM Digital Library (AgenticDev 2026), co-authored with
+              three mentored undergraduates.
+              <a href="https://doi.org/10.1145/3843282.3844434" target="_blank" rel="noopener">DOI</a>
+            </div>
+          </li>
+          <li class="news-item">
+            <div class="news-date">Oct 2026</div>
+            <div>
+              <b>PAGENT</b> is now in the ACM Digital Library (PACMSE vol. 3, ISSTA 2026).
+              <a href="https://doi.org/10.1145/3832199" target="_blank" rel="noopener">DOI</a>
+            </div>
+          </li>
+          <li class="news-item">
+            <div class="news-date">Oct 2026</div>
+            <div>
+              Credited as an independent reporter on a second <b>liboqs</b> security advisory, covering
+              LM-OTS key reuse in LMS stateful signing.
+              <a href="https://github.com/open-quantum-safe/liboqs/security/advisories/GHSA-xv6c-h66p-6mfq"
+                 target="_blank" rel="noopener">GHSA-xv6c-h66p-6mfq</a>
+            </div>
+          </li>
+          <li class="news-item">
             <div class="news-date">Sep 2026</div>
             <div>
               Credited as an independent reporter on the maintainers' published security advisory for a heap
@@ -952,6 +985,13 @@
               Reported stack-buffer overflow fix merged upstream in <b>encodec.cpp</b> (Meta's EnCodec audio
               model, PABannier's C/C++ port).
               <a href="https://github.com/PABannier/encodec.cpp/pull/57" target="_blank" rel="noopener">Pull request #57</a>
+            </div>
+          </li>
+          <li class="news-item">
+            <div class="news-date">Sep 2026</div>
+            <div>
+              At the DARPA <b>HARDEN</b> closing ceremony in Arlington, VA, DARPA presented me with the title
+              &ldquo;<b>KLEE Whisperer</b>&rdquo; and a commemorative badge.
             </div>
           </li>
           <li class="news-item">
@@ -1121,6 +1161,18 @@
             <span class="finding-project">liboqs</span>
             <span class="badge st-fixed">Published advisory</span>
           </div>
+          <div class="finding-title">LM-OTS key reuse in LMS stateful signing due to fail-open lock handling (independent report).</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-787</span>
+          </div>
+          <a href="https://github.com/open-quantum-safe/liboqs/security/advisories/GHSA-xv6c-h66p-6mfq" target="_blank" rel="noopener">Advisory GHSA-xv6c-h66p-6mfq</a>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">liboqs</span>
+            <span class="badge st-fixed">Published advisory</span>
+          </div>
           <div class="finding-title">Heap out-of-bounds read in LMS/HSS signature verification via unvalidated signature length.</div>
           <div class="finding-meta">
             <span class="badge badge-cwe">CWE-125</span>
@@ -1180,14 +1232,17 @@
         <li>
           <b>SAILOR: Guiding Symbolic Execution for Memory Safety Vulnerability Detection.</b>
           Under submission to USENIX Security, 2027.
+          <a href="https://arxiv.org/abs/2604.06506" target="_blank" rel="noopener">Preprint</a>
         </li>
         <li>
           <b>PAGENT: Program Analysis Guided LLM Agent for Proof-of-Concept Generation.</b>
-          ISSTA 2026. <span class="subtle">Artifacts Available &amp; Functional</span>
+          PACMSE vol. 3 (ISSTA 2026). <span class="subtle">Artifacts Available &amp; Functional</span>
+          <a href="https://doi.org/10.1145/3832199" target="_blank" rel="noopener">DOI</a>
         </li>
         <li>
           <b>Bug Composition: Triggering Multiple Bugs with Agentic Driver Generation.</b>
           AgenticDev 2026 Workshop.
+          <a href="https://doi.org/10.1145/3843282.3844434" target="_blank" rel="noopener">DOI</a>
         </li>
         <li>
           <b>Stateful Behavior Inference and Runtime Enforcement for Vehicle Network Security.</b>
@@ -1209,7 +1264,7 @@
           </a>
         </li>
         <li><b>CHAINER:</b> Under submission.</li>
-        <li><b>Verified Patching:</b> In preparation, targeting FSE.</li>
+        <li><b>PatchAnalyzer: Symbolic Min-Max Analysis for Assessing Patch Correctness.</b> In preparation, targeting ACM TOSEM.</li>
       </ol>
       <p class="subtle" style="margin-top: 0.75rem;">
         Full list on
@@ -1446,6 +1501,11 @@
         <div class="card">
           <h3 class="item-title">Selected Talks &amp; Demos</h3>
           <ul class="list-compact">
+            <li>
+              <b>SAILOR</b>, accepted presentation, 5th International KLEE Workshop on Symbolic Execution, Munich (Oct 15&ndash;16, 2026).
+              <a href="https://srg.doc.ic.ac.uk/klee26/" target="_blank" rel="noopener">Workshop</a>,
+              <a href="https://arxiv.org/abs/2604.06506" target="_blank" rel="noopener">preprint</a>
+            </li>
             <li><b>STASE</b> conference presentation, IEEE/ACM ASE 2024.</li>
             <li>
               <b>STASE</b> live demo, DARPA HARDEN PI meeting (Oct 2025).
@@ -1488,7 +1548,7 @@
   <footer>
     © <span id="year"></span> Md (Muhammad) Shafiuzzaman.
     This page is intentionally minimalist and static for longevity.  
-    Last updated: September 2026.
+    Last updated: October 2026.
   </footer>
 </div>
 
