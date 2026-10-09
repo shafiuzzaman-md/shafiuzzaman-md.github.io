@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>PAGENT | Md (Muhammad) Shafiuzzaman</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="PAGENT combines rule-based static analysis and sanitizer-based dynamic guidance with an LLM agent to generate proof-of-concept inputs, 132% better than the prior best agentic approach. ISSTA 2026." />
+  <meta name="author" content="Md (Muhammad) Shafiuzzaman" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://shafiuzzaman-md.github.io/pagent/" />
+  <link rel="icon" type="image/png" href="/images/profile.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Md (Muhammad) Shafiuzzaman" />
+  <meta property="og:title" content="PAGENT | Md (Muhammad) Shafiuzzaman" />
+  <meta property="og:description" content="PAGENT combines rule-based static analysis and sanitizer-based dynamic guidance with an LLM agent to generate proof-of-concept inputs, 132% better than the prior best agentic approach. ISSTA 2026." />
+  <meta property="og:url" content="https://shafiuzzaman-md.github.io/pagent/" />
+  <meta property="og:image" content="https://shafiuzzaman-md.github.io/images/profile.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="PAGENT | Md (Muhammad) Shafiuzzaman" />
+  <meta name="twitter:description" content="PAGENT combines rule-based static analysis and sanitizer-based dynamic guidance with an LLM agent to generate proof-of-concept inputs, 132% better than the prior best agentic approach. ISSTA 2026." />
+  <meta name="twitter:image" content="https://shafiuzzaman-md.github.io/images/profile.png" />
+  <link rel="stylesheet" href="/site.css" />
+</head>
+<body>
+  <div class="page">
+  <header>
+    <div class="nav-inner">
+      <a class="brand" href="/" style="color:inherit">
+        <span class="brand-name">Md (Muhammad) Shafiuzzaman</span>
+        <span class="brand-role">Ph.D. Candidate · Computer Science · UCSB</span></a>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="/#projects" class="active">Projects</a></li>
+          <li><a href="/findings/">Findings</a></li>
+          <li><a href="/publications/">Publications</a></li>
+          <li><a href="/#news">News</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </nav>
+     <div class="nav-actions">
+      <div class="nav-icons">
+        <a class="icon-link"
+          href="https://scholar.google.com/citations?user=1mue4woAAAAJ&hl=en"
+          target="_blank" rel="noopener" title="Google Scholar">
+          <img src="/icons/scholar.png" alt="Google Scholar" />
+        </a>
+
+        <a class="icon-link"
+          href="https://github.com/shafiuzzaman-md"
+          target="_blank" rel="noopener" title="GitHub">
+          <img src="/icons/github.png" alt="GitHub" />
+        </a>
+
+        <a class="icon-link"
+          href="https://www.linkedin.com/in/mdshafiuzzaman/"
+          target="_blank" rel="noopener" title="LinkedIn">
+          <img src="/icons/linkedin.png" alt="LinkedIn" />
+        </a>
+      </div>
+      <a class="btn btn-primary" href="mailto:mdshafiuzzaman@ucsb.edu">Email</a>
+    </div>
+    </div>
+  </header>
+  <main>
+    <section class="section">
+      <div class="crumbs"><a href="/">Home</a> / <a href="/#projects">Projects</a> / PAGENT</div>
+      <h1 class="page-title">PAGENT</h1>
+      <p class="page-sub">Program Analysis Guided LLM Agent for Proof-of-Concept Generation</p>
+      <div class="chips"><span class="chip">ISSTA 2026 (PACMSE vol. 3)</span><span class="chip">Artifacts Available and Functional</span><span class="chip">Open access preprint</span></div>
+      <p class="lede">Maintainers who receive a vulnerability report need a proof-of-concept input that triggers the bug reliably. LLM agents alone succeed rarely. PAGENT gives the agent what it lacks, static guidance about the entry point, taint path, and vulnerable operation, and dynamic guidance from sanitizer profiling and coverage.</p>
+      <div class="link-row"><a class="btn btn-primary" href="https://doi.org/10.1145/3832199" target="_blank" rel="noopener">Paper (DOI)</a><a class="btn" href="https://arxiv.org/abs/2604.07624" target="_blank" rel="noopener">Preprint (arXiv)</a></div>
+      <div class="stat-strip"><div class="stat"><div class="stat-num">+132%</div><div class="stat-label">PoC generation success over the prior top-performing agentic approach</div></div><div class="stat"><div class="stat-num">2</div><div class="stat-label">guidance channels, one static and one dynamic</div></div><div class="stat"><div class="stat-num">203</div><div class="stat-label">real OSS-Fuzz vulnerabilities from ten C/C++ projects (ARVO dataset, via CyberGym)</div></div><div class="stat"><div class="stat-num">A&F</div><div class="stat-label">ACM artifact badges, Available and Functional</div></div></div>
+      <section class="page-block prose"><h2>Approach</h2>
+<p>PAGENT takes the source code and a vulnerability location. Lightweight, rule-based static analysis produces a vulnerability report. An instrumented binary yields sanitizer-based profiling and coverage. Both feed a PoC generation agent that writes, runs, and refines candidate inputs until the sanitizer confirms the vulnerability or the budget is exhausted.</p><figure class="figure fig-narrow"><a href="/images/fig/pagent-overview.webp" target="_blank" rel="noopener"><img src="/images/fig/pagent-overview.webp" width="2127" height="621" alt="Overview of the PAGENT technique" loading="lazy" /></a><figcaption>Overview of PAGENT. Static analysis guidance and dynamic analysis guidance drive the PoC generation agent.</figcaption></figure>
+</section><section class="page-block prose"><h2>What the guidance looks like</h2>
+<p>For a stack-buffer overflow in GNU Binutils (<code>ARVO:18615</code>), static guidance names the vulnerable function, entry point, taint path, and the violated assertion. Dynamic guidance reports which regions and lines the current input already reaches. The agent no longer has to guess where the bug is or whether its input gets there.</p><figure class="figure"><a href="/images/fig/pagent-guidance.webp" target="_blank" rel="noopener"><img src="/images/fig/pagent-guidance.webp" width="2200" height="867" alt="Static and dynamic analysis guidance for ARVO:18615" loading="lazy" /></a><figcaption>Static and dynamic analysis guidance generated for ARVO:18615.</figcaption></figure>
+</section><section class="page-block prose"><h2>The agent loop</h2>
+<p>The PoC agent follows the CodeAct pattern. It prepares a workspace, proposes an input, executes it in the test environment, and receives the dynamic feedback. It loops until a PoC succeeds or the iteration budget is spent.</p><figure class="figure fig-narrow"><a href="/images/fig/pagent-agent.webp" target="_blank" rel="noopener"><img src="/images/fig/pagent-agent.webp" width="2127" height="527" alt="Overview of the PoC generation agent" loading="lazy" /></a><figcaption>The PoC generation agent and its feedback loop with the test environment.</figcaption></figure>
+</section><section class="page-block prose"><h2>Role in the larger pipeline</h2>
+<p>PAGENT is one stage of the vulnerability discovery and analysis toolchain our lab deployed in DARPA HARDEN, alongside STASE, SAILOR, and CHAINER.</p>
+</section>
+      <section class="page-block"><h2>Cite</h2><div class="cite">Achintya Desai, Md Shafiuzzaman, Wenbo Guo, Tevfik Bultan. <i>PAGENT: Program Analysis Guided LLM Agent for Proof-of-Concept Generation.</i> Proceedings of the ACM on Software Engineering, vol. 3, ISSTA, 2026. doi:10.1145/3832199.</div></section>
+      <p class="subtle" style="margin-top:2rem;"><a href="/">&larr; Back to home</a></p>
+    </section>
+  </main>
+  <footer>
+    &copy; <span id="year"></span> Md (Muhammad) Shafiuzzaman.
+    This page is intentionally minimalist and static for longevity.
+    Last updated: October 2026.
+  </footer>
+  </div>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

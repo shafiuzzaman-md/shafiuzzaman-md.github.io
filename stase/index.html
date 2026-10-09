@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>STASE | Md (Muhammad) Shafiuzzaman</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="STASE guides symbolic execution with rule-based static analysis to find UEFI firmware vulnerabilities and generate machine-checkable signatures. ASE 2024, DARPA HARDEN." />
+  <meta name="author" content="Md (Muhammad) Shafiuzzaman" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://shafiuzzaman-md.github.io/stase/" />
+  <link rel="icon" type="image/png" href="/images/profile.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Md (Muhammad) Shafiuzzaman" />
+  <meta property="og:title" content="STASE | Md (Muhammad) Shafiuzzaman" />
+  <meta property="og:description" content="STASE guides symbolic execution with rule-based static analysis to find UEFI firmware vulnerabilities and generate machine-checkable signatures. ASE 2024, DARPA HARDEN." />
+  <meta property="og:url" content="https://shafiuzzaman-md.github.io/stase/" />
+  <meta property="og:image" content="https://shafiuzzaman-md.github.io/images/profile.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="STASE | Md (Muhammad) Shafiuzzaman" />
+  <meta name="twitter:description" content="STASE guides symbolic execution with rule-based static analysis to find UEFI firmware vulnerabilities and generate machine-checkable signatures. ASE 2024, DARPA HARDEN." />
+  <meta name="twitter:image" content="https://shafiuzzaman-md.github.io/images/profile.png" />
+  <link rel="stylesheet" href="/site.css" />
+</head>
+<body>
+  <div class="page">
+  <header>
+    <div class="nav-inner">
+      <a class="brand" href="/" style="color:inherit">
+        <span class="brand-name">Md (Muhammad) Shafiuzzaman</span>
+        <span class="brand-role">Ph.D. Candidate · Computer Science · UCSB</span></a>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="/#projects" class="active">Projects</a></li>
+          <li><a href="/findings/">Findings</a></li>
+          <li><a href="/publications/">Publications</a></li>
+          <li><a href="/#news">News</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </nav>
+     <div class="nav-actions">
+      <div class="nav-icons">
+        <a class="icon-link"
+          href="https://scholar.google.com/citations?user=1mue4woAAAAJ&hl=en"
+          target="_blank" rel="noopener" title="Google Scholar">
+          <img src="/icons/scholar.png" alt="Google Scholar" />
+        </a>
+
+        <a class="icon-link"
+          href="https://github.com/shafiuzzaman-md"
+          target="_blank" rel="noopener" title="GitHub">
+          <img src="/icons/github.png" alt="GitHub" />
+        </a>
+
+        <a class="icon-link"
+          href="https://www.linkedin.com/in/mdshafiuzzaman/"
+          target="_blank" rel="noopener" title="LinkedIn">
+          <img src="/icons/linkedin.png" alt="LinkedIn" />
+        </a>
+      </div>
+      <a class="btn btn-primary" href="mailto:mdshafiuzzaman@ucsb.edu">Email</a>
+    </div>
+    </div>
+  </header>
+  <main>
+    <section class="section">
+      <div class="crumbs"><a href="/">Home</a> / <a href="/#projects">Projects</a> / STASE</div>
+      <h1 class="page-title">STASE</h1>
+      <p class="page-sub">Static Analysis Guided Symbolic Execution for UEFI Vulnerability Signature Generation</p>
+      <div class="chips"><span class="chip">ASE 2024</span><span class="chip">DARPA HARDEN</span><span class="chip">Open-source tool</span></div>
+      <p class="lede">STASE pairs a rule-based static detector with guided symbolic execution. The static stage finds candidate vulnerabilities and describes them, a generated harness sets up the firmware environment, and symbolic execution turns each candidate into a precise vulnerability signature.</p>
+      <div class="link-row"><a class="btn btn-primary" href="https://doi.org/10.1145/3691620.3695543" target="_blank" rel="noopener">Paper (DOI)</a><a class="btn" href="https://github.com/shafiuzzaman-md/stase" target="_blank" rel="noopener">Code</a><a class="btn" href="/images/STASE_ASE_FINAL.pdf">ASE 2024 slides</a><a class="btn" href="https://drive.google.com/file/d/1fW8Z9DvadEnX9chVtbEYN_W0YR1Ez5kI/view" target="_blank" rel="noopener">Demo video</a></div>
+      <div class="stat-strip"><div class="stat"><div class="stat-num">0%</div><div class="stat-label">false positives after symbolic confirmation, against 88% for rule-based static analysis alone</div></div><div class="stat"><div class="stat-num">5 of 9</div><div class="stat-label">PixieFail vulnerabilities captured by precise signatures</div></div><div class="stat"><div class="stat-num">13</div><div class="stat-label">previously unknown defects found in UEFI code</div></div><div class="stat"><div class="stat-num">Highest</div><div class="stat-label">usability among DARPA HARDEN tools at Evaluation 3</div></div></div>
+      <section class="page-block prose"><h2>Why UEFI</h2>
+<p>UEFI firmware runs with higher privilege than the operating system, and exploits there can persist through system reboots, OS reinstallation, and even partial hardware replacement. Static analysis flags many candidates but is prone to false positives. Fuzzing and plain symbolic execution need harnesses and guidance that firmware rarely provides.</p>
+</section><section class="page-block prose"><h2>Technique</h2>
+<p>Vulnerability rules drive a static detector that produces vulnerability descriptions. From each description STASE generates a harness, covering the entry point, symbolic variables, stubs, and assertions. Guided symbolic execution then explores only the paths that matter and emits a vulnerability signature.</p><figure class="figure fig-narrow"><a href="/images/fig/stase-slide9.webp" target="_blank" rel="noopener"><img src="/images/fig/stase-slide9.webp" width="2134" height="720" alt="STASE technique overview" loading="lazy" /></a><figcaption>STASE technique. Rule-based static analysis feeds harness generation and guided symbolic execution.</figcaption></figure><p>A signature is a precondition and a postcondition over symbolic state, so the vulnerability is characterized by evidence instead of a warning.</p><figure class="figure fig-narrow"><a href="/images/fig/stase-slide16.webp" target="_blank" rel="noopener"><img src="/images/fig/stase-slide16.webp" width="2134" height="1074" alt="Example vulnerability signature" loading="lazy" /></a><figcaption>A vulnerability signature, with its precondition and the assertion failure it implies.</figcaption></figure>
+</section><section class="page-block prose"><h2>Evaluation</h2>
+<p>The benchmarks were EDK II SMM drivers, the EDK II network module, and DARPA HARDEN challenge sets. STASE removes the false positives of rule-based analysis and stays tractable where plain symbolic execution does not.</p><div class="fig-row"><figure class="figure"><a href="/images/fig/stase-slide18.webp" target="_blank" rel="noopener"><img src="/images/fig/stase-slide18.webp" width="2134" height="1074" alt="False positive reduction chart" loading="lazy" /></a><figcaption>False positives drop to zero.</figcaption></figure><figure class="figure"><a href="/images/fig/stase-slide19.webp" target="_blank" rel="noopener"><img src="/images/fig/stase-slide19.webp" width="2134" height="1074" alt="Paths explored and constraint queries per entrypoint" loading="lazy" /></a><figcaption>Far fewer paths and constraint-solving queries per entrypoint.</figcaption></figure><figure class="figure"><a href="/images/fig/stase-slide20.webp" target="_blank" rel="noopener"><img src="/images/fig/stase-slide20.webp" width="2134" height="1074" alt="Detection time per technique" loading="lazy" /></a><figcaption>Detection time per technique, log scale.</figcaption></figure></div>
+</section><section class="page-block prose"><h2>Impact in DARPA HARDEN</h2>
+<ul class='bullets-tight'><li><b>July 2025.</b> After Evaluation 3 at the end of Phase 2, STASE was recognized as having the highest usability, with the greatest range of outputs and a high degree of automation among participating tools.</li><li><b>September 2025.</b> The lab received a Phase 3 contract with about three times the funding, under which STASE is being transitioned into U.S. Army adversarial-testing workflows.</li><li><b>October 2025.</b> Live demo at the HARDEN PI meeting (<a href='https://drive.google.com/file/d/1fW8Z9DvadEnX9chVtbEYN_W0YR1Ez5kI/view' target='_blank' rel='noopener'>video</a>).</li></ul>
+</section>
+      <section class="page-block"><h2>Cite</h2><div class="cite">Md Shafiuzzaman, Achintya Desai, Laboni Sarker, Tevfik Bultan. <i>STASE: Static Analysis Guided Symbolic Execution for UEFI Vulnerability Signature Generation.</i> 39th IEEE/ACM International Conference on Automated Software Engineering (ASE), 2024.</div></section>
+      <p class="subtle" style="margin-top:2rem;"><a href="/">&larr; Back to home</a></p>
+    </section>
+  </main>
+  <footer>
+    &copy; <span id="year"></span> Md (Muhammad) Shafiuzzaman.
+    This page is intentionally minimalist and static for longevity.
+    Last updated: October 2026.
+  </footer>
+  </div>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

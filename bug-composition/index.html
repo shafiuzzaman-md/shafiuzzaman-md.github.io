@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bug Composition | Md (Muhammad) Shafiuzzaman</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="An agentic pipeline that decides whether a single shared input can trigger multiple bugs, or proves that none exists. AgenticDev 2026." />
+  <meta name="author" content="Md (Muhammad) Shafiuzzaman" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://shafiuzzaman-md.github.io/bug-composition/" />
+  <link rel="icon" type="image/png" href="/images/profile.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Md (Muhammad) Shafiuzzaman" />
+  <meta property="og:title" content="Bug Composition | Md (Muhammad) Shafiuzzaman" />
+  <meta property="og:description" content="An agentic pipeline that decides whether a single shared input can trigger multiple bugs, or proves that none exists. AgenticDev 2026." />
+  <meta property="og:url" content="https://shafiuzzaman-md.github.io/bug-composition/" />
+  <meta property="og:image" content="https://shafiuzzaman-md.github.io/images/profile.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Bug Composition | Md (Muhammad) Shafiuzzaman" />
+  <meta name="twitter:description" content="An agentic pipeline that decides whether a single shared input can trigger multiple bugs, or proves that none exists. AgenticDev 2026." />
+  <meta name="twitter:image" content="https://shafiuzzaman-md.github.io/images/profile.png" />
+  <link rel="stylesheet" href="/site.css" />
+</head>
+<body>
+  <div class="page">
+  <header>
+    <div class="nav-inner">
+      <a class="brand" href="/" style="color:inherit">
+        <span class="brand-name">Md (Muhammad) Shafiuzzaman</span>
+        <span class="brand-role">Ph.D. Candidate · Computer Science · UCSB</span></a>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="/#projects" class="active">Projects</a></li>
+          <li><a href="/findings/">Findings</a></li>
+          <li><a href="/publications/">Publications</a></li>
+          <li><a href="/#news">News</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </nav>
+     <div class="nav-actions">
+      <div class="nav-icons">
+        <a class="icon-link"
+          href="https://scholar.google.com/citations?user=1mue4woAAAAJ&hl=en"
+          target="_blank" rel="noopener" title="Google Scholar">
+          <img src="/icons/scholar.png" alt="Google Scholar" />
+        </a>
+
+        <a class="icon-link"
+          href="https://github.com/shafiuzzaman-md"
+          target="_blank" rel="noopener" title="GitHub">
+          <img src="/icons/github.png" alt="GitHub" />
+        </a>
+
+        <a class="icon-link"
+          href="https://www.linkedin.com/in/mdshafiuzzaman/"
+          target="_blank" rel="noopener" title="LinkedIn">
+          <img src="/icons/linkedin.png" alt="LinkedIn" />
+        </a>
+      </div>
+      <a class="btn btn-primary" href="mailto:mdshafiuzzaman@ucsb.edu">Email</a>
+    </div>
+    </div>
+  </header>
+  <main>
+    <section class="section">
+      <div class="crumbs"><a href="/">Home</a> / <a href="/#projects">Projects</a> / Bug Composition</div>
+      <h1 class="page-title">Bug Composition</h1>
+      <p class="page-sub">Triggering Multiple Bugs with Agentic Driver Generation</p>
+      <div class="chips"><span class="chip">AgenticDev 2026</span><span class="chip">Mentored undergraduate co-authors</span></div>
+      <p class="lede">Attackers chain bugs. Most tools find them one at a time. Bug composition asks whether one input can trigger several distinct vulnerabilities in the same execution, which is a first test for a possible exploit chain.</p>
+      <div class="link-row"><a class="btn btn-primary" href="https://doi.org/10.1145/3843282.3844434" target="_blank" rel="noopener">Paper (DOI)</a></div>
+      <div class="stat-strip"><div class="stat"><div class="stat-num">3</div><div class="stat-label">libraries evaluated, tcpdump, libxml2, and nDPI</div></div><div class="stat"><div class="stat-num">3</div><div class="stat-label">stages, two LLM stages followed by symbolic execution</div></div><div class="stat"><div class="stat-num">SAT / UNSAT</div><div class="stat-label">concrete shared input, or proof that none exists</div></div><div class="stat"><div class="stat-num">3</div><div class="stat-label">mentored undergraduates among the authors</div></div></div>
+      <section class="page-block prose"><h2>Workflow</h2>
+<p>Given harnesses for two known bugs, an LLM agent first writes a predicate for each bug. A second LLM stage writes a driver that applies both predicates to one shared input. KLEE and an SMT solver then explore every combination. A satisfiable result yields a concrete input that triggers both bugs. An unsatisfiable result proves that the bugs need mutually exclusive inputs.</p><figure class="figure"><a href="/images/fig/bugcomp-workflow.webp" target="_blank" rel="noopener"><img src="/images/fig/bugcomp-workflow.webp" width="2200" height="480" alt="Bug Composition analysis workflow" loading="lazy" /></a><figcaption>The Bug Composition analysis workflow.</figcaption></figure>
+</section><section class="page-block prose"><h2>A concrete driver</h2>
+<p>The driver for a libxml2 bug pair shares one buffer and one length, couples the length to the bounds so that KLEE has to find a value satisfying both bugs, and ends with an assertion that makes KLEE produce a concrete witness.</p><figure class="figure fig-narrow"><a href="/images/fig/bugcomp-harness.webp" target="_blank" rel="noopener"><img src="/images/fig/bugcomp-harness.webp" width="1346" height="2200" alt="Part of the bug harness for bug 18 in libxml2" loading="lazy" /></a><figcaption>Part of the bug harness (driver) for one libxml2 bug.</figcaption></figure>
+</section><section class="page-block prose"><h2>Results</h2>
+<p>The pipeline produced concrete shared inputs for bug pairs including heap buffer overflows in tcpdump, stack and heap memory corruptions in libxml2, and out-of-bounds reads across independent protocol dissectors in nDPI. It also proved the absence of shared inputs when bugs require mutually exclusive constraints.</p>
+</section><section class="page-block prose"><h2>Mentorship</h2>
+<p>The work grew out of a mentored research cohort at UC Santa Barbara. Three undergraduate students are co-authors, and the paper is their first peer-reviewed publication.</p>
+</section>
+      <section class="page-block"><h2>Cite</h2><div class="cite">Vishva Arasan, Mahima Chaudhary, Wendy Contreras Martinez, Md Shafiuzzaman, Achintya Desai, Tevfik Bultan. <i>Bug Composition: Triggering Multiple Bugs with Agentic Driver Generation.</i> 1st International Workshop on Agentic AI for Next-Generation Software Development (AgenticDev), 2026. doi:10.1145/3843282.3844434.</div></section>
+      <p class="subtle" style="margin-top:2rem;"><a href="/">&larr; Back to home</a></p>
+    </section>
+  </main>
+  <footer>
+    &copy; <span id="year"></span> Md (Muhammad) Shafiuzzaman.
+    This page is intentionally minimalist and static for longevity.
+    Last updated: October 2026.
+  </footer>
+  </div>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

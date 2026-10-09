@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Security Findings | Md (Muhammad) Shafiuzzaman</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Previously unknown memory-safety vulnerabilities found and responsibly disclosed by Md Shafiuzzaman, with advisory and pull-request links." />
+  <meta name="author" content="Md (Muhammad) Shafiuzzaman" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://shafiuzzaman-md.github.io/findings/" />
+  <link rel="icon" type="image/png" href="/images/profile.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Md (Muhammad) Shafiuzzaman" />
+  <meta property="og:title" content="Security Findings | Md (Muhammad) Shafiuzzaman" />
+  <meta property="og:description" content="Previously unknown memory-safety vulnerabilities found and responsibly disclosed by Md Shafiuzzaman, with advisory and pull-request links." />
+  <meta property="og:url" content="https://shafiuzzaman-md.github.io/findings/" />
+  <meta property="og:image" content="https://shafiuzzaman-md.github.io/images/profile.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Security Findings | Md (Muhammad) Shafiuzzaman" />
+  <meta name="twitter:description" content="Previously unknown memory-safety vulnerabilities found and responsibly disclosed by Md Shafiuzzaman, with advisory and pull-request links." />
+  <meta name="twitter:image" content="https://shafiuzzaman-md.github.io/images/profile.png" />
+  <link rel="stylesheet" href="/site.css" />
+</head>
+<body>
+  <div class="page">
+  <header>
+    <div class="nav-inner">
+      <a class="brand" href="/" style="color:inherit">
+        <span class="brand-name">Md (Muhammad) Shafiuzzaman</span>
+        <span class="brand-role">Ph.D. Candidate · Computer Science · UCSB</span></a>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="/#projects">Projects</a></li>
+          <li><a href="/findings/" class="active">Findings</a></li>
+          <li><a href="/publications/">Publications</a></li>
+          <li><a href="/#news">News</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </nav>
+     <div class="nav-actions">
+      <div class="nav-icons">
+        <a class="icon-link"
+          href="https://scholar.google.com/citations?user=1mue4woAAAAJ&hl=en"
+          target="_blank" rel="noopener" title="Google Scholar">
+          <img src="/icons/scholar.png" alt="Google Scholar" />
+        </a>
+
+        <a class="icon-link"
+          href="https://github.com/shafiuzzaman-md"
+          target="_blank" rel="noopener" title="GitHub">
+          <img src="/icons/github.png" alt="GitHub" />
+        </a>
+
+        <a class="icon-link"
+          href="https://www.linkedin.com/in/mdshafiuzzaman/"
+          target="_blank" rel="noopener" title="LinkedIn">
+          <img src="/icons/linkedin.png" alt="LinkedIn" />
+        </a>
+      </div>
+      <a class="btn btn-primary" href="mailto:mdshafiuzzaman@ucsb.edu">Email</a>
+    </div>
+    </div>
+  </header>
+  <main>
+    <section class="section">
+      <div class="crumbs"><a href="/">Home</a> / Findings</div>
+      <h1 class="page-title">Security Findings</h1>
+      <p class="page-sub">Responsible disclosure, with the evidence behind every item.</p>
+      <p class="lede">Each entry links to the maintainers' own record, a published advisory, an issue, or a merged fix. Bugs still under coordinated disclosure are listed by project name only.</p>
+      <div class="link-row"><a class="btn btn-primary" href="/sailor/">How SAILOR finds them</a><a class="btn" href="/pagent/">PAGENT, proof-of-concept generation</a></div>
+    </section>
+    <section class="section" id="findings-body">
+      
+
+      <div class="findings-stats">
+        <div class="fstat">
+          <div class="fstat-value">30+</div>
+          <div class="fstat-label">Zero-days disclosed</div>
+        </div>
+        <div class="fstat">
+          <div class="fstat-value">18</div>
+          <div class="fstat-label">Real-world codebases</div>
+        </div>
+        <div class="fstat">
+          <div class="fstat-value">10</div>
+          <div class="fstat-label">Upstream fix or advisory</div>
+        </div>
+        <div class="fstat">
+          <div class="fstat-value">100%</div>
+          <div class="fstat-label">Sanitizer-confirmed</div>
+        </div>
+      </div>
+
+      <div class="findings-grid">
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">mruby</span>
+            <span class="badge st-fixed">Patched upstream</span>
+          </div>
+          <div class="finding-title">Integer overflow to out-of-bounds write in <code>class_add_range</code>.</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-190 to CWE-787</span>
+          </div>
+          <a href="https://github.com/mruby/mruby/issues/6937" target="_blank" rel="noopener">Issue #6937, fixed by Matz</a>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">SELinux (checkpolicy)</span>
+            <span class="badge st-fixed">Merged upstream</span>
+          </div>
+          <div class="finding-title">Double free in <code>define_genfs_context_helper</code>.</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-415</span>
+          </div>
+          <a href="https://github.com/SELinuxProject/selinux/commit/fb255b9ea92742f646e9586ab5d54789562c3eed" target="_blank" rel="noopener">Merged fix, Acked-by S. Smalley</a>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">whisper.cpp</span>
+            <span class="badge st-pr">Fix PR</span>
+          </div>
+          <div class="finding-title">Out-of-bounds read in <code>log_mel_spectrogram</code> on crafted audio.</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-125</span>
+          </div>
+          <a href="https://github.com/ggml-org/whisper.cpp/pull/3956" target="_blank" rel="noopener">Pull request #3956</a>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">whisper.cpp</span>
+            <span class="badge st-pr">Fix PR</span>
+          </div>
+          <div class="finding-title">Stack-buffer overflow write via unchecked <code>n_dims</code> in the model loader.</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-787</span>
+          </div>
+          <a href="https://github.com/ggml-org/whisper.cpp/pull/3957" target="_blank" rel="noopener">Pull request #3957</a>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">bark.cpp</span>
+            <span class="badge st-pr">Fix PR</span>
+          </div>
+          <div class="finding-title">Stack-buffer overflow write in the model loader and offline quantizer.</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-787</span>
+          </div>
+          <a href="https://github.com/PABannier/bark.cpp/pull/220" target="_blank" rel="noopener">Pull request #220</a>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">encodec.cpp</span>
+            <span class="badge st-fixed">Merged upstream</span>
+          </div>
+          <div class="finding-title">Stack-buffer overflow write in <code>encodec_load_model_weights</code>.</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-787</span>
+          </div>
+          <a href="https://github.com/PABannier/encodec.cpp/pull/57" target="_blank" rel="noopener">Pull request #57, merged</a>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">liboqs</span>
+            <span class="badge st-fixed">Published advisory</span>
+          </div>
+          <div class="finding-title">LM-OTS key reuse in LMS stateful signing due to fail-open lock handling (independent report).</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-787</span>
+          </div>
+          <a href="https://github.com/open-quantum-safe/liboqs/security/advisories/GHSA-xv6c-h66p-6mfq" target="_blank" rel="noopener">Advisory GHSA-xv6c-h66p-6mfq</a>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">liboqs</span>
+            <span class="badge st-fixed">Published advisory</span>
+          </div>
+          <div class="finding-title">Heap out-of-bounds read in LMS/HSS signature verification via unvalidated signature length.</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-125</span>
+          </div>
+          <a href="https://github.com/open-quantum-safe/liboqs/security/advisories/GHSA-wh5q-mpc8-67wf" target="_blank" rel="noopener">Advisory GHSA-wh5q-mpc8-67wf</a>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">biogpt.cpp</span>
+            <span class="badge st-pr">Fix accepted</span>
+          </div>
+          <div class="finding-title">Stack-buffer overflow write via unchecked <code>n_dims</code> in <code>biogpt_model_load</code>.</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-787</span>
+          </div>
+          <a href="https://github.com/PABannier/biogpt.cpp/pull/27" target="_blank" rel="noopener">Pull request #27</a>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">koboldcpp</span>
+            <span class="badge st-fixed">Published advisory, High</span>
+          </div>
+          <div class="finding-title">Stack-buffer overflow write via unbounded <code>n_dims</code> across 6 legacy model loaders.</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-787</span>
+          </div>
+          <a href="https://github.com/LostRuins/koboldcpp/security/advisories/GHSA-qhvp-gj7g-rw26" target="_blank" rel="noopener">Advisory GHSA-qhvp-gj7g-rw26</a>
+        </div>
+      </div>
+
+      <div class="findings-aggregate">
+        <b>Under coordinated disclosure.</b> Additional confirmed findings are in maintainer hands and not yet
+        public, including memory-safety bugs in <b>tinyexr</b>, <b>hnswlib</b>, <b>usearch</b>, <b>Annoy</b>,
+        <b>stable-diffusion.cpp</b>, <b>minja</b>, <b>OpenFHE</b>, <b>CTranslate2</b>, and the
+        <b>llama.cpp / ggml</b> stack. Each will be listed here in detail once its report is public.
+      </div>
+
+      <p class="findings-note">
+        Reproductions of already-known issues are excluded and not counted.
+      </p>
+    </section>
+  </main>
+  <footer>
+    &copy; <span id="year"></span> Md (Muhammad) Shafiuzzaman.
+    This page is intentionally minimalist and static for longevity.
+    Last updated: October 2026.
+  </footer>
+  </div>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

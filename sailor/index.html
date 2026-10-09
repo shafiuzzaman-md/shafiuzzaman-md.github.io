@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SAILOR | Md (Muhammad) Shafiuzzaman</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="SAILOR automates symbolic execution harness construction with static analysis and LLM synthesis, finding 67 confirmed zero-days in 28 C/C++ projects." />
+  <meta name="author" content="Md (Muhammad) Shafiuzzaman" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://shafiuzzaman-md.github.io/sailor/" />
+  <link rel="icon" type="image/png" href="/images/profile.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Md (Muhammad) Shafiuzzaman" />
+  <meta property="og:title" content="SAILOR | Md (Muhammad) Shafiuzzaman" />
+  <meta property="og:description" content="SAILOR automates symbolic execution harness construction with static analysis and LLM synthesis, finding 67 confirmed zero-days in 28 C/C++ projects." />
+  <meta property="og:url" content="https://shafiuzzaman-md.github.io/sailor/" />
+  <meta property="og:image" content="https://shafiuzzaman-md.github.io/images/profile.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="SAILOR | Md (Muhammad) Shafiuzzaman" />
+  <meta name="twitter:description" content="SAILOR automates symbolic execution harness construction with static analysis and LLM synthesis, finding 67 confirmed zero-days in 28 C/C++ projects." />
+  <meta name="twitter:image" content="https://shafiuzzaman-md.github.io/images/profile.png" />
+  <link rel="stylesheet" href="/site.css" />
+</head>
+<body>
+  <div class="page">
+  <header>
+    <div class="nav-inner">
+      <a class="brand" href="/" style="color:inherit">
+        <span class="brand-name">Md (Muhammad) Shafiuzzaman</span>
+        <span class="brand-role">Ph.D. Candidate · Computer Science · UCSB</span></a>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="/#projects" class="active">Projects</a></li>
+          <li><a href="/findings/">Findings</a></li>
+          <li><a href="/publications/">Publications</a></li>
+          <li><a href="/#news">News</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </nav>
+     <div class="nav-actions">
+      <div class="nav-icons">
+        <a class="icon-link"
+          href="https://scholar.google.com/citations?user=1mue4woAAAAJ&hl=en"
+          target="_blank" rel="noopener" title="Google Scholar">
+          <img src="/icons/scholar.png" alt="Google Scholar" />
+        </a>
+
+        <a class="icon-link"
+          href="https://github.com/shafiuzzaman-md"
+          target="_blank" rel="noopener" title="GitHub">
+          <img src="/icons/github.png" alt="GitHub" />
+        </a>
+
+        <a class="icon-link"
+          href="https://www.linkedin.com/in/mdshafiuzzaman/"
+          target="_blank" rel="noopener" title="LinkedIn">
+          <img src="/icons/linkedin.png" alt="LinkedIn" />
+        </a>
+      </div>
+      <a class="btn btn-primary" href="mailto:mdshafiuzzaman@ucsb.edu">Email</a>
+    </div>
+    </div>
+  </header>
+  <main>
+    <section class="section">
+      <div class="crumbs"><a href="/">Home</a> / <a href="/#projects">Projects</a> / SAILOR</div>
+      <h1 class="page-title">SAILOR</h1>
+      <p class="page-sub">Static Analysis Informed and LLM-Orchestrated Symbolic Execution</p>
+      <div class="chips"><span class="chip">Under review, USENIX Security 2027</span><span class="chip">Accepted presentation, KLEE Workshop 2026</span><span class="chip">Preprint on arXiv</span></div>
+      <p class="lede">SAILOR automates the hardest manual step in symbolic execution, writing the harness. Static analysis decides where to look, an LLM synthesizes the harness against compiler and KLEE feedback, and every result is replayed against the unmodified project under a sanitizer.</p>
+      <div class="link-row"><a class="btn btn-primary" href="https://arxiv.org/abs/2604.06506" target="_blank" rel="noopener">Preprint (arXiv)</a><a class="btn" href="https://srg.doc.ic.ac.uk/klee26/" target="_blank" rel="noopener">KLEE Workshop 2026</a><a class="btn" href="/findings/">Disclosed findings</a></div>
+      <div class="stat-strip"><div class="stat"><div class="stat-num">379</div><div class="stat-label">previously unknown memory-safety vulnerabilities in 10 projects (6.8M lines), found from internal entry points</div></div><div class="stat"><div class="stat-num">12</div><div class="stat-label">found by the strongest of five baselines on the same projects (Claude Code, full codebase access)</div></div><div class="stat"><div class="stat-num">67</div><div class="stat-label">zero-days in 28 projects (12.3M lines), each with an API-level proof of concept</div></div><div class="stat"><div class="stat-num">36</div><div class="stat-label">found by Claude Code on the same 28 projects, against 5 for libFuzzer</div></div></div>
+      <section class="page-block prose"><h2>The problem</h2>
+<p>Symbolic execution is precise, but it needs a harness that sets up symbolic state, models dependencies, and states what to assert. Writing that harness by hand takes expert knowledge, which limits the technique on large codebases. LLM-only detectors scale, but they rarely produce evidence. In the 10-project study they flagged hundreds of issues each, and almost none replayed on the real binary (Claude Code confirmed 12 of 430 flagged).</p>
+</section><section class="page-block prose"><h2>How it works</h2>
+<p>SAILOR runs three phases, and every phase hands the next one something checkable.</p><ul class='bullets-tight'><li><b>Static analysis informed target generation.</b> An extensible query system built on CodeQL finds candidate vulnerable locations and writes a specification for each one.</li><li><b>LLM-orchestrated symbolic execution.</b> An LLM iteratively refines drivers, stubs, and assertions against compiler and KLEE feedback. Symbolic execution then looks for a violating input.</li><li><b>Concrete validation.</b> The witness is replayed against the unmodified project under AddressSanitizer, so the LLM never decides whether a bug is real.</li></ul><figure class="figure"><a href="/images/fig/sailor-pipeline.webp" target="_blank" rel="noopener"><img src="/images/fig/sailor-pipeline.webp" width="2200" height="628" alt="SAILOR three-phase pipeline with a running example" loading="lazy" /></a><figcaption>Figure 1 of the SAILOR paper. Phase 2 (shaded) is the core contribution, where the LLM synthesizes and iteratively refines the harness against compiler and KLEE feedback.</figcaption></figure>
+</section><section class="page-block prose"><h2>A worked example in SELinux</h2>
+<p>libsepol's <code>discard_tunables</code> copies tunable terms into a fixed 10-slot array. Phase 1 flags the sink and a checker (<code>tunables &lt; 10</code>). Phase 2 has KLEE produce a witness, a policy with 11 tunable terms, through a synthesized harness. Phase 3 replays it against the unmodified source, and AddressSanitizer reports a stack-buffer overflow write at <code>expand.c:3058</code>. OSS-Fuzz had fuzzed this library for five years without reaching the overflow.</p><figure class="figure fig-narrow"><a href="/images/fig/sailor-slide17.webp" target="_blank" rel="noopener"><img src="/images/fig/sailor-slide17.webp" width="1600" height="823" alt="Candidate, witness, and confirmation for an out-of-bounds write in SELinux" loading="lazy" /></a><figcaption>From a candidate pattern to a confirmed zero-day, one phase at a time.</figcaption></figure>
+</section><section class="page-block prose"><h2>Results</h2>
+<p>Run through public APIs on 28 real projects, SAILOR confirmed 67 zero-days with no false positives. Claude Code found 36 and libFuzzer found 5, and 55 of SAILOR's findings were missed by both baselines. Of the findings sent to maintainers, 14 are acknowledged (10 patched, 4 in progress) and 16 more were independently fixed upstream. SAILOR synthesized its harnesses with the less capable Sonnet 5.</p><div class="fig-row"><figure class="figure"><a href="/images/fig/sailor-slide22.webp" target="_blank" rel="noopener"><img src="/images/fig/sailor-slide22.webp" width="1600" height="823" alt="Summary of 67 zero-days in 28 projects" loading="lazy" /></a><figcaption>Headline results for the 28-project study.</figcaption></figure><figure class="figure"><a href="/images/fig/sailor-slide23.webp" target="_blank" rel="noopener"><img src="/images/fig/sailor-slide23.webp" width="1600" height="823" alt="Bar chart and Venn diagram comparing SAILOR with Claude Code and libFuzzer" loading="lazy" /></a><figcaption>SAILOR finds 67 vulnerabilities, 55 of them missed by both baselines.</figcaption></figure></div>
+</section><section class="page-block prose"><h2>Every phase matters</h2>
+<p>Removing a phase shows what each one contributes. Without static-analysis targeting, confirmed vulnerabilities drop by 12.2 times. Without iterative LLM synthesis, none are confirmed. Without symbolic execution, no approach detects more than 12.</p><figure class="figure fig-narrow"><a href="/images/fig/sailor-slide24.webp" target="_blank" rel="noopener"><img src="/images/fig/sailor-slide24.webp" width="1600" height="823" alt="Ablation results by pipeline phase" loading="lazy" /></a><figcaption>Ablation by pipeline phase, showing recall, false positives, time, and cost.</figcaption></figure>
+</section><section class="page-block prose"><h2>Evidence</h2>
+<p>Every finding comes with a path constraint, a concrete input, and a sanitizer trace. Disclosed examples with advisories and merged fixes are listed on the <a href='/findings/'>Findings page</a>. Reports still under coordinated disclosure are not shown.</p>
+</section>
+      <section class="page-block"><h2>Cite</h2><div class="cite">Md Shafiuzzaman, Achintya Desai, Wenbo Guo, Tevfik Bultan. <i>Guiding Symbolic Execution with Static Analysis and LLMs for Vulnerability Discovery.</i> arXiv:2604.06506, 2026. A version titled <i>SAILOR: Guiding Symbolic Execution for Memory Safety Vulnerability Detection</i> is under review at USENIX Security 2027.</div></section>
+      <p class="subtle" style="margin-top:2rem;"><a href="/">&larr; Back to home</a></p>
+    </section>
+  </main>
+  <footer>
+    &copy; <span id="year"></span> Md (Muhammad) Shafiuzzaman.
+    This page is intentionally minimalist and static for longevity.
+    Last updated: October 2026.
+  </footer>
+  </div>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

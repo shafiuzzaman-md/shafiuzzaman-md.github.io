@@ -1,0 +1,1601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Md (Muhammad) Shafiuzzaman | Ph.D. Candidate, UCSB | Symbolic Execution, LLM Security</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Md (Muhammad) Shafiuzzaman, Ph.D. candidate at UC Santa Barbara. LLM-orchestrated symbolic execution, program analysis, and memory-safety vulnerability discovery. Creator of SAILOR and STASE; 67 zero-days found, 30+ disclosed." />
+  <meta name="author" content="Md (Muhammad) Shafiuzzaman" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://shafiuzzaman-md.github.io/" />
+  <link rel="icon" type="image/png" href="images/profile.png" />
+
+  <meta property="og:type" content="profile" />
+  <meta property="og:site_name" content="Md (Muhammad) Shafiuzzaman" />
+  <meta property="og:title" content="Md (Muhammad) Shafiuzzaman | Ph.D. Candidate, UCSB | Symbolic Execution, LLM Security" />
+  <meta property="og:description" content="Md (Muhammad) Shafiuzzaman, Ph.D. candidate at UC Santa Barbara. LLM-orchestrated symbolic execution, program analysis, and memory-safety vulnerability discovery. Creator of SAILOR and STASE; 67 zero-days found, 30+ disclosed." />
+  <meta property="og:url" content="https://shafiuzzaman-md.github.io/" />
+  <meta property="og:image" content="https://shafiuzzaman-md.github.io/images/profile.png" />
+  <meta property="og:image:alt" content="Portrait of Md (Muhammad) Shafiuzzaman" />
+  <meta property="profile:first_name" content="Md (Muhammad)" />
+  <meta property="profile:last_name" content="Shafiuzzaman" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Md (Muhammad) Shafiuzzaman | Ph.D. Candidate, UCSB | Symbolic Execution, LLM Security" />
+  <meta name="twitter:description" content="Md (Muhammad) Shafiuzzaman, Ph.D. candidate at UC Santa Barbara. LLM-orchestrated symbolic execution, program analysis, and memory-safety vulnerability discovery. Creator of SAILOR and STASE; 67 zero-days found, 30+ disclosed." />
+  <meta name="twitter:image" content="https://shafiuzzaman-md.github.io/images/profile.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Md (Muhammad) Shafiuzzaman",
+    "alternateName": ["Md Shafiuzzaman", "Muhammad Shafiuzzaman", "Shafi Shafiuzzaman"],
+    "url": "https://shafiuzzaman-md.github.io/",
+    "image": "https://shafiuzzaman-md.github.io/images/profile.png",
+    "jobTitle": "Ph.D. Candidate in Computer Science",
+    "affiliation": {
+      "@type": "CollegeOrUniversity",
+      "name": "University of California, Santa Barbara",
+      "url": "https://www.ucsb.edu"
+    },
+    "knowsAbout": ["Symbolic execution", "Program analysis", "Software security", "Vulnerability discovery", "LLM agents", "Formal methods", "Firmware security"],
+    "sameAs": [
+      "https://scholar.google.com/citations?user=1mue4woAAAAJ",
+      "https://github.com/shafiuzzaman-md",
+      "https://www.linkedin.com/in/mdshafiuzzaman/"
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #f4f5fb;
+      --bg-alt: #ffffff;
+      --primary: #111827;
+      --secondary: #4b5563;
+      --accent: #2563eb;
+      --accent-soft: #e0ecff;
+      --border: #e5e7eb;
+      --muted: #9ca3af;
+      --shadow-soft: 0 10px 30px rgba(15, 23, 42, 0.06);
+      --radius-lg: 14px;
+      --radius-sm: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: var(--bg);
+      color: var(--primary);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Layout */
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(244, 245, 251, 0.9);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0.5rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-weight: 650;
+      font-size: 1.05rem;
+      letter-spacing: 0.03em;
+    }
+
+    .brand-role {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 0.9rem;
+      margin: 0;
+      padding: 0;
+      font-size: 0.85rem;
+    }
+
+    nav a {
+      padding: 0.35rem 0.6rem;
+      border-radius: 999px;
+      color: var(--secondary);
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      background: var(--accent-soft);
+      text-decoration: none;
+      color: var(--accent);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-right: 0.35rem;
+  padding-right: 0.6rem;
+  border-right: 1px solid var(--border);
+}
+
+.icon-link {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  padding: 3px;
+}
+
+.icon-link img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.icon-link:hover {
+  background: var(--accent-soft);
+  border-color: rgba(37, 99, 235, 0.55);
+  text-decoration: none;
+}
+
+@media (max-width: 640px) {
+  .nav-icons {
+    display: none;
+  }
+}
+
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--accent);
+      background: #eef3ff;
+      text-decoration: none;
+      box-shadow: 0 0 0 rgba(37, 99, 235, 0);
+      transition: background 0.15s ease, color 0.15s ease,
+        box-shadow 0.15s ease, transform 0.05s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.18);
+      text-decoration: none;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.8rem 1.25rem;
+    }
+
+    .section + .section {
+      padding-top: 0.6rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .section-subtitle {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    /* Hero */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
+      gap: 1.75rem;
+      align-items: stretch;
+    }
+
+    .hero-card {
+      background: var(--bg-alt);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem 1.7rem;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+    }
+
+    .hero-name {
+      font-size: 1.75rem;
+      margin: 0 0 0.25rem;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-title {
+      margin: 0;
+      font-size: 0.98rem;
+      color: var(--secondary);
+    }
+
+    .hero-links {
+      margin-top: 0.7rem;
+      font-size: 0.85rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem 0.75rem;
+      color: var(--secondary);
+    }
+
+    .hero-links span {
+      color: var(--muted);
+    }
+
+    .hero-bio {
+      margin-top: 0.85rem;
+      font-size: 0.9rem;
+      color: var(--secondary);
+    }
+
+    .hero-bio b {
+      font-weight: 600;
+    }
+
+    .hero-tags {
+      margin-top: 0.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .tag {
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.73rem;
+      background: #eef2ff;
+      color: #4f46e5;
+      border: 1px solid rgba(129, 140, 248, 0.35);
+    }
+
+    .hero-side-card {
+      background: linear-gradient(135deg, #111827, #1f2937);
+      color: #e5e7eb;
+      border-radius: var(--radius-lg);
+      padding: 1.2rem 1.4rem;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      height: 100%;
+      justify-content: space-between;
+    }
+
+    .hero-side-title {
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      text-align: center;
+      margin-top: 0.35rem;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.7rem;
+      font-size: 0.8rem;
+    }
+
+    .metric {
+      padding: 0.55rem 0.65rem;
+      border-radius: var(--radius-sm);
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .metric-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #9ca3af;
+    }
+
+    .metric-value {
+      font-weight: 600;
+      margin-top: 0.2rem;
+    }
+
+    .hero-side-footer {
+      font-size: 0.78rem;
+      color: #d1d5db;
+    }
+
+    /* Photo inside hero-side-card */
+    .photo-wrapper {
+      width: 120px;
+      height: 120px;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 0 auto 0.6rem;
+      border: 2px solid rgba(229, 231, 235, 0.9);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+      background: #111827;
+    }
+
+    .photo-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-side-name {
+      text-align: center;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin: 0.15rem 0 0.05rem;
+    }
+
+    .hero-side-role {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin: 0 0 0.4rem;
+    }
+
+    /* Cards & lists */
+
+    .two-column {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+
+    .two-column .card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .card {
+      background: var(--bg-alt);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.4rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.03);
+    }
+
+    .item-title {
+      font-weight: 600;
+    }
+
+    .item-meta {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .item-body {
+      margin-top: 0.35rem;
+      font-size: 0.9rem;
+      color: var(--secondary);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      border-radius: 999px;
+      padding: 0.15rem 0.55rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 500;
+      border: 1px solid rgba(37, 99, 235, 0.3);
+    }
+
+    .list-compact {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-size: 0.9rem;
+    }
+
+    .list-compact li + li {
+      margin-top: 0.45rem;
+      padding-top: 0.45rem;
+      border-top: 1px dashed var(--border);
+    }
+
+    .subtle {
+      color: var(--muted);
+      font-size: 0.83rem;
+    }
+
+    /* News */
+
+    .news-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      font-size: 0.9rem;
+    }
+
+    .news-item + .news-item {
+      margin-top: 0.6rem;
+      padding-top: 0.6rem;
+      border-top: 1px dashed var(--border);
+    }
+
+    .news-date {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-bottom: 0.1rem;
+    }
+
+    /* Footer */
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.3rem 1.25rem 1.6rem;
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    footer a {
+      color: var(--accent);
+    }
+
+    .side-column {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .news-card {
+      background: linear-gradient(135deg, #eef2ff, #ffffff);
+      border-color: rgba(37, 99, 235, 0.18); /* tie to accent */
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.07);
+    }
+
+    .news-card .news-date {
+      color: #6b7280; /* a bit stronger so it stays readable */
+    }
+
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      .hero,
+      .two-column {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-side-card {
+        order: -1;
+      }
+
+      nav ul {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .section {
+        padding-inline: 1rem;
+      }
+
+      .hero-card {
+        padding: 1.2rem 1.25rem;
+      }
+
+      .hero-name {
+        font-size: 1.45rem;
+      }
+    }
+
+    /* Security findings */
+
+    .findings-lead {
+      font-size: 0.92rem;
+      color: var(--secondary);
+      max-width: 62ch;
+      margin: 0 0 1.1rem;
+    }
+
+    .findings-stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .fstat {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 0.85rem 0.9rem;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.03);
+    }
+
+    .fstat-value {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.1;
+    }
+
+    .fstat-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-top: 0.2rem;
+    }
+
+    .findings-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+
+    .finding-card {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 0.95rem 1.05rem;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.03);
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .finding-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
+    }
+
+    .finding-project {
+      font-weight: 650;
+      font-size: 0.98rem;
+    }
+
+    .finding-title {
+      font-size: 0.86rem;
+      color: var(--secondary);
+    }
+
+    .finding-title code {
+      font-size: 0.82rem;
+      background: #f1f5f9;
+      padding: 0.05rem 0.3rem;
+      border-radius: 5px;
+    }
+
+    .finding-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.15rem;
+    }
+
+    .badge {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      padding: 0.12rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .badge-cwe {
+      background: #eef2ff;
+      color: #4f46e5;
+      border-color: rgba(129, 140, 248, 0.35);
+    }
+
+    .badge-method {
+      background: #f1f5f9;
+      color: var(--secondary);
+      border-color: var(--border);
+    }
+
+    .st-fixed {
+      background: #dcfce7;
+      color: #166534;
+      border-color: rgba(22, 101, 52, 0.25);
+    }
+
+    .st-pr {
+      background: #fef3c7;
+      color: #92400e;
+      border-color: rgba(146, 64, 14, 0.25);
+    }
+
+    .finding-card a {
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+
+    .findings-aggregate {
+      margin-top: 1.1rem;
+      background: linear-gradient(135deg, #eef2ff, #ffffff);
+      border: 1px solid rgba(37, 99, 235, 0.18);
+      border-radius: var(--radius-lg);
+      padding: 1rem 1.2rem;
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.06);
+      font-size: 0.9rem;
+      color: var(--secondary);
+    }
+
+    .findings-note {
+      margin-top: 0.7rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 760px) {
+      .findings-stats {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .findings-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* Demo video embed */
+
+    .demo-embed {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: #000000;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+    }
+
+    .demo-embed iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .demo-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 0.4rem;
+    }
+  </style>
+</head>
+
+<body>
+<div class="page">
+
+  <!-- ================= HEADER ================= -->
+  <header>
+    <div class="nav-inner">
+      <div class="brand">
+        <span class="brand-name">Md (Muhammad) Shafiuzzaman</span>
+        <span class="brand-role">Ph.D. Candidate · Computer Science · UCSB</span>
+      </div>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#findings">Findings</a></li>
+          <li><a href="#news">News</a></li>
+          <li><a href="#publications">Publications</a></li>
+          <li><a href="#industry">Experience</a></li>
+          <li><a href="#teaching">Teaching</a></li>
+          <li><a href="#contact">Contact</a></li>
+          
+        </ul>
+      </nav>
+     <div class="nav-actions">
+      <div class="nav-icons">
+        <a class="icon-link"
+          href="https://scholar.google.com/citations?user=1mue4woAAAAJ&hl=en"
+          target="_blank" rel="noopener" title="Google Scholar">
+          <img src="icons/scholar.png" alt="Google Scholar" />
+        </a>
+
+        <a class="icon-link"
+          href="https://github.com/shafiuzzaman-md"
+          target="_blank" rel="noopener" title="GitHub">
+          <img src="icons/github.png" alt="GitHub" />
+        </a>
+
+        <a class="icon-link"
+          href="https://www.linkedin.com/in/mdshafiuzzaman/"
+          target="_blank" rel="noopener" title="LinkedIn">
+          <img src="icons/linkedin.png" alt="LinkedIn" />
+        </a>
+      </div>
+      <a class="btn btn-primary" href="mailto:mdshafiuzzaman@ucsb.edu">Email</a>
+    </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ================= HERO / ABOUT ================= -->
+    <section class="section" id="about">
+      <div class="hero">
+        <div class="hero-card">
+          <p class="hero-bio">
+            <b>Bio.</b> I am a Ph.D. candidate in Computer Science at the University of California, Santa Barbara (UCSB), expected to graduate in Spring 2027, advised by
+            <a href="https://sites.cs.ucsb.edu/~bultan/" target="_blank" rel="noopener">Prof. Tevfik Bultan</a>.
+            I work as a Graduate Student Researcher in the <b>Verification Lab (VLab)</b>, supported by DARPA’s
+            <a href="https://www.darpa.mil/research/programs/hardening-development-toolchains-against-emergent-execution-engines" target="_blank" rel="noopener">HARDEN</a>
+            and
+            <a href="https://www.darpa.mil/research/programs/intelligent-generation-tools-security" target="_blank" rel="noopener">INGOTS</a>
+            programs. Before starting my Ph.D., I worked as a software engineer building large-scale software
+            systems in industry.
+          </p>
+
+          <p class="hero-bio">
+            <b>Research.</b> My research lies at the intersection of <b>AI-assisted software engineering</b>,
+            <b>software security</b>, <b>program analysis</b>, and <b>formal methods</b>. I develop hybrid static–symbolic
+            techniques and LLM-assisted workflows that make it practical to detect, confirm, and characterize vulnerabilities
+            including exploit chains in large, real-world systems.
+          </p>
+
+          <p class="hero-bio">
+            My dissertation builds toward a single pipeline that can <b>find, confirm, and repair</b> memory-safety bugs
+            in real code. Its centerpiece, <b>SAILOR</b>, pairs rule-based static analysis with LLM-orchestrated symbolic
+            execution and a concrete, sanitizer-backed validation gate. Run against widely used C and C++ projects, it has uncovered
+            <b>67 previously unknown memory-safety vulnerabilities</b>, with 30+ already disclosed to maintainers and several
+            patched upstream. <b>PatchAnalyzer</b> completes the loop by quantitatively assessing whether a candidate patch
+            removes the vulnerability without changing safe behavior.
+          </p>
+          <p class="hero-bio">
+            This builds on <b>STASE</b> (Static Analysis&ndash;Guided Symbolic Execution), which uncovered previously unknown
+            UEFI and Linux kernel vulnerabilities, confirmed multiple CVEs, and is being transitioned into U.S. Army
+            adversarial-testing workflows. Recent work appears at ISSTA 2026 (<b>PAGENT</b>, proof-of-concept generation) and
+            is accepted for presentation at the 2026 KLEE Workshop on Symbolic Execution.
+          </p>
+
+
+          <div class="hero-tags">
+            <span class="tag">Program analysis &amp; formal methods</span>
+            <span class="tag">Symbolic execution</span>
+            <span class="tag">Software &amp; firmware security</span>
+            <span class="tag">CodeQL / Static Analysis</span>
+            <span class="tag">LLM-Driven Program Reasoning</span>
+          </div>
+
+          
+        </div>
+
+        <aside class="hero-side-card" aria-label="Quick facts">
+          <div>
+            <div class="photo-wrapper">
+              <img src="images/profile.png" alt="Portrait of Md (Muhammad) Shafiuzzaman" />
+            </div>
+            <div class="hero-side-name">Md (Muhammad) Shafiuzzaman</div>
+            <div class="hero-side-role">Verification Lab, UCSB · Harold Frank Hall 2158A</div>
+          </div>
+
+          <div>
+            <div class="hero-side-title">At a Glance</div>
+            <div class="hero-metrics">
+              <div class="metric">
+                <div class="metric-label">Status</div>
+                <div class="metric-value">Ph.D. (in progress)</div>
+                <div class="subtle">Expected Spring 2027</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Advisor</div>
+                <div class="metric-value">Tevfik Bultan</div>
+                <div class="subtle">Professor, UCSB</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Keywords</div>
+                <div class="metric-value">Security · Verification</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Open To</div>
+                <div class="metric-value">Faculty &amp; Industry Research</div>
+              </div>
+            </div>
+          </div>
+          <div class="hero-side-footer">
+            I am broadly interested in how <b>formal reasoning</b> and <b>LLM-based agents</b> can be combined to
+            build trustworthy software.
+          </div>
+           <div style="margin-top:0.35rem;">
+              <div class="demo-label">Latest demo &middot; SAILOR</div>
+              <div class="demo-embed">
+                <iframe src="https://drive.google.com/file/d/1SK4sPwXKsO-3LHGNIZFZRuPKipYbinRj/preview"
+                        allow="autoplay; fullscreen" allowfullscreen
+                        title="SAILOR demo presented to DARPA"></iframe>
+              </div>
+              <div class="subtle" style="margin-top:0.4rem; color:#d1d5db;">
+                <b>SAILOR</b> demo, presented to DARPA.
+                <a href="https://drive.google.com/file/d/1SK4sPwXKsO-3LHGNIZFZRuPKipYbinRj/view"
+                   target="_blank" rel="noopener">Open in Drive</a>
+                &middot;
+                <a href="https://drive.google.com/file/d/1fW8Z9DvadEnX9chVtbEYN_W0YR1Ez5kI/view"
+                   target="_blank" rel="noopener">STASE demo (Oct 2025)</a>
+              </div>
+            </div>
+        </aside>
+      </div>
+    </section>
+    <!-- ================= RESEARCH ================= -->
+    <section class="section" id="research">
+      <div class="section-header">
+        <h2 class="section-title">Research</h2>
+        <div class="section-subtitle">Focus &amp; Vision</div>
+      </div>
+
+      <div class="two-column">
+        <div class="card">
+          <h3 class="item-title">Research Interests</h3>
+          <ul class="list-compact">
+            <li>
+              <b>Building trust in AI-assisted systems.</b>
+              Precision–scalability trade-offs among static analysis, symbolic execution, fuzzing, and dynamic verification for
+              <i>secure-by-construction</i> code and patches in human–LLM co-authored software.
+            </li>
+            <li>
+              <b>Scaling formal methods with AI.</b>
+              Automating contracts, harnesses, invariants, and machine-checkable evidence so verification scales to
+              large, safety- and mission-critical software and systems.
+            </li>
+            <li>
+              <b>LLMs and agentic systems for software engineering.</b>
+              Symbolic-reasoning models and collaborative agents that generate harnesses, triage findings, and explain
+              security guarantees.
+            </li>
+            <li>
+              <b>Cyber defense automation.</b>
+              AI- and formal-methods-driven workflows for automated security assessment, end-to-end exploit discovery,
+              triage, and mitigation.
+            </li>
+          </ul>
+        </div>
+
+        <div class="card side-card">
+          <h3 class="item-title">Current Projects</h3>
+          <ul class="list-compact">
+            <li>
+              <span class="pill">SAILOR</span><br />
+              Static-analysis-guided, LLM-orchestrated symbolic execution with sanitizer-backed validation:
+              finds, reproduces, and confirms memory-safety vulnerabilities in real-world C and C++ codebases.
+            </li>
+            <li>
+              <span class="pill">STASE</span><br />
+              Static analysis guided symbolic execution for firmware and software: automatic harness generation,
+              environment modeling, and vulnerability signature extraction.
+            </li>
+            <li>
+              <span class="pill">CHAINER</span><br />
+              Memory-aware symbolic analysis to discover exploit chains that combine multiple low-level bugs into
+              high-impact attacks.
+            </li>
+            <li>
+              <span class="pill">PatchAnalyzer</span><br />
+              Quantitative assessment of security-patch correctness. Symbolic execution and model counting measure
+              how many inputs a patch still leaves vulnerable and how much safe behavior it changes, then rank
+              candidate patches by this min-max criterion. Evaluated on 280 developer and LLM-generated patches
+              for 70 vulnerabilities, it flags five developer patches as unsafe, each later fixed again upstream.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= NEWS ================= -->
+    <section class="section" id="news">
+      <div class="section-header">
+        <h2 class="section-title">News</h2>
+        <div class="section-subtitle">Updates</div>
+      </div>
+
+      <div class="card news-card">
+        <ul class="news-list">
+          <li class="news-item">
+            <div class="news-date">Oct 2026</div>
+            <div>
+              <b>SAILOR</b> was accepted for presentation at the 5th International KLEE Workshop on Symbolic Execution
+              (Munich, Oct 15&ndash;16, co-located with ASE 2026).
+              <a href="https://srg.doc.ic.ac.uk/klee26/" target="_blank" rel="noopener">Workshop</a>
+            </div>
+          </li>
+          <li class="news-item">
+            <div class="news-date">Oct 2026</div>
+            <div>
+              <b>Bug Composition</b> is now in the ACM Digital Library (AgenticDev 2026), co-authored with
+              three mentored undergraduates.
+              <a href="https://doi.org/10.1145/3843282.3844434" target="_blank" rel="noopener">DOI</a>
+            </div>
+          </li>
+          <li class="news-item">
+            <div class="news-date">Oct 2026</div>
+            <div>
+              <b>PAGENT</b> is now in the ACM Digital Library (PACMSE vol. 3, ISSTA 2026).
+              <a href="https://doi.org/10.1145/3832199" target="_blank" rel="noopener">DOI</a>
+            </div>
+          </li>
+          <li class="news-item">
+            <div class="news-date">Oct 2026</div>
+            <div>
+              Credited as an independent reporter on a second <b>liboqs</b> security advisory, covering
+              LM-OTS key reuse in LMS stateful signing.
+              <a href="https://github.com/open-quantum-safe/liboqs/security/advisories/GHSA-xv6c-h66p-6mfq"
+                 target="_blank" rel="noopener">GHSA-xv6c-h66p-6mfq</a>
+            </div>
+          </li>
+          <li class="news-item">
+            <div class="news-date">Sep 2026</div>
+            <div>
+              Credited as an independent reporter on the maintainers' published security advisory for a heap
+              out-of-bounds read I found in <b>liboqs</b> (post-quantum cryptography).
+              <a href="https://github.com/open-quantum-safe/liboqs/security/advisories/GHSA-wh5q-mpc8-67wf"
+                 target="_blank" rel="noopener">GHSA-wh5q-mpc8-67wf</a>
+            </div>
+          </li>
+          <li class="news-item">
+            <div class="news-date">Sep 2026</div>
+            <div>
+              Reported stack-buffer overflow fix merged upstream in <b>encodec.cpp</b> (Meta's EnCodec audio
+              model, PABannier's C/C++ port).
+              <a href="https://github.com/PABannier/encodec.cpp/pull/57" target="_blank" rel="noopener">Pull request #57</a>
+            </div>
+          </li>
+          <li class="news-item">
+            <div class="news-date">Sep 2026</div>
+            <div>
+              At the DARPA <b>HARDEN</b> closing ceremony in Arlington, VA, DARPA presented me with the title
+              &ldquo;<b>KLEE Whisperer</b>&rdquo; and a commemorative badge.
+            </div>
+          </li>
+          <li class="news-item">
+            <div class="news-date">Aug 2026</div>
+            <div>
+              DARPA's four-year <b>HARDEN</b> program is completing. Our UCSB Verification Lab team was the only
+              bug-discovery (TA1) performer to advance through to the program's final phase, on the strength of
+              <b>STASE</b>. Building on those results, our lab has transitioned into DARPA's new
+              <a href="https://www.darpa.mil/research/programs/intelligent-generation-tools-security"
+                 target="_blank" rel="noopener"><b>INGOTS</b></a> program on automated exploit-chain discovery
+              and analysis.
+            </div>
+          </li>
+          <li class="news-item">
+            <div class="news-date">Aug 2026</div>
+            <div>
+              <b>SAILOR</b>, my LLM-orchestrated symbolic execution framework, is under submission. Its coordinated
+              disclosures now span <b>30+ previously unknown memory-safety vulnerabilities</b> across widely used
+              C and C++ projects, several patched upstream. See <a href="#findings">Findings</a>.
+            </div>
+          </li>
+          <li class="news-item">
+            <div class="news-date">Jun 2026</div>
+            <div>
+              Advanced to Ph.D. candidacy and presented my dissertation proposal, <b>Scalable Symbolic Execution for
+              Vulnerability Detection and Patch Verification</b>.
+            </div>
+          </li>
+          <li class="news-item">
+            <div class="news-date">Oct 2025</div>
+            <div>
+              Demoed <b>STASE</b> at the DARPA HARDEN PI meeting.
+              <a href="https://drive.google.com/file/d/1fW8Z9DvadEnX9chVtbEYN_W0YR1Ez5kI/view" target="_blank" rel="noopener">Watch the demo</a>
+            </div>
+          </li>
+          <li class="news-item">
+            <div class="news-date">Sep 2025</div>
+            <div>
+              VLab received a new <b>DARPA HARDEN Phase 3</b> contract with approximately <b>3&times;</b> increased funding,
+              under which the <b>STASE</b> tool will be transitioned into U.S. Army adversarial testing workflows.
+            </div>
+          </li>
+          <li class="news-item">
+            <div class="news-date">Jul 2025</div>
+            <div>
+              After <b>Evaluation 3</b> at the end of Phase 2 of the
+              <b>DARPA HARDEN</b> program, <b>STASE</b> was recognized as having
+              the <b>highest usability</b>, with the greatest range of outputs and
+              a high degree of automation among participating tools.
+            </div>
+          </li>
+        </ul>
+        <p class="subtle" style="margin-top:0.8rem;">
+          I periodically update this section with new papers, talks, and tool releases.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================= SECURITY FINDINGS ================= -->
+    <section class="section" id="findings">
+      <div class="section-header">
+        <h2 class="section-title">Security Findings</h2>
+        <div class="section-subtitle">Responsible Disclosure</div>
+      </div>
+
+      <p class="findings-lead">
+        Vulnerabilities my research has found and disclosed in widely used, real-world C and C++ software. Every
+        finding is confirmed by a concrete sanitizer crash on a synthesized input before it is reported, then
+        disclosed responsibly upstream. This list grows as coordination completes; specifics stay withheld until
+        each report is public.
+      </p>
+
+      <div class="findings-stats">
+        <div class="fstat">
+          <div class="fstat-value">30+</div>
+          <div class="fstat-label">Zero-days disclosed</div>
+        </div>
+        <div class="fstat">
+          <div class="fstat-value">18</div>
+          <div class="fstat-label">Real-world codebases</div>
+        </div>
+        <div class="fstat">
+          <div class="fstat-value">9</div>
+          <div class="fstat-label">Upstream fix or advisory</div>
+        </div>
+        <div class="fstat">
+          <div class="fstat-value">100%</div>
+          <div class="fstat-label">Sanitizer-confirmed</div>
+        </div>
+      </div>
+
+      <div class="findings-grid">
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">mruby</span>
+            <span class="badge st-fixed">Patched upstream</span>
+          </div>
+          <div class="finding-title">Integer overflow to out-of-bounds write in <code>class_add_range</code>.</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-190 to CWE-787</span>
+          </div>
+          <a href="https://github.com/mruby/mruby/issues/6937" target="_blank" rel="noopener">Issue #6937, fixed by Matz</a>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">SELinux (checkpolicy)</span>
+            <span class="badge st-fixed">Merged upstream</span>
+          </div>
+          <div class="finding-title">Double free in <code>define_genfs_context_helper</code>.</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-415</span>
+          </div>
+          <a href="https://github.com/SELinuxProject/selinux/commit/fb255b9ea92742f646e9586ab5d54789562c3eed" target="_blank" rel="noopener">Merged fix, Acked-by S. Smalley</a>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">whisper.cpp</span>
+            <span class="badge st-pr">Fix PR</span>
+          </div>
+          <div class="finding-title">Out-of-bounds read in <code>log_mel_spectrogram</code> on crafted audio.</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-125</span>
+          </div>
+          <a href="https://github.com/ggml-org/whisper.cpp/pull/3956" target="_blank" rel="noopener">Pull request #3956</a>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">whisper.cpp</span>
+            <span class="badge st-pr">Fix PR</span>
+          </div>
+          <div class="finding-title">Stack-buffer overflow write via unchecked <code>n_dims</code> in the model loader.</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-787</span>
+          </div>
+          <a href="https://github.com/ggml-org/whisper.cpp/pull/3957" target="_blank" rel="noopener">Pull request #3957</a>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">bark.cpp</span>
+            <span class="badge st-pr">Fix PR</span>
+          </div>
+          <div class="finding-title">Stack-buffer overflow write in the model loader and offline quantizer.</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-787</span>
+          </div>
+          <a href="https://github.com/PABannier/bark.cpp/pull/220" target="_blank" rel="noopener">Pull request #220</a>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">encodec.cpp</span>
+            <span class="badge st-fixed">Merged upstream</span>
+          </div>
+          <div class="finding-title">Stack-buffer overflow write in <code>encodec_load_model_weights</code>.</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-787</span>
+          </div>
+          <a href="https://github.com/PABannier/encodec.cpp/pull/57" target="_blank" rel="noopener">Pull request #57, merged</a>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">liboqs</span>
+            <span class="badge st-fixed">Published advisory</span>
+          </div>
+          <div class="finding-title">LM-OTS key reuse in LMS stateful signing due to fail-open lock handling (independent report).</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-787</span>
+          </div>
+          <a href="https://github.com/open-quantum-safe/liboqs/security/advisories/GHSA-xv6c-h66p-6mfq" target="_blank" rel="noopener">Advisory GHSA-xv6c-h66p-6mfq</a>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">liboqs</span>
+            <span class="badge st-fixed">Published advisory</span>
+          </div>
+          <div class="finding-title">Heap out-of-bounds read in LMS/HSS signature verification via unvalidated signature length.</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-125</span>
+          </div>
+          <a href="https://github.com/open-quantum-safe/liboqs/security/advisories/GHSA-wh5q-mpc8-67wf" target="_blank" rel="noopener">Advisory GHSA-wh5q-mpc8-67wf</a>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">biogpt.cpp</span>
+            <span class="badge st-pr">Fix accepted</span>
+          </div>
+          <div class="finding-title">Stack-buffer overflow write via unchecked <code>n_dims</code> in <code>biogpt_model_load</code>.</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-787</span>
+          </div>
+          <a href="https://github.com/PABannier/biogpt.cpp/pull/27" target="_blank" rel="noopener">Pull request #27</a>
+        </div>
+
+        <div class="finding-card">
+          <div class="finding-top">
+            <span class="finding-project">koboldcpp</span>
+            <span class="badge st-fixed">Published advisory, High</span>
+          </div>
+          <div class="finding-title">Stack-buffer overflow write via unbounded <code>n_dims</code> across 6 legacy model loaders.</div>
+          <div class="finding-meta">
+            <span class="badge badge-cwe">CWE-787</span>
+          </div>
+          <a href="https://github.com/LostRuins/koboldcpp/security/advisories/GHSA-qhvp-gj7g-rw26" target="_blank" rel="noopener">Advisory GHSA-qhvp-gj7g-rw26</a>
+        </div>
+      </div>
+
+      <div class="findings-aggregate">
+        <b>Under coordinated disclosure.</b> Additional confirmed findings are in maintainer hands and not yet
+        public, including memory-safety bugs in <b>tinyexr</b>, <b>hnswlib</b>, <b>usearch</b>, <b>Annoy</b>,
+        <b>stable-diffusion.cpp</b>, <b>minja</b>, <b>OpenFHE</b>, <b>CTranslate2</b>, and the
+        <b>llama.cpp / ggml</b> stack. Each will be listed here in detail once its report is public.
+      </div>
+
+      <p class="findings-note">
+        Reproductions of already-known issues are excluded and not counted.
+      </p>
+    </section>
+
+    <!-- ================= RESEARCH OUTPUTS ================= -->
+<section class="section" id="publications">
+  <div class="section-header">
+    <h2 class="section-title">Research Outputs</h2>
+    <div class="section-subtitle">Publications &amp; Artifacts</div>
+  </div>
+
+  <div class="two-column">
+    <!-- Left: Selected Publications -->
+    <div class="card">
+      <h3 class="item-title">Selected Publications</h3>
+      <ol class="list-compact" style="padding-left: 1.15rem;">
+        <li>
+          <b>SAILOR: Guiding Symbolic Execution for Memory Safety Vulnerability Detection.</b>
+          Under submission to USENIX Security, 2027.
+          <a href="https://arxiv.org/abs/2604.06506" target="_blank" rel="noopener">Preprint</a>
+        </li>
+        <li>
+          <b>PAGENT: Program Analysis Guided LLM Agent for Proof-of-Concept Generation.</b>
+          PACMSE vol. 3 (ISSTA 2026). <span class="subtle">Artifacts Available &amp; Functional</span>
+          <a href="https://doi.org/10.1145/3832199" target="_blank" rel="noopener">DOI</a>
+        </li>
+        <li>
+          <b>Bug Composition: Triggering Multiple Bugs with Agentic Driver Generation.</b>
+          AgenticDev 2026 Workshop.
+          <a href="https://doi.org/10.1145/3843282.3844434" target="_blank" rel="noopener">DOI</a>
+        </li>
+        <li>
+          <b>Stateful Behavior Inference and Runtime Enforcement for Vehicle Network Security.</b>
+          USENIX VehicleSec 2025.<br />
+          <a href="https://www.usenix.org/conference/vehiclesec25/presentation/desai"
+             target="_blank" rel="noopener">Conference page</a>
+        </li>
+        <li>
+          <b>STASE: Static Analysis Guided Symbolic Execution for UEFI Vulnerability Signature Generation.</b>
+          ASE 2024. <span class="subtle">A*</span><br />
+          <a href="https://doi.org/10.1145/3691620.3695543" target="_blank" rel="noopener">
+            DOI: 10.1145/3691620.3695543
+          </a>
+        </li>
+        <li>
+          <b>Rare Path Guided Fuzzing.</b> ISSTA 2023.<br />
+          <a href="https://doi.org/10.1145/3597926.3598136" target="_blank" rel="noopener">
+            DOI: 10.1145/3597926.3598136
+          </a>
+        </li>
+        <li><b>CHAINER:</b> Under submission.</li>
+        <li><b>PatchAnalyzer: Symbolic Min-Max Analysis for Assessing Patch Correctness.</b> In preparation, targeting ACM TOSEM.</li>
+      </ol>
+      <p class="subtle" style="margin-top: 0.75rem;">
+        Full list on
+        <a href="https://scholar.google.com/citations?user=1mue4woAAAAJ&hl=en"
+           target="_blank" rel="noopener">Google Scholar</a>.
+      </p>
+    </div>
+
+    <!-- Right: Artifacts & Tools -->
+    <div class="card">
+      <h3 class="item-title">Artifacts &amp; Tools</h3>
+      <ul class="list-compact">
+        <li>
+          <span class="item-title">STASE 2.0 — Static Analysis–Guided Symbolic Execution.</span><br />
+          <span class="item-body">
+            Hybrid static–symbolic framework for firmware and software, including automatic
+            harness generation, environment modeling, and vulnerability signature extraction.
+            In DARPA HARDEN it produced precise, zero-false-positive signatures, including 5 of the 9 PixieFail
+            vulnerabilities and 13 new EDK2 firmware bugs.<br />
+            <a href="https://github.com/shafiuzzaman-md/stase-2.0" target="_blank" rel="noopener">
+              github.com/shafiuzzaman-md/stase-2.0
+            </a>
+          </span>
+        </li>
+        <li>
+          <span class="item-title">ChainBench — Vulnerability Chain Dataset.</span><br />
+          <span class="item-body">
+            Curated dataset and harness suite for exploit-chain analysis and evaluation of chain discovery techniques.<br />
+            <a href="https://github.com/shafiuzzaman-md/chainbench" target="_blank" rel="noopener">
+              github.com/shafiuzzaman-md/chainbench
+            </a>
+          </span>
+        </li>
+        <li>
+          <span class="item-title">klee_harness — Educational KLEE Harness Examples.</span><br />
+          <span class="item-body">
+            A small open-source repository demonstrating KLEE harness patterns used in mentoring ERSP students
+            on symbolic execution.
+            <br />
+            <a href="https://github.com/shafiuzzaman-md/klee_harness" target="_blank" rel="noopener">
+              github.com/shafiuzzaman-md/klee_harness
+            </a>
+          </span>
+      </li>
+
+      </ul>
+    </div>
+  </div>
+</section>
+
+    <!-- ================= INDUSTRY & SKILLS ================= -->
+    <section class="section" id="industry">
+      <div class="section-header">
+        <h2 class="section-title">Industry &amp; Skills</h2>
+        <div class="section-subtitle">Practice &amp; Tooling</div>
+      </div>
+
+      <div class="two-column">
+        <!-- Industry Experience -->
+        <div class="card">
+          <h3 class="item-title">Industry Experience</h3>
+          <ul class="list-compact">
+            <li>
+              <b>Software Engineer Intern</b>, Office of Research, UC Santa Barbara (Summer 2022)<br />
+              Integrated CAS single sign-on for enterprise apps and added role-based access control.
+              <span class="subtle"> (C#/.NET)</span>
+            </li>
+            <li>
+              <b>Software Engineer</b>, Mobil Jamuna Lubricants, Bangladesh (2016–2018)<br />
+              Re-engineered data pipelines and authentication layers in the Lube Enterprise System, strengthening
+              data integrity and security across inventory, billing, and reporting.
+              <span class="subtle"> (C#/.NET, JavaScript, MySQL)</span>
+            </li>
+            <li>
+              <b>Junior Software Engineer / Intern</b>, Wolters Kluwer, Bangladesh (offshore, 2014–2016)<br />
+              Modernized financial compliance modules handling sensitive U.S. mortgage data with stronger input
+              validation and expanded test coverage; introduced CI-friendly tests and migration scripts, reducing
+              regression defects across releases.
+              <span class="subtle"> (C#/.NET, Angular/TypeScript, WebAPI, MS SQL)</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Technical Skills -->
+        <div class="card">
+          <h3 class="item-title">Technical Skills</h3>
+          <ul class="list-compact">
+            <li>
+              <b>AI &amp; LLMs.</b>
+              Prompt/agent design for code analysis, retrieval-augmented triage, and evidence-bearing
+              spec/claim loops.
+            </li>
+            <li>
+              <b>Formal Methods &amp; Program Analysis.</b>
+              SMT solvers (Z3, Boolector), symbolic execution (KLEE), abstract interpretation, slicing, Datalog.
+            </li>
+            <li>
+              <b>Security &amp; Testing.</b>
+              Fuzzing (AFL++, libFuzzer), sanitizers (ASan/UBSan/MSan), exploit-chain modeling.
+            </li>
+            <li>
+              <b>Systems &amp; Toolchains.</b>
+              LLVM/Clang, GCC, Linux kernel build environments, UEFI EDK2.
+            </li>
+            <li>
+              <b>DevOps &amp; Scale.</b>
+              Docker, GitHub Actions (CI/CD).
+            </li>
+            <li>
+              <b>Programming Languages.</b>
+              Python, C, C#, Java, JavaScript/TypeScript, Go, Racket/Rosette, SMT-LIB.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ================= TEACHING & STUDENTS ================= -->
+    <section class="section" id="teaching">
+      <div class="section-header">
+        <h2 class="section-title">Teaching</h2>
+        <div class="section-subtitle">Courses &amp; Mentoring</div>
+      </div>
+
+      <div class="two-column">
+        <div class="card">
+          <h3 class="item-title">Teaching Experience</h3>
+          <ul class="list-compact">
+            <li>
+              <b>Instructor</b>, UCSB, Summer 2022 — CMPSC 130A: Data Structures &amp; Algorithms I.
+              <br />
+              <span class="subtle">
+                Materials:
+                <a href="https://github.com/shafiuzzaman-md/CS130A_Summer2022" target="_blank" rel="noopener">
+                  github.com/shafiuzzaman-md/CS130A_Summer2022
+                </a>
+              </span>
+            </li>
+            <li>
+              <b>Teaching Assistant</b>, UCSB, 2021–2022 — Databases, Data Structures &amp; Algorithms I/II.
+            </li>
+            <li>
+              <b>Lecturer</b>, Jashore University of Science &amp; Technology, 2018–2021 —
+              Software Engineering; Structured Programming; Algorithm Analysis &amp; Design; Software Testing &amp; Operations.
+            </li>
+            <li>
+              <b>Pedagogy Training</b>, 
+              <a href="https://otl.ucsb.edu/graduate-students/ta-certificate-programs/stia" target="_blank" rel="noopener">
+                UCSB STIA Program
+              </a>.<br />
+              Participated in teaching-development modules on learning objectives, lesson planning, assessment,
+              and inclusive teaching practices.
+            </li>
+
+
+          </ul>
+        </div>
+
+        <div class="card" id="students">
+          <h3 class="item-title">Academic Leadership &amp; Student Mentoring</h3>
+          <ul class="list-compact">
+            <li>
+              <b>Graduate Student Mentor</b>, Graduate Scholars Program (GSP), UCSB Graduate Division (2025–2026).<br />
+            </li>
+            <li>
+              <b>Undergraduate Research Mentor</b>, ERSP, UCSB Computer Science (2023–2024; 2025–2026).<br />
+              Cohort projects on vulnerability signature generation and LLM-assisted harness generation for fuzzing and
+              symbolic execution. A mentored cohort's work was published at the AgenticDev 2026 workshop
+              (<i>Bug Composition</i>, with three ERSP undergraduate authors).
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SERVICE & GRANTS ================= -->
+    <section class="section" id="service">
+      <div class="section-header">
+        <h2 class="section-title">Grants &amp; Service</h2>
+        <div class="section-subtitle">Community &amp; Outreach</div>
+      </div>
+
+      <div class="two-column">
+        <div class="card">
+          <h3 class="item-title">Grants &amp; Proposals (Contributor / Co-Author)</h3>
+          <ul class="list-compact">
+            <li>DARPA ASEMA (2025): Assessing Security of Encrypted Messaging Applications.</li>
+            <li>Sony Research Award Program (2025): LLM-enhanced formal methods for embedded Linux security.</li>
+            <li>NSF Future CoRe/SHF (2025): Secure and verifiable code generation via specialized agents.</li>
+            <li>NSF SaTC Medium (2024): Side-channels — proofs, attacks, and defenses.</li>
+            <li>DARPA TRACTOR (2024): Translating C to Rust.</li>
+            <li>Amazon Trusted Crypto (2024): Detecting and quantifying information leakages in crypto libraries.</li>
+            <li>U.S. Army TARDEC (2023): Validating vehicle communications between trusted and untrusted control systems.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3 class="item-title">Professional Service</h3>
+          <ul class="list-compact">
+            <li>
+              <b>Program Committees &amp; Reviewing.</b>
+              Sub-reviewer for premier software engineering venues, including ICSE, ASE, FSE, and ISSTA; Artifact
+              Evaluation participation.
+            </li>
+            <li>
+              <b>Open Science &amp; Community.</b>
+              Maintainer of open-source research artifacts (STASE, ChainBench); contributor to reproducible
+              containerized evaluation pipelines; frequent lab demos and internal tutorials on symbolic execution,
+              CodeQL, and LLM-assisted program analysis.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= HONORS & TALKS ================= -->
+    <section class="section" id="honors">
+      <div class="section-header">
+        <h2 class="section-title">Honors &amp; Talks</h2>
+        <div class="section-subtitle">Recognition &amp; Presentations</div>
+      </div>
+
+      <div class="two-column">
+        <div class="card">
+          <h3 class="item-title">Honors &amp; Awards</h3>
+          <ul class="list-compact">
+            <li><b>UCSB Chancellor's Scholarship</b>, University of California, Santa Barbara (2024).</li>
+            <li><b>Academic Excellence Fellowship</b>, University of California, Santa Barbara (2021).</li>
+            <li><b>National Merit Scholarship</b>, Government of Bangladesh (top 0.25% of cohort).</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3 class="item-title">Selected Talks &amp; Demos</h3>
+          <ul class="list-compact">
+            <li>
+              <b>SAILOR</b>, accepted presentation, 5th International KLEE Workshop on Symbolic Execution, Munich (Oct 15&ndash;16, 2026).
+              <a href="https://srg.doc.ic.ac.uk/klee26/" target="_blank" rel="noopener">Workshop</a>,
+              <a href="https://arxiv.org/abs/2604.06506" target="_blank" rel="noopener">preprint</a>
+            </li>
+            <li><b>STASE</b> conference presentation, IEEE/ACM ASE 2024.</li>
+            <li>
+              <b>STASE</b> live demo, DARPA HARDEN PI meeting (Oct 2025).
+              <a href="https://drive.google.com/file/d/1fW8Z9DvadEnX9chVtbEYN_W0YR1Ez5kI/view" target="_blank" rel="noopener">Watch</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section class="section" id="contact">
+      <div class="section-header">
+        <h2 class="section-title">Contact</h2>
+        <div class="section-subtitle">Get in Touch</div>
+      </div>
+
+      <div class="card">
+        <p class="item-body">
+          I am happy to discuss <b>faculty positions</b>, <b>industry research and applied-science roles</b>, and
+          <b>collaborative research</b> in software security, formal methods, and AI-assisted program analysis.
+        </p>
+        <p class="item-body">
+          The best way to reach me is by email:
+          <a href="mailto:mdshafiuzzaman@ucsb.edu">mdshafiuzzaman@ucsb.edu</a>.
+          Please include a brief description of your interests or the position you are contacting me about.
+        </p>
+        <p class="item-body">
+          Profiles:
+          <a href="https://scholar.google.com/citations?user=1mue4woAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a> &middot;
+          <a href="https://dblp.org/pid/336/3040.html" target="_blank" rel="noopener">DBLP</a> &middot;
+          <a href="https://github.com/shafiuzzaman-md" target="_blank" rel="noopener">GitHub</a> &middot;
+          <a href="https://www.linkedin.com/in/mdshafiuzzaman/" target="_blank" rel="noopener">LinkedIn</a>.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © <span id="year"></span> Md (Muhammad) Shafiuzzaman.
+    This page is intentionally minimalist and static for longevity.  
+    Last updated: October 2026.
+  </footer>
+</div>
+
+<script>
+  // Update year automatically
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
