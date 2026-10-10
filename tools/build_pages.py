@@ -47,7 +47,6 @@ def header(active=""):
 
 FOOTER = """  <footer>
     &copy; <span id="year"></span> Md (Muhammad) Shafiuzzaman.
-    This page is intentionally minimalist and static for longevity.
     Last updated: October 2026.
   </footer>
   </div>
@@ -327,7 +326,7 @@ fs = re.sub(r'<p class="findings-lead">.*?</p>\s*', '', fs, count=1, flags=re.S)
 fs = fs.replace('<section class="section" id="findings">', '<section class="section" id="findings-body">')
 fs = fs.replace('<div class="fstat-value">9</div>', '<div class="fstat-value">10</div>')
 findings_html = head("Security Findings | Md (Muhammad) Shafiuzzaman",
-                     "Previously unknown memory-safety vulnerabilities found and responsibly disclosed by Md Shafiuzzaman, with advisory and pull-request links.",
+                     "Previously unknown security vulnerabilities found and responsibly disclosed by Md Shafiuzzaman, with advisory and pull-request links.",
                      "/findings/") + f"""  {header("Findings")}
   <main>
     <section class="section">
@@ -483,7 +482,7 @@ homepage_hero = f"""<section class="section" id="about">
           <p class="hero-bio">
             <b>Research.</b> I work at the intersection of <b>AI-assisted software engineering</b>,
             <b>software security</b>, <b>program analysis</b>, and <b>formal methods</b>. My dissertation builds toward one
-            pipeline that can <b>find, confirm, and repair</b> memory-safety bugs in real code. Its centerpiece,
+            pipeline that can <b>find, confirm, and repair</b> security vulnerabilities in real code. Its centerpiece,
             <a href="/sailor/"><b>SAILOR</b></a>, pairs static analysis with LLM-orchestrated symbolic execution and sanitizer-backed
             validation, and has uncovered <b>67 previously unknown vulnerabilities</b>. <a href="/patchanalyzer/"><b>PatchAnalyzer</b></a>
             then assesses whether a patch really fixes them. This builds on <a href="/stase/"><b>STASE</b></a>, which is being
@@ -511,7 +510,7 @@ homepage_hero = f"""<section class="section" id="about">
     </section>"""
 ld = re.search(r'  <script type="application/ld\+json">.*?</script>\n', orig, re.S).group(0)
 home = head("Md (Muhammad) Shafiuzzaman | Ph.D. Candidate, UCSB | Symbolic Execution, LLM Security",
-            "Md (Muhammad) Shafiuzzaman, Ph.D. candidate at UC Santa Barbara. LLM-orchestrated symbolic execution, program analysis, and memory-safety vulnerability discovery. Creator of SAILOR and STASE; 67 zero-days found, 30+ disclosed.",
+            "Md (Muhammad) Shafiuzzaman, Ph.D. candidate at UC Santa Barbara. LLM-orchestrated symbolic execution, program analysis, and vulnerability discovery. Creator of SAILOR and STASE; 67 zero-days found, 30+ disclosed.",
             "/", ld) + f"""  {header("")}
   <main>
     {homepage_hero}
@@ -541,7 +540,7 @@ home = head("Md (Muhammad) Shafiuzzaman | Ph.D. Candidate, UCSB | Symbolic Execu
     <section class="section" id="findings">
       <div class="section-header"><h2 class="section-title">Security Findings</h2><div class="section-subtitle">Responsible disclosure</div></div>
       <div class="card">
-        <p class="item-body">More than 30 previously unknown memory-safety vulnerabilities disclosed across 18 widely used C and C++ codebases, including post-quantum cryptography, speech and audio models, and security-policy tooling. Each one is confirmed by a sanitizer crash, and each entry on the findings page links to the maintainers' own advisory, issue, or fix.</p>
+        <p class="item-body">More than 30 previously unknown security vulnerabilities disclosed across 18 widely used C and C++ codebases, including post-quantum cryptography, speech and audio models, and security-policy tooling. Each one is confirmed by a sanitizer crash, and each entry on the findings page links to the maintainers' own advisory, issue, or fix.</p>
         <div class="link-row">{btn("See the findings", "/findings/", True)}</div>
       </div>
     </section>
