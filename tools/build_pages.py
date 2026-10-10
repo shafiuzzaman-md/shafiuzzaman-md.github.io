@@ -180,7 +180,7 @@ project_page(
         block("Evidence",
               "<p>Every finding comes with a path constraint, a concrete input, and a sanitizer trace. Disclosed examples with advisories and merged fixes are listed on the <a href='/findings/'>Findings page</a>. Reports still under coordinated disclosure are not shown.</p>"),
     ],
-    "Md Shafiuzzaman, Achintya Desai, Wenbo Guo, Tevfik Bultan. <i>Guiding Symbolic Execution with Static Analysis and LLMs for Vulnerability Discovery.</i> arXiv:2604.06506, 2026. A version titled <i>SAILOR: Guiding Symbolic Execution for Memory Safety Vulnerability Detection</i> is under review at USENIX Security 2027.",
+    "Md Shafiuzzaman, Achintya Desai, Wenbo Guo, Tevfik Bultan. <i>Guiding Symbolic Execution with Static Analysis and LLMs for Vulnerability Discovery.</i> arXiv:2604.06506, 2026. Under review, USENIX Security 2027.",
 )
 
 project_page(
@@ -238,6 +238,9 @@ project_page(
         block("An example from the evaluation",
               "<p>Four patches for a heap out-of-bounds read in Ghostscript (<code>arvo:42327</code>). All four block the proof-of-concept input, and the three LLM patches pass CyberGym's validity checks. Their semantics still diverge. The developer patch compares with <code>&gt;</code>, so it misses the case where the index equals the size, and 256 violating inputs remain. The patches from Claude and Gemini remove all 256 and keep every safe input equivalent. GPT's patch removes them as well, but changes the output on 1,632 safe inputs. PatchAnalyzer ranks Claude and Gemini first, GPT second, and the developer patch last.</p>"
               + img("patch-listing", "Four candidate patches for arvo:42327", "Four patches for the out-of-bounds read in arvo:42327.")),
+        block("What the guarantee covers",
+              "<p>Every result is labeled <b>exhaustive</b> or <b>partial</b>. An exhaustive result means symbolic exploration completed and every path was counted exactly, so each count equals the size of its set. Under that label, the counts are guarantees for the declared inputs and safety property, not samples. A partial result gives witnesses only.</p>"
+              "<p>The assumptions are explicit. The harness must reproduce the reported violation concretely before it is accepted, the checker and domain width come from the report, and any constraint that narrows the domain is listed along with the inputs it excludes. Behavior is compared on return values, and only on paths that complete within the bound.</p>"),
         block("What it found",
               "<p>On 280 patches for 70 vulnerabilities in 30 CyberGym projects, PatchAnalyzer flags five developer patches as unsafe, and each was fixed again upstream in the same function. One of them introduced an overflow that OSS-Fuzz detected ten weeks later. Among the 195 LLM patches that meet CyberGym's valid-patch criteria, it flags 3 as unsafe and 73 as safe but functionally different. Exhaustive enumeration of the 55 domains of at most three bytes agrees with every count.</p>"
               "<p class='subtle'>This work is not yet published. The numbers above are from the current draft and may change before submission.</p>"),
@@ -357,7 +360,7 @@ def pub(title, authors, venue, links=(), note=""):
 
 M = lambda s: f'<span class="mentee">{s}</span>'
 under = [
-    pub("SAILOR: Guiding Symbolic Execution for Memory Safety Vulnerability Detection",
+    pub("Guiding Symbolic Execution with Static Analysis and LLMs for Vulnerability Discovery",
         f"{ME}, Achintya Desai, Wenbo Guo, Tevfik Bultan", "Under review, USENIX Security Symposium 2027",
         [("Project page", "/sailor/"), ("Preprint", "https://arxiv.org/abs/2604.06506")],
         "Also accepted for presentation at the 5th International KLEE Workshop on Symbolic Execution, 2026."),
@@ -435,7 +438,9 @@ about_html = head("About | Md (Muhammad) Shafiuzzaman",
       <div class="crumbs"><a href="/">Home</a> / About</div>
       <h1 class="page-title">About</h1>
       <p class="page-sub">Research interests, experience, teaching and mentoring, service, and recognition.</p>
-      <div class="card" style="max-width:820px">{research}</div>
+      <div class="card" style="max-width:820px">{research}
+        <h3 class="item-title" style="margin-top:1.2rem">Where this is heading</h3>
+        <p class="item-body">The systems above produce concrete evidence for the bugs they find. I am working toward guarantees that hold under explicit, checkable assumptions about inputs, environments, and models. PatchAnalyzer is the first step, with exact counts of the inputs a patch still gets wrong when its analysis is exhaustive.</p></div>
     </section>
     {section("industry")}
     {section("teaching")}
@@ -486,7 +491,7 @@ homepage_hero = f"""<section class="section" id="about">
             <a href="/sailor/"><b>SAILOR</b></a>, pairs static analysis with LLM-orchestrated symbolic execution and sanitizer-backed
             validation, and has uncovered <b>67 previously unknown vulnerabilities</b>. <a href="/patchanalyzer/"><b>PatchAnalyzer</b></a>
             then assesses whether a patch really fixes them. This builds on <a href="/stase/"><b>STASE</b></a>, which is being
-            transitioned into U.S. Army adversarial-testing workflows.
+            transitioned into U.S. Army adversarial-testing workflows. PatchAnalyzer already gives exact guarantees about patch correctness under explicit assumptions, and I am extending that approach to other security properties.
           </p>
           <div class="link-row">{btn("Explore the projects", "#projects", True)}{btn("Disclosed findings", "/findings/")}{btn("Publications", "/publications/")}</div>
           <div class="hero-now">
@@ -498,7 +503,8 @@ homepage_hero = f"""<section class="section" id="about">
             </ul>
           </div>
           <div class="hero-tags">
-            <span class="tag">Program analysis &amp; formal methods</span>
+            <span class="tag">Formal methods &amp; program analysis</span>
+            <span class="tag">Assumption-based guarantees</span>
             <span class="tag">Symbolic execution</span>
             <span class="tag">Software &amp; firmware security</span>
             <span class="tag">CodeQL / Static Analysis</span>
