@@ -152,13 +152,13 @@ project_page(
     ["Under review, USENIX Security 2027", "Accepted presentation, KLEE Workshop 2026", "Preprint on arXiv"],
     [("Preprint (arXiv)", "https://arxiv.org/abs/2604.06506"), ("KLEE Workshop 2026", "https://srg.doc.ic.ac.uk/klee26/"), ("Disclosed findings", "/findings/")],
     "SAILOR automates the hardest manual step in symbolic execution, writing the harness. Static analysis decides where to look, an LLM synthesizes the harness against compiler and KLEE feedback, and every result is replayed against the unmodified project under a sanitizer.",
-    [("379", "previously unknown memory-safety vulnerabilities in 10 projects (6.8M lines), found from internal entry points"),
-     ("12", "found by the strongest of five baselines on the same projects (Claude Code, full codebase access)"),
-     ("67", "zero-days in 28 projects (12.3M lines), each with an API-level proof of concept"),
-     ("36", "found by Claude Code on the same 28 projects, against 5 for libFuzzer")],
+    [("67", "zero-days in 28 projects (12.3M lines), each with an API-level proof of concept"),
+     ("36", "found by Claude Code on the same 28 projects"),
+     ("5", "found by libFuzzer on the same projects"),
+     ("55", "of the 67 missed by both baselines")],
     [
         block("The problem",
-              "<p>Symbolic execution is precise, but it needs a harness that sets up symbolic state, models dependencies, and states what to assert. Writing that harness by hand takes expert knowledge, which limits the technique on large codebases. LLM-only detectors scale, but they rarely produce evidence. In the 10-project study they flagged hundreds of issues each, and almost none replayed on the real binary (Claude Code confirmed 12 of 430 flagged).</p>"),
+              "<p>Symbolic execution is precise, but it needs a harness that sets up symbolic state, models dependencies, and states what to assert. Writing that harness by hand takes expert knowledge, which limits the technique on large codebases. LLM-only detectors scale, but they rarely produce evidence. They flag many issues, and few replay on the real binary.</p>"),
         block("How it works",
               "<p>SAILOR runs three phases, and every phase hands the next one something checkable.</p>"
               "<ul class='bullets-tight'><li><b>Static analysis informed target generation.</b> An extensible query system built on CodeQL finds candidate vulnerable locations and writes a specification for each one.</li>"
@@ -175,7 +175,7 @@ project_page(
               + img("sailor-slide23", "Bar chart and Venn diagram comparing SAILOR with Claude Code and libFuzzer", "SAILOR finds 67 vulnerabilities, 55 of them missed by both baselines.")
               + "</div>"),
         block("Every phase matters",
-              "<p>Removing a phase shows what each one contributes. Without static-analysis targeting, confirmed vulnerabilities drop by 12.2 times. Without iterative LLM synthesis, none are confirmed. Without symbolic execution, no approach detects more than 12.</p>"
+              "<p>Removing a phase shows what each one contributes. Removing static-analysis targeting, the iterative LLM loop, or symbolic execution each sharply reduces the number of confirmed vulnerabilities.</p>"
               + img("sailor-slide24", "Ablation results by pipeline phase", "Ablation by pipeline phase, showing recall, false positives, time, and cost.", narrow=True)),
         block("Evidence",
               "<p>Every finding comes with a path constraint, a concrete input, and a sanitizer trace. Disclosed examples with advisories and merged fixes are listed on the <a href='/findings/'>Findings page</a>. Reports still under coordinated disclosure are not shown.</p>"),
