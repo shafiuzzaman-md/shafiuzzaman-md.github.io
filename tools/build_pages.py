@@ -427,7 +427,7 @@ write("/about/", about_html)
 
 # ------------------------------------------------------------------ home
 CARDS = [
-    ("sailor", "SAILOR", "Under review, USENIX Security 2027 and KLEE Workshop 2026", "LLM-orchestrated symbolic execution with sanitizer-confirmed evidence. 67 zero-days in 28 projects.", "sailor-pipeline"),
+    ("sailor", "SAILOR", "Under review, USENIX Security 2027 and KLEE Workshop 2026", "LLM-orchestrated symbolic execution with sanitizer-confirmed evidence. 67 zero-days in 28 projects.", "sailor-slide23"),
     ("patchanalyzer", "PatchAnalyzer", "In preparation, ACM TOSEM", "Symbolic min-max analysis that quantifies whether a security patch is correct, and ranks candidates.", "patch-spaces"),
     ("pagent", "PAGENT", "ISSTA 2026", "Program-analysis-guided LLM agent for proof-of-concept generation, 132% better than the prior best.", "pagent-overview"),
     ("stase", "STASE", "ASE 2024, DARPA HARDEN", "Static-analysis-guided symbolic execution for UEFI firmware, with zero false positives.", "stase-slide9"),
@@ -466,6 +466,14 @@ homepage_hero = f"""<section class="section" id="about">
             transitioned into U.S. Army adversarial-testing workflows.
           </p>
           <div class="link-row">{btn("Explore the projects", "#projects", True)}{btn("Disclosed findings", "/findings/")}{btn("Publications", "/publications/")}</div>
+          <div class="hero-now">
+            <div class="hero-now-title">Currently</div>
+            <ul>
+              <li>Presenting <a href="/sailor/">SAILOR</a> at the KLEE Workshop in Munich, Oct 15&ndash;16, 2026.</li>
+              <li>Preparing <a href="/patchanalyzer/">PatchAnalyzer</a> for ACM TOSEM.</li>
+              <li>On the job market for faculty and industry research positions, graduating Spring 2027.</li>
+            </ul>
+          </div>
           <div class="hero-tags">
             <span class="tag">Program analysis &amp; formal methods</span>
             <span class="tag">Symbolic execution</span>
