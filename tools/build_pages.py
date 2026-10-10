@@ -297,6 +297,30 @@ project_page(
     "Vishva Arasan, Mahima Chaudhary, Wendy Contreras Martinez, Md Shafiuzzaman, Achintya Desai, Tevfik Bultan. <i>Bug Composition: Triggering Multiple Bugs with Agentic Driver Generation.</i> 1st International Workshop on Agentic AI for Next-Generation Software Development (AgenticDev), 2026. doi:10.1145/3843282.3844434.",
 )
 
+project_page(
+    "chainer", "CHAINER", "Discovering Vulnerability Chains with Memory-Aware Symbolic Analysis",
+    "CHAINER discovers and validates chains of vulnerabilities that reach an attacker goal, using memory-aware symbolic analysis across UEFI firmware, the Linux kernel, and user-space code.",
+    ["In preparation, IEEE S&amp;P", "Built in DARPA HARDEN", "Benchmark on GitHub"],
+    [("Benchmark (GitHub)", "https://github.com/shafiuzzaman-md/chainbench"), ("All projects", "/#projects")],
+    "Bugs that look harmless alone can become a critical exploit when chained. A chain only works if the memory effects of each step line up, for example a stack that one bug makes executable, another bug fills with code, and a third bug jumps into. CHAINER reasons about that alignment, so it can tell which combinations of vulnerabilities are real.",
+    [("121", "candidate chains distilled by the pipeline"),
+     ("13", "symbolically validated, high-impact chains, none found by baseline fuzzing or symbolic execution"),
+     ("7", "DARPA HARDEN challenge sets, 3 UEFI, 3 Linux kernel, 1 Linux user-space"),
+     ("0%", "false positives after the final validation stage, down from 89%")],
+    [
+        block("The problem",
+              "<p>Fuzzers, static analyzers, and symbolic executors look at vulnerabilities one at a time. Only a small share of reported bugs are critical on their own, yet chaining low and medium severity bugs can give arbitrary code execution or privilege escalation. The hard part is memory alignment. Two bugs only compose if they act on overlapping address regions, so a chain needs a precise model of where each bug reads, writes, and executes.</p>"
+              + img("chainer-example", "A chain of three kernel-module vulnerabilities leading to arbitrary code execution", "A chain of three vulnerabilities for arbitrary code execution. Each step has a post-condition, and the post-conditions must line up in memory.")),
+        block("How it works",
+              "<p>CHAINER starts from a high-level attack goal such as arbitrary code execution, and splits it into sub-goals that can be checked against memory effects. <b>Vulnerability characterization</b> builds on STASE and records, for each bug, the symbolic conditions that trigger it and its memory effects by segment, such as stack, heap, or SMRAM. <b>Chain synthesis</b> instantiates those specifications with concrete memory information and uses SMT queries to prune combinations that cannot satisfy the goal. <b>Chain validation</b> then replays the surviving chains in a goal-directed symbolic execution, and emits a chaining signature that captures the memory layout and linking constraints needed for exploitability.</p>"
+              + img("chainer-overview", "Overview of CHAINER", "Overview of CHAINER, from vulnerability characterization to chain synthesis and validation.", narrow=True)),
+        block("Results",
+              "<p>On seven challenge sets from DARPA HARDEN, CHAINER narrowed 121 candidate chains to 13 validated ones, 7 in the Linux kernel and 5 in UEFI firmware, plus one user-space chain in OpenSSH. The false positive rate falls stage by stage, from 89% for naive candidates to 0% after symbolic validation. Neither baseline fuzzing nor plain symbolic execution found any of the 13 chains. Memory-aware reasoning costs time, about 65 seconds per entry point against 56 for STASE, and the expensive validation runs only on the small set of chains that survive the earlier filters.</p>"
+              "<p class='subtle'>This work is not yet published. The numbers above are from the current draft and may change before submission.</p>"),
+    ],
+    "Achintya Desai, Md Shafiuzzaman, Tevfik Bultan. <i>CHAINER: Discovering Vulnerability Chains with Memory-Aware Symbolic Analysis.</i> In preparation, 2026.",
+)
+
 # ------------------------------------------------------------------ findings
 fs = strip_header(section("findings"))
 fs = re.sub(r'<p class="findings-lead">.*?</p>\s*', '', fs, count=1, flags=re.S)
@@ -340,7 +364,7 @@ under = [
         "Also accepted for presentation at the 5th International KLEE Workshop on Symbolic Execution, 2026."),
     pub("CHAINER: Discovering Vulnerability Chains with Memory-Aware Symbolic Analysis",
         f"Achintya Desai, {ME}, Tevfik Bultan", "In preparation, targeting IEEE Symposium on Security and Privacy",
-        [("Benchmark", "https://github.com/shafiuzzaman-md/chainbench")]),
+        [("Project page", "/chainer/"), ("Benchmark", "https://github.com/shafiuzzaman-md/chainbench")]),
     pub("PatchAnalyzer: Symbolic Min-Max Analysis for Assessing Patch Correctness",
         f"{ME}, Tevfik Bultan", "In preparation, targeting ACM Transactions on Software Engineering and Methodology",
         [("Project page", "/patchanalyzer/")]),
@@ -437,9 +461,9 @@ cards = ""
 for slug, name, venue, text, im in CARDS:
     cards += (f'<a class="project-card" href="/{slug}/"><div class="project-thumb"><img src="/images/fig/{im}.webp" alt="{name} figure" loading="lazy" /></div>'
               f'<div class="project-body"><div class="project-name">{name}</div><div class="project-venue">{venue}</div><p class="project-text">{text}</p></div></a>')
-cards += ('<a class="project-card" href="https://github.com/shafiuzzaman-md/chainbench" target="_blank" rel="noopener"><div class="project-thumb noimg">CHAINER</div>'
+cards += ('<a class="project-card" href="/chainer/"><div class="project-thumb"><img src="/images/fig/chainer-overview.webp" alt="CHAINER figure" loading="lazy"></div>'
           '<div class="project-body"><div class="project-name">CHAINER</div><div class="project-venue">In preparation, IEEE S&amp;P</div>'
-          '<p class="project-text">Memory-aware symbolic analysis that discovers chains of vulnerabilities. Benchmark on GitHub.</p></div></a>')
+          '<p class="project-text">Memory-aware symbolic analysis that discovers chains of vulnerabilities across firmware, kernel, and user space.</p></div></a>')
 
 news_items = "\n".join(NEWS[:4])
 news_more = "\n".join(NEWS[4:])
@@ -544,7 +568,7 @@ home = head("Md (Muhammad) Shafiuzzaman | Ph.D. Candidate, UCSB | Symbolic Execu
 write("/", home)
 
 # ------------------------------------------------------------------ sitemap
-pages = ["/", "/sailor/", "/stase/", "/patchanalyzer/", "/pagent/", "/bug-composition/", "/findings/", "/publications/", "/about/"]
+pages = ["/", "/sailor/", "/stase/", "/patchanalyzer/", "/pagent/", "/bug-composition/", "/chainer/", "/findings/", "/publications/", "/about/"]
 sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
 for p in pages:
     sm += f"  <url><loc>{SITE}{p}</loc><lastmod>2026-10-09</lastmod></url>\n"

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CHAINER | Md (Muhammad) Shafiuzzaman</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="CHAINER discovers and validates chains of vulnerabilities that reach an attacker goal, using memory-aware symbolic analysis across UEFI firmware, the Linux kernel, and user-space code." />
+  <meta name="author" content="Md (Muhammad) Shafiuzzaman" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://shafiuzzaman-md.github.io/chainer/" />
+  <link rel="icon" type="image/png" href="/images/profile.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Md (Muhammad) Shafiuzzaman" />
+  <meta property="og:title" content="CHAINER | Md (Muhammad) Shafiuzzaman" />
+  <meta property="og:description" content="CHAINER discovers and validates chains of vulnerabilities that reach an attacker goal, using memory-aware symbolic analysis across UEFI firmware, the Linux kernel, and user-space code." />
+  <meta property="og:url" content="https://shafiuzzaman-md.github.io/chainer/" />
+  <meta property="og:image" content="https://shafiuzzaman-md.github.io/images/profile.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="CHAINER | Md (Muhammad) Shafiuzzaman" />
+  <meta name="twitter:description" content="CHAINER discovers and validates chains of vulnerabilities that reach an attacker goal, using memory-aware symbolic analysis across UEFI firmware, the Linux kernel, and user-space code." />
+  <meta name="twitter:image" content="https://shafiuzzaman-md.github.io/images/profile.png" />
+  <link rel="stylesheet" href="/site.css" />
+</head>
+<body>
+  <div class="page">
+  <header>
+    <div class="nav-inner">
+      <a class="brand" href="/" style="color:inherit">
+        <span class="brand-name">Md (Muhammad) Shafiuzzaman</span>
+        <span class="brand-role">Ph.D. Candidate · Computer Science · UCSB</span></a>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="/#projects" class="active">Projects</a></li>
+          <li><a href="/findings/">Findings</a></li>
+          <li><a href="/publications/">Publications</a></li>
+          <li><a href="/#news">News</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+      </nav>
+     <div class="nav-actions">
+      <div class="nav-icons">
+        <a class="icon-link"
+          href="https://scholar.google.com/citations?user=1mue4woAAAAJ&hl=en"
+          target="_blank" rel="noopener" title="Google Scholar">
+          <img src="/icons/scholar.png" alt="Google Scholar" />
+        </a>
+
+        <a class="icon-link"
+          href="https://github.com/shafiuzzaman-md"
+          target="_blank" rel="noopener" title="GitHub">
+          <img src="/icons/github.png" alt="GitHub" />
+        </a>
+
+        <a class="icon-link"
+          href="https://www.linkedin.com/in/mdshafiuzzaman/"
+          target="_blank" rel="noopener" title="LinkedIn">
+          <img src="/icons/linkedin.png" alt="LinkedIn" />
+        </a>
+      </div>
+      <a class="btn btn-primary" href="mailto:mdshafiuzzaman@ucsb.edu">Email</a>
+    </div>
+    </div>
+  </header>
+  <main>
+    <section class="section">
+      <div class="crumbs"><a href="/">Home</a> / <a href="/#projects">Projects</a> / CHAINER</div>
+      <h1 class="page-title">CHAINER</h1>
+      <p class="page-sub">Discovering Vulnerability Chains with Memory-Aware Symbolic Analysis</p>
+      <div class="chips"><span class="chip">In preparation, IEEE S&amp;P</span><span class="chip">Built in DARPA HARDEN</span><span class="chip">Benchmark on GitHub</span></div>
+      <p class="lede">Bugs that look harmless alone can become a critical exploit when chained. A chain only works if the memory effects of each step line up, for example a stack that one bug makes executable, another bug fills with code, and a third bug jumps into. CHAINER reasons about that alignment, so it can tell which combinations of vulnerabilities are real.</p>
+      <div class="link-row"><a class="btn btn-primary" href="https://github.com/shafiuzzaman-md/chainbench" target="_blank" rel="noopener">Benchmark (GitHub)</a><a class="btn" href="/#projects">All projects</a></div>
+      <div class="stat-strip"><div class="stat"><div class="stat-num">121</div><div class="stat-label">candidate chains distilled by the pipeline</div></div><div class="stat"><div class="stat-num">13</div><div class="stat-label">symbolically validated, high-impact chains, none found by baseline fuzzing or symbolic execution</div></div><div class="stat"><div class="stat-num">7</div><div class="stat-label">DARPA HARDEN challenge sets, 3 UEFI, 3 Linux kernel, 1 Linux user-space</div></div><div class="stat"><div class="stat-num">0%</div><div class="stat-label">false positives after the final validation stage, down from 89%</div></div></div>
+      <section class="page-block prose"><h2>The problem</h2>
+<p>Fuzzers, static analyzers, and symbolic executors look at vulnerabilities one at a time. Only a small share of reported bugs are critical on their own, yet chaining low and medium severity bugs can give arbitrary code execution or privilege escalation. The hard part is memory alignment. Two bugs only compose if they act on overlapping address regions, so a chain needs a precise model of where each bug reads, writes, and executes.</p><figure class="figure"><a href="/images/fig/chainer-example.webp" target="_blank" rel="noopener"><img src="/images/fig/chainer-example.webp" width="1570" height="525" alt="A chain of three kernel-module vulnerabilities leading to arbitrary code execution" loading="lazy" /></a><figcaption>A chain of three vulnerabilities for arbitrary code execution. Each step has a post-condition, and the post-conditions must line up in memory.</figcaption></figure>
+</section><section class="page-block prose"><h2>How it works</h2>
+<p>CHAINER starts from a high-level attack goal such as arbitrary code execution, and splits it into sub-goals that can be checked against memory effects. <b>Vulnerability characterization</b> builds on STASE and records, for each bug, the symbolic conditions that trigger it and its memory effects by segment, such as stack, heap, or SMRAM. <b>Chain synthesis</b> instantiates those specifications with concrete memory information and uses SMT queries to prune combinations that cannot satisfy the goal. <b>Chain validation</b> then replays the surviving chains in a goal-directed symbolic execution, and emits a chaining signature that captures the memory layout and linking constraints needed for exploitability.</p><figure class="figure fig-narrow"><a href="/images/fig/chainer-overview.webp" target="_blank" rel="noopener"><img src="/images/fig/chainer-overview.webp" width="1563" height="975" alt="Overview of CHAINER" loading="lazy" /></a><figcaption>Overview of CHAINER, from vulnerability characterization to chain synthesis and validation.</figcaption></figure>
+</section><section class="page-block prose"><h2>Results</h2>
+<p>On seven challenge sets from DARPA HARDEN, CHAINER narrowed 121 candidate chains to 13 validated ones, 7 in the Linux kernel and 5 in UEFI firmware, plus one user-space chain in OpenSSH. The false positive rate falls stage by stage, from 89% for naive candidates to 0% after symbolic validation. Neither baseline fuzzing nor plain symbolic execution found any of the 13 chains. Memory-aware reasoning costs time, about 65 seconds per entry point against 56 for STASE, and the expensive validation runs only on the small set of chains that survive the earlier filters.</p><p class='subtle'>This work is not yet published. The numbers above are from the current draft and may change before submission.</p>
+</section>
+      <section class="page-block"><h2>Cite</h2><div class="cite">Achintya Desai, Md Shafiuzzaman, Tevfik Bultan. <i>CHAINER: Discovering Vulnerability Chains with Memory-Aware Symbolic Analysis.</i> In preparation, 2026.</div></section>
+      <p class="subtle" style="margin-top:2rem;"><a href="/">&larr; Back to home</a></p>
+    </section>
+  </main>
+  <footer>
+    &copy; <span id="year"></span> Md (Muhammad) Shafiuzzaman.
+    This page is intentionally minimalist and static for longevity.
+    Last updated: October 2026.
+  </footer>
+  </div>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
