@@ -576,7 +576,7 @@ write("/", home)
 pages = ["/", "/sailor/", "/stase/", "/patchanalyzer/", "/pagent/", "/bug-composition/", "/chainer/", "/findings/", "/publications/", "/about/"]
 sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
 for p in pages:
-    sm += f"  <url><loc>{SITE}{p}</loc><lastmod>2026-10-09</lastmod></url>\n"
+    sm += f"  <url><loc>{SITE}{p}</loc><lastmod>2026-10-11</lastmod></url>\n"
 sm += "</urlset>\n"
 open(os.path.join(ROOT, "sitemap.xml"), "w").write(sm)
 print("wrote sitemap")
