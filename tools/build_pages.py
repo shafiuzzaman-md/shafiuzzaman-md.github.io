@@ -546,7 +546,7 @@ home = head("Md (Muhammad) Shafiuzzaman | Ph.D. Candidate, UCSB | Symbolic Execu
     <section class="section" id="findings">
       <div class="section-header"><h2 class="section-title">Security Findings</h2><div class="section-subtitle">Responsible disclosure</div></div>
       <div class="card">
-        <p class="item-body">More than 30 security vulnerabilities, each confirmed, disclosed across 18 widely used C and C++ codebases, including post-quantum cryptography, speech and audio models, and security-policy tooling. Each one is confirmed by a sanitizer crash, and each entry on the findings page links to the maintainers' own advisory, issue, or fix.</p>
+        <p class="item-body">More than 30 security vulnerabilities, each confirmed, disclosed across 18 widely used C and C++ codebases, including post-quantum cryptography, speech and audio models, and security-policy tooling. Each one is confirmed by a sanitizer crash, and each entry on the findings page links to the maintainers' own advisory, issue, or fix. Most come from SAILOR's 67 confirmed vulnerabilities, where some are already fixed upstream and others are still in coordinated disclosure. Two of the public findings, in SELinux and mruby, come from outside that set.</p>
         <div class="link-row">{btn("See the findings", "/findings/", True)}</div>
       </div>
     </section>
