@@ -169,7 +169,7 @@ project_page(
               "<p>libsepol's <code>discard_tunables</code> copies tunable terms into a fixed 10-slot array. Phase 1 flags the sink and a checker (<code>tunables &lt; 10</code>). Phase 2 has KLEE produce a witness, a policy with 11 tunable terms, through a synthesized harness. Phase 3 replays it against the unmodified source, and AddressSanitizer reports a stack-buffer overflow write at <code>expand.c:3058</code>. OSS-Fuzz had fuzzed this library for five years without reaching the overflow.</p>"
               + img("sailor-slide17", "Candidate, witness, and confirmation for an out-of-bounds write in SELinux", "From a candidate pattern to a confirmed vulnerability, one phase at a time.", narrow=True)),
         block("Results",
-              "<p>Run through public APIs on 28 real projects, SAILOR confirmed 67 vulnerabilities with no false positives. Claude Code found 36 and libFuzzer found 5, and 55 of SAILOR's findings were missed by both baselines. Of the findings sent to maintainers, 14 are acknowledged (10 patched, 4 in progress) and 16 more were independently fixed upstream. SAILOR synthesized its harnesses with the less capable Sonnet 5.</p>"
+              "<p>Run through public APIs on 28 real projects, SAILOR confirmed 67 vulnerabilities, and every one replays under AddressSanitizer on the unmodified project. Claude Code found 36 and libFuzzer found 5, and 55 of SAILOR's findings were missed by both baselines. Of the findings sent to maintainers, 14 are acknowledged (10 patched, 4 in progress) and 16 more were independently fixed upstream. SAILOR synthesized its harnesses with the less capable Sonnet 5, while the Claude Code baseline used Opus 4.8.</p>"
               + '<div class="fig-row">'
               + img("sailor-slide22", "Summary of 67 confirmed vulnerabilities in 28 projects", "Headline results for the 28-project study.")
               + img("sailor-slide23", "Bar chart and Venn diagram comparing SAILOR with Claude Code and libFuzzer", "SAILOR finds 67 vulnerabilities, 55 of them missed by both baselines.")
@@ -220,7 +220,7 @@ project_page(
 project_page(
     "patchanalyzer", "PatchAnalyzer", "Symbolic Min-Max Analysis for Assessing Patch Correctness",
     "PatchAnalyzer quantifies how much of the input space a security patch still leaves vulnerable and how much safe behavior it changes, then ranks candidate patches.",
-    ["!In preparation, targeting ACM TOSEM", "Dissertation work"],
+    ["!Manuscript complete, targeting ACM TOSEM", "Dissertation work"],
     [("Contact me about this work", "mailto:mdshafiuzzaman@ucsb.edu"), ("All projects", "/#projects")],
     "Generating a plausible patch is no longer the hard part. Deciding whether it is correct is. PatchAnalyzer answers two questions with evidence. Does any input still trigger the vulnerability, and does behavior change on inputs that were safe before?",
     [("280", "developer and LLM-generated patches assessed, for 70 vulnerabilities in 30 projects"),
@@ -245,7 +245,7 @@ project_page(
               "<p>On 280 patches for 70 vulnerabilities in 30 CyberGym projects, PatchAnalyzer flags five developer patches as unsafe, and each was fixed again upstream in the same function. One of them introduced an overflow that OSS-Fuzz detected ten weeks later. Among the 195 LLM patches that meet CyberGym's valid-patch criteria, it flags 3 as unsafe and 73 as safe but functionally different. Exhaustive enumeration of the 55 domains of at most three bytes agrees with every count.</p>"
               "<p class='subtle'>This work is not yet published. The numbers above are from the current draft and may change before submission.</p>"),
     ],
-    "Md Shafiuzzaman, Tevfik Bultan. <i>PatchAnalyzer: Symbolic Min-Max Analysis for Assessing Patch Correctness.</i> In preparation, targeting ACM Transactions on Software Engineering and Methodology (TOSEM), 2026.",
+    "Md Shafiuzzaman, Tevfik Bultan. <i>PatchAnalyzer: Symbolic Min-Max Analysis for Assessing Patch Correctness.</i> Manuscript complete; submission to ACM Transactions on Software Engineering and Methodology (TOSEM) planned October 2026.",
 )
 
 project_page(
@@ -329,7 +329,7 @@ fs = re.sub(r'<p class="findings-lead">.*?</p>\s*', '', fs, count=1, flags=re.S)
 fs = fs.replace('<section class="section" id="findings">', '<section class="section" id="findings-body">')
 fs = fs.replace('<div class="fstat-value">9</div>', '<div class="fstat-value">10</div>')
 findings_html = head("Security Findings | Md (Muhammad) Shafiuzzaman",
-                     "Previously unknown security vulnerabilities found and responsibly disclosed by Md Shafiuzzaman, with advisory and pull-request links.",
+                     "Security vulnerabilities found and responsibly disclosed by Md Shafiuzzaman, with advisory and pull-request links.",
                      "/findings/") + f"""  {header("Findings")}
   <main>
     <section class="section">
@@ -368,7 +368,7 @@ under = [
         f"Achintya Desai, {ME}, Tevfik Bultan", "In preparation, targeting IEEE Symposium on Security and Privacy",
         [("Project page", "/chainer/"), ("Benchmark", "https://github.com/shafiuzzaman-md/chainbench")]),
     pub("PatchAnalyzer: Symbolic Min-Max Analysis for Assessing Patch Correctness",
-        f"{ME}, Tevfik Bultan", "In preparation, targeting ACM Transactions on Software Engineering and Methodology",
+        f"{ME}, Tevfik Bultan", "Manuscript complete; submission to ACM Transactions on Software Engineering and Methodology planned October 2026",
         [("Project page", "/patchanalyzer/")]),
 ]
 peer = [
@@ -456,9 +456,9 @@ write("/about/", about_html)
 # ------------------------------------------------------------------ home
 CARDS = [
     ("sailor", "SAILOR", "Under review, USENIX Security 2027 and KLEE Workshop 2026", "LLM-orchestrated symbolic execution with sanitizer-confirmed evidence. 67 confirmed vulnerabilities in 28 projects.", "sailor-slide23"),
-    ("patchanalyzer", "PatchAnalyzer", "In preparation, ACM TOSEM", "Symbolic min-max analysis that quantifies whether a security patch is correct, and ranks candidates.", "patch-spaces"),
+    ("patchanalyzer", "PatchAnalyzer", "Manuscript complete, ACM TOSEM", "Symbolic min-max analysis that states, within an explicit contract, which inputs a security patch still gets wrong, and ranks candidates.", "patch-spaces"),
     ("pagent", "PAGENT", "ISSTA 2026", "Program-analysis-guided LLM agent for proof-of-concept generation, 132% better than the prior best.", "pagent-overview"),
-    ("stase", "STASE", "ASE 2024, DARPA HARDEN", "Static-analysis-guided symbolic execution for UEFI firmware, with zero false positives.", "stase-slide9"),
+    ("stase", "STASE", "ASE 2024, DARPA HARDEN", "Static-analysis-guided symbolic execution for UEFI firmware, with zero false positives on the evaluated benchmarks.", "stase-slide9"),
     ("bug-composition", "Bug Composition", "AgenticDev 2026", "Can one input trigger several bugs? An agentic pipeline answers with an input or a proof.", "bugcomp-workflow"),
 ]
 cards = ""
@@ -498,7 +498,7 @@ homepage_hero = f"""<section class="section" id="about">
             <div class="hero-now-title">Currently</div>
             <ul>
               <li>Presenting <a href="/sailor/">SAILOR</a> at the KLEE Workshop in Munich, Oct 15&ndash;16, 2026.</li>
-              <li>Preparing <a href="/patchanalyzer/">PatchAnalyzer</a> for ACM TOSEM.</li>
+              <li>Submitting <a href="/patchanalyzer/">PatchAnalyzer</a> to ACM TOSEM (October 2026).</li>
               <li>On the job market for faculty and industry research positions, graduating Spring 2027.</li>
             </ul>
           </div>
@@ -546,7 +546,7 @@ home = head("Md (Muhammad) Shafiuzzaman | Ph.D. Candidate, UCSB | Symbolic Execu
     <section class="section" id="findings">
       <div class="section-header"><h2 class="section-title">Security Findings</h2><div class="section-subtitle">Responsible disclosure</div></div>
       <div class="card">
-        <p class="item-body">More than 30 previously unknown security vulnerabilities disclosed across 18 widely used C and C++ codebases, including post-quantum cryptography, speech and audio models, and security-policy tooling. Each one is confirmed by a sanitizer crash, and each entry on the findings page links to the maintainers' own advisory, issue, or fix.</p>
+        <p class="item-body">More than 30 security vulnerabilities, each confirmed, disclosed across 18 widely used C and C++ codebases, including post-quantum cryptography, speech and audio models, and security-policy tooling. Each one is confirmed by a sanitizer crash, and each entry on the findings page links to the maintainers' own advisory, issue, or fix.</p>
         <div class="link-row">{btn("See the findings", "/findings/", True)}</div>
       </div>
     </section>
