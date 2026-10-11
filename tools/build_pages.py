@@ -148,11 +148,11 @@ EX = "https://github.com/"
 
 project_page(
     "sailor", "SAILOR", "Static Analysis Informed and LLM-Orchestrated Symbolic Execution",
-    "SAILOR automates symbolic execution harness construction with static analysis and LLM synthesis, finding 67 confirmed zero-days in 28 C/C++ projects.",
+    "SAILOR automates symbolic execution harness construction with static analysis and LLM synthesis, finding 67 confirmed vulnerabilities in 28 C/C++ projects.",
     ["Under review, USENIX Security 2027", "Accepted presentation, KLEE Workshop 2026", "Preprint on arXiv"],
     [("Preprint (arXiv)", "https://arxiv.org/abs/2604.06506"), ("KLEE Workshop 2026", "https://srg.doc.ic.ac.uk/klee26/"), ("Disclosed findings", "/findings/")],
     "SAILOR automates the hardest manual step in symbolic execution, writing the harness. Static analysis decides where to look, an LLM synthesizes the harness against compiler and KLEE feedback, and every result is replayed against the unmodified project under a sanitizer.",
-    [("67", "zero-days in 28 projects (12.3M lines), each with an API-level proof of concept"),
+    [("67", "confirmed vulnerabilities in 28 projects (12.3M lines), each with an API-level proof of concept"),
      ("36", "found by Claude Code on the same 28 projects"),
      ("5", "found by libFuzzer on the same projects"),
      ("55", "of the 67 missed by both baselines")],
@@ -167,11 +167,11 @@ project_page(
               + img("sailor-pipeline", "SAILOR three-phase pipeline with a running example", "Figure 1 of the SAILOR paper. Phase 2 (shaded) is the core contribution, where the LLM synthesizes and iteratively refines the harness against compiler and KLEE feedback.")),
         block("A worked example in SELinux",
               "<p>libsepol's <code>discard_tunables</code> copies tunable terms into a fixed 10-slot array. Phase 1 flags the sink and a checker (<code>tunables &lt; 10</code>). Phase 2 has KLEE produce a witness, a policy with 11 tunable terms, through a synthesized harness. Phase 3 replays it against the unmodified source, and AddressSanitizer reports a stack-buffer overflow write at <code>expand.c:3058</code>. OSS-Fuzz had fuzzed this library for five years without reaching the overflow.</p>"
-              + img("sailor-slide17", "Candidate, witness, and confirmation for an out-of-bounds write in SELinux", "From a candidate pattern to a confirmed zero-day, one phase at a time.", narrow=True)),
+              + img("sailor-slide17", "Candidate, witness, and confirmation for an out-of-bounds write in SELinux", "From a candidate pattern to a confirmed vulnerability, one phase at a time.", narrow=True)),
         block("Results",
-              "<p>Run through public APIs on 28 real projects, SAILOR confirmed 67 zero-days with no false positives. Claude Code found 36 and libFuzzer found 5, and 55 of SAILOR's findings were missed by both baselines. Of the findings sent to maintainers, 14 are acknowledged (10 patched, 4 in progress) and 16 more were independently fixed upstream. SAILOR synthesized its harnesses with the less capable Sonnet 5.</p>"
+              "<p>Run through public APIs on 28 real projects, SAILOR confirmed 67 vulnerabilities with no false positives. Claude Code found 36 and libFuzzer found 5, and 55 of SAILOR's findings were missed by both baselines. Of the findings sent to maintainers, 14 are acknowledged (10 patched, 4 in progress) and 16 more were independently fixed upstream. SAILOR synthesized its harnesses with the less capable Sonnet 5.</p>"
               + '<div class="fig-row">'
-              + img("sailor-slide22", "Summary of 67 zero-days in 28 projects", "Headline results for the 28-project study.")
+              + img("sailor-slide22", "Summary of 67 confirmed vulnerabilities in 28 projects", "Headline results for the 28-project study.")
               + img("sailor-slide23", "Bar chart and Venn diagram comparing SAILOR with Claude Code and libFuzzer", "SAILOR finds 67 vulnerabilities, 55 of them missed by both baselines.")
               + "</div>"),
         block("Every phase matters",
@@ -455,7 +455,7 @@ write("/about/", about_html)
 
 # ------------------------------------------------------------------ home
 CARDS = [
-    ("sailor", "SAILOR", "Under review, USENIX Security 2027 and KLEE Workshop 2026", "LLM-orchestrated symbolic execution with sanitizer-confirmed evidence. 67 zero-days in 28 projects.", "sailor-slide23"),
+    ("sailor", "SAILOR", "Under review, USENIX Security 2027 and KLEE Workshop 2026", "LLM-orchestrated symbolic execution with sanitizer-confirmed evidence. 67 confirmed vulnerabilities in 28 projects.", "sailor-slide23"),
     ("patchanalyzer", "PatchAnalyzer", "In preparation, ACM TOSEM", "Symbolic min-max analysis that quantifies whether a security patch is correct, and ranks candidates.", "patch-spaces"),
     ("pagent", "PAGENT", "ISSTA 2026", "Program-analysis-guided LLM agent for proof-of-concept generation, 132% better than the prior best.", "pagent-overview"),
     ("stase", "STASE", "ASE 2024, DARPA HARDEN", "Static-analysis-guided symbolic execution for UEFI firmware, with zero false positives.", "stase-slide9"),
@@ -489,7 +489,7 @@ homepage_hero = f"""<section class="section" id="about">
             <b>software security</b>, <b>program analysis</b>, and <b>formal methods</b>. My dissertation builds toward one
             pipeline that can <b>find, confirm, and repair</b> security vulnerabilities in real code. Its centerpiece,
             <a href="/sailor/"><b>SAILOR</b></a>, pairs static analysis with LLM-orchestrated symbolic execution and sanitizer-backed
-            validation, and has uncovered <b>67 previously unknown vulnerabilities</b>. <a href="/patchanalyzer/"><b>PatchAnalyzer</b></a>
+            validation, and has uncovered <b>67 confirmed vulnerabilities</b>. <a href="/patchanalyzer/"><b>PatchAnalyzer</b></a>
             then assesses whether a patch really fixes them. This builds on <a href="/stase/"><b>STASE</b></a>, which is being
             transitioned into U.S. Army adversarial-testing workflows. PatchAnalyzer already gives exact guarantees about patch correctness under explicit assumptions, and I am extending that approach to other security properties.
           </p>
@@ -516,13 +516,13 @@ homepage_hero = f"""<section class="section" id="about">
     </section>"""
 ld = re.search(r'  <script type="application/ld\+json">.*?</script>\n', orig, re.S).group(0)
 home = head("Md (Muhammad) Shafiuzzaman | Ph.D. Candidate, UCSB | Symbolic Execution, LLM Security",
-            "Md (Muhammad) Shafiuzzaman, Ph.D. candidate at UC Santa Barbara. LLM-orchestrated symbolic execution, program analysis, and vulnerability discovery. Creator of SAILOR and STASE; 67 zero-days found, 30+ disclosed.",
+            "Md (Muhammad) Shafiuzzaman, Ph.D. candidate at UC Santa Barbara. LLM-orchestrated symbolic execution, program analysis, and vulnerability discovery. Creator of SAILOR and STASE; 67 confirmed vulnerabilities, 30+ disclosed.",
             "/", ld) + f"""  {header("")}
   <main>
     {homepage_hero}
 
     <section class="section" id="at-a-glance">
-      {stats([("67", "zero-days confirmed in 28 real-world C/C++ projects"), ("10", "disclosed findings with public advisories, fixes, or pull requests"), ("Final phase", "DARPA HARDEN, the only bug-discovery team to reach it"), ("2026", "ISSTA and AgenticDev papers in the ACM Digital Library, KLEE Workshop talk")])}
+      {stats([("67", "confirmed vulnerabilities in 28 real-world C/C++ projects"), ("10", "disclosed findings with public advisories, fixes, or pull requests"), ("Final phase", "DARPA HARDEN, the only bug-discovery team to reach it"), ("2026", "ISSTA and AgenticDev papers in the ACM Digital Library, KLEE Workshop talk")])}
     </section>
 
     <section class="section" id="projects">
